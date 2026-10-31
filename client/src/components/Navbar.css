@@ -1,0 +1,231 @@
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(233, 232, 242, 0.85);
+  backdrop-filter: blur(16px);
+}
+
+.nav-inner {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.9px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  color: #fff;
+  font-size: 21px;
+  border-radius: 12px;
+  background: linear-gradient(140deg, #7768fa, #4938d4);
+  box-shadow: 0 5px 12px #5546e82b;
+}
+
+.brand-accent {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.6vw, 25px);
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-links > a,
+.nav-links > .nav-section-link,
+.login-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  color: #66677c;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-links > a:hover,
+.nav-links > .nav-section-link:hover,
+.login-link:hover {
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 16px;
+  margin-left: 2px;
+}
+
+.nav-actions .btn {
+  white-space: nowrap;
+}
+
+/* Tablet and smaller laptop screens */
+@media (max-width: 1100px) {
+  .nav-inner {
+    gap: 16px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .brand {
+    font-size: 19px;
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-links > a,
+  .nav-links > .nav-section-link,
+  .login-link {
+    font-size: 11px;
+  }
+
+  .nav-actions {
+    gap: 12px;
+  }
+}
+
+/* Mobile navigation */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid #eeeaf7;
+  border-radius: 12px;
+  background: #fff;
+  color: #5142dc;
+  cursor: pointer;
+  font-size: 23px;
+}
+
+@media (max-width: 900px) {
+  .nav-inner {
+    min-height: 70px;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 12px 24px 24px;
+    border-bottom: 1px solid #eeeaf7;
+    background: #fff;
+    box-shadow: 0 18px 30px rgba(40, 32, 71, 0.09);
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .nav-links > a,
+  .nav-links > .nav-section-link {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1eef8;
+    font-size: 14px;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    margin: 16px 0 0;
+  }
+
+  .nav-actions .login-link {
+    display: flex;
+    justify-content: flex-start;
+    min-height: 42px;
+    font-size: 14px;
+  }
+
+  .nav-actions .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .nav-inner {
+    min-height: 66px;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .nav-links {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

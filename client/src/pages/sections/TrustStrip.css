@@ -1,0 +1,46 @@
+
+.trust-strip {
+  border-top: 1px solid #f0eef7;
+  border-bottom: 1px solid #f0eef7;
+  background: #fcfbff;
+}
+
+.trust-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding-block: 24px;
+}
+
+.trust-inner > p {
+  margin: 0;
+  color: #858399;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
+
+.trust-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.trust-items span {
+  color: #6e6b81;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .trust-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .trust-items {
+    gap: 15px 20px;
+  }
+}

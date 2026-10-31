@@ -1,0 +1,642 @@
+
+/* =========================================
+   SKILLSWAP - EXCHANGE REQUESTS PAGE
+========================================= */
+
+.requests-page {
+  --requests-primary: #6c5ce7;
+  --requests-text: #202033;
+  --requests-muted: #77778b;
+  --requests-border: #e9e8f1;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 28px 60px;
+  color: var(--requests-text);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.requests-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.requests-eyebrow {
+  margin: 0 0 10px;
+  color: var(--requests-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.requests-header h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -1.2px;
+}
+
+.requests-subtitle {
+  margin: 12px 0 0;
+  color: var(--requests-muted);
+  line-height: 1.7;
+}
+
+.browse-skills-btn,
+.request-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 17px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.browse-skills-btn {
+  flex-shrink: 0;
+  background: var(--requests-primary);
+  color: white;
+}
+
+.browse-skills-btn span {
+  margin-left: 8px;
+}
+
+.browse-skills-btn:hover,
+.request-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgb(108 92 231 / 15%);
+}
+
+/* =========================================
+   REQUEST STATISTICS
+========================================= */
+
+.request-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.request-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--requests-border);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgb(30 25 70 / 4%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.request-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 25px rgb(30 25 70 / 7%);
+}
+
+.stat-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #f0edff;
+  font-size: 23px;
+}
+
+.request-stat p {
+  margin: 0 0 7px;
+  color: var(--requests-muted);
+  font-size: 13px;
+}
+
+.request-stat h2 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+/* =========================================
+   MAIN REQUESTS CONTAINER
+========================================= */
+
+.requests-content {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--requests-border);
+  border-radius: 18px;
+  box-shadow: 0 5px 24px rgb(30 25 70 / 3%);
+}
+
+/* =========================================
+   TOOLBAR AND TABS
+========================================= */
+
+.requests-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.request-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--requests-border);
+}
+
+.request-tab {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 15px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--requests-muted);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.request-tab:hover {
+  color: var(--requests-primary);
+}
+
+.request-tab.active {
+  color: var(--requests-primary);
+  border-bottom-color: var(--requests-primary);
+}
+
+.tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background: #eeeaff;
+  color: var(--requests-primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* =========================================
+   SEARCH AND FILTERS
+========================================= */
+
+.request-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.request-filters input,
+.request-filters select {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--requests-border);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--requests-text);
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.request-filters input {
+  width: 230px;
+}
+
+.request-filters input:focus,
+.request-filters select:focus {
+  border-color: var(--requests-primary);
+  box-shadow: 0 0 0 3px rgb(108 92 231 / 10%);
+}
+
+.request-filters input::placeholder {
+  color: #a2a1b2;
+}
+
+/* =========================================
+   REQUEST CARDS GRID
+========================================= */
+
+.requests-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.request-card {
+  min-width: 0;
+  padding: 21px;
+  border: 1px solid var(--requests-border);
+  border-radius: 15px;
+  background: #fff;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.request-card:hover {
+  transform: translateY(-2px);
+  border-color: #dcd6ff;
+  box-shadow: 0 8px 25px rgb(30 25 70 / 7%);
+}
+
+/* =========================================
+   USER INFORMATION
+========================================= */
+
+.request-card-top,
+.request-user {
+  display: flex;
+  align-items: center;
+}
+
+.request-card-top {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.request-user {
+  gap: 12px;
+  min-width: 0;
+}
+
+.request-avatar {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eeeaff;
+  color: var(--requests-primary);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.request-user h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.request-username {
+  margin: 0;
+  color: var(--requests-muted);
+  font-size: 12px;
+}
+
+/* =========================================
+   REQUEST STATUS BADGES
+========================================= */
+
+.request-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background: #fff3d9;
+  color: #9a6500;
+}
+
+.status-accepted {
+  background: #e1f8eb;
+  color: #18794e;
+}
+
+.status-rejected {
+  background: #ffe6e6;
+  color: #b42318;
+}
+
+.status-cancelled {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* =========================================
+   SKILL EXCHANGE DETAILS
+========================================= */
+
+.skill-exchange {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 23px 0 18px;
+}
+
+.exchange-skill {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 13px;
+  border-radius: 11px;
+}
+
+.offered-skill {
+  background: #f0edff;
+}
+
+.wanted-skill {
+  background: #eaf8f4;
+}
+
+.exchange-label {
+  color: var(--requests-muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.exchange-skill strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.exchange-arrow {
+  color: var(--requests-primary);
+  font-size: 22px;
+}
+
+/* =========================================
+   MESSAGE AND DATE
+========================================= */
+
+.request-message {
+  margin: 0;
+  color: #57576b;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.request-date {
+  margin: 17px 0;
+  color: var(--requests-muted);
+  font-size: 11px;
+}
+
+/* =========================================
+   REQUEST ACTIONS
+========================================= */
+
+.request-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding-top: 15px;
+  border-top: 1px solid var(--requests-border);
+}
+
+.request-btn {
+  padding: 10px 15px;
+  font-size: 12px;
+}
+
+.accept-btn,
+.chat-btn {
+  background: var(--requests-primary);
+  color: white;
+}
+
+.accept-btn:hover,
+.chat-btn:hover {
+  background: #5947d7;
+}
+
+.reject-btn {
+  border: 1px solid var(--requests-border);
+  background: white;
+  color: #b42318;
+}
+
+.reject-btn:hover {
+  border-color: #f5b8b8;
+  background: #fff5f5;
+}
+
+.request-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.request-closed {
+  align-self: center;
+  color: var(--requests-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   EMPTY AND LOADING STATES
+========================================= */
+
+.requests-empty {
+  grid-column: 1 / -1;
+  padding: 55px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  margin-bottom: 12px;
+  font-size: 36px;
+}
+
+.requests-empty h3 {
+  margin: 0 0 8px;
+  color: var(--requests-text);
+  font-size: 18px;
+}
+
+.requests-empty p {
+  margin: 0 0 20px;
+  color: var(--requests-muted);
+  line-height: 1.6;
+}
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.request-error {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.request-error button {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #991b1b;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN - TABLET
+========================================= */
+
+@media (max-width: 850px) {
+  .requests-list {
+    grid-template-columns: 1fr;
+  }
+
+  .requests-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .request-filters input {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN - MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .requests-page {
+    padding: 26px 15px 40px;
+  }
+
+  .requests-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .requests-header h1 {
+    font-size: 29px;
+  }
+
+  .browse-skills-btn {
+    width: 100%;
+  }
+
+  .request-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .request-stat {
+    padding: 16px;
+  }
+
+  .requests-content {
+    padding: 15px;
+  }
+
+  .request-tabs {
+    width: 100%;
+  }
+
+  .request-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 11px 8px;
+    font-size: 13px;
+  }
+
+  .request-filters {
+    flex-direction: column;
+  }
+
+  .request-filters input,
+  .request-filters select {
+    width: 100%;
+  }
+
+  .request-card {
+    padding: 16px;
+  }
+
+  .skill-exchange {
+    gap: 6px;
+  }
+
+  .exchange-skill {
+    padding: 10px;
+  }
+
+  .exchange-skill strong {
+    font-size: 12px;
+  }
+
+  .exchange-arrow {
+    font-size: 18px;
+  }
+
+  .request-error {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL SCREENS
+========================================= */
+
+@media (max-width: 380px) {
+  .request-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .request-status {
+    margin-left: 58px;
+  }
+
+  .skill-exchange {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .exchange-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}
