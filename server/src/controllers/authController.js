@@ -1,3 +1,4 @@
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
@@ -5,7 +6,14 @@ const crypto = require("crypto");
 const User = require("../models/User");
 const { sendEmail } = require("../utils/emailService");
 
+// ============================================
+// CONFIGURATION
+// ============================================
+
 const isProduction = process.env.NODE_ENV === "production";
+
+const VERIFICATION_TOKEN_EXPIRY = 30 * 60 * 1000;
+const RESET_TOKEN_EXPIRY = 15 * 60 * 1000;
 
 const cookieOptions = {
   httpOnly: true,
@@ -14,11 +22,25 @@ const cookieOptions = {
   path: "/",
 };
 
-const VERIFICATION_TOKEN_EXPIRY = 30 * 60 * 1000;
-const RESET_TOKEN_EXPIRY = 15 * 60 * 1000;
+function getClientUrl() {
+  const clientUrl = process.env.CLIENT_URL?.trim().replace(/\/$/, "");
 
-// CREATE JWT
+  if (!clientUrl || !/^https?:\/\//i.test(clientUrl)) {
+    throw new Error("CLIENT_URL is missing or invalid.");
+  }
+
+  return clientUrl;
+}
+
+// ============================================
+// JWT TOKEN
+// ============================================
+
 function createToken(userId) {
+  if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is not configured.");
+  }
+
   return jwt.sign(
     { userId },
     process.env.JWT_SECRET,
@@ -26,7 +48,10 @@ function createToken(userId) {
   );
 }
 
-// SET AUTH COOKIE
+// ============================================
+// AUTH COOKIE
+// ============================================
+
 function setAuthCookie(res, token) {
   res.cookie("skillswap_token", token, {
     ...cookieOptions,
@@ -34,7 +59,10 @@ function setAuthCookie(res, token) {
   });
 }
 
+// ============================================
 // PUBLIC USER DATA
+// ============================================
+
 function publicUser(user) {
   return {
     id: user._id,
@@ -49,20 +77,28 @@ function publicUser(user) {
   };
 }
 
-// GENERATE SECURE TOKEN
+// ============================================
+// SECURE TOKEN GENERATION
+// ============================================
+
 function generateSecureToken() {
   const rawToken = crypto.randomBytes(32).toString("hex");
 
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(rawToken)
+    .digest("hex");
+
   return {
     rawToken,
-    hashedToken: crypto
-      .createHash("sha256")
-      .update(rawToken)
-      .digest("hex"),
+    hashedToken,
   };
 }
 
-// ESCAPE HTML
+// ============================================
+// HTML ESCAPING
+// ============================================
+
 function escapeHtml(value = "") {
   return String(value).replace(/[&<>"']/g, (character) => {
     const entities = {
@@ -77,8 +113,13 @@ function escapeHtml(value = "") {
   });
 }
 
+// ============================================
 // CREATE VERIFICATION EMAIL
+// ============================================
+
 async function createVerificationEmail(user) {
+  const clientUrl = getClientUrl();
+
   const { rawToken, hashedToken } = generateSecureToken();
 
   user.emailVerificationToken = hashedToken;
@@ -89,7 +130,7 @@ async function createVerificationEmail(user) {
   await user.save();
 
   const verificationUrl =
-    `${process.env.CLIENT_URL}/verify-email?token=${rawToken}`;
+    `${clientUrl}/verify-email?token=${encodeURIComponent(rawToken)}`;
 
   await sendEmail({
     to: user.email,
@@ -113,20 +154,31 @@ If you did not create this account, you can ignore this email.`,
 
         <p>Hello ${escapeHtml(user.name)},</p>
 
-        <p>Thanks for joining SkillSwap. Verify your email address to activate your account.</p>
+        <p>
+          Thanks for joining SkillSwap.
+          Verify your email address to activate your account.
+        </p>
 
         <a href="${verificationUrl}"
           style="display: inline-block; padding: 14px 24px; background: #6d4aff; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
           Verify my email
         </a>
 
-        <p style="margin-top: 24px;">This link expires in <strong>30 minutes</strong>.</p>
+        <p style="margin-top: 24px;">
+          This link expires in <strong>30 minutes</strong>.
+        </p>
 
-        <p>If the button does not work, copy this link into your browser:</p>
+        <p>
+          If the button does not work, copy this link into your browser:
+        </p>
 
-        <p style="word-break: break-all;">${verificationUrl}</p>
+        <p style="word-break: break-all;">
+          ${verificationUrl}
+        </p>
 
-        <p>If you did not create this account, you can ignore this email.</p>
+        <p>
+          If you did not create this account, you can ignore this email.
+        </p>
 
         <p>— Team SkillSwap</p>
       </div>
@@ -134,10 +186,13 @@ If you did not create this account, you can ignore this email.`,
   });
 }
 
+// ============================================
 // REGISTER
+// ============================================
+
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body || {};
 
     if (
       typeof name !== "string" ||
@@ -183,6 +238,7 @@ const register = async (req, res) => {
           message:
             "An account with this email already exists but is not verified. Please request a new verification email.",
           requiresVerification: true,
+          email: existingUser.email,
         });
       }
 
@@ -214,6 +270,7 @@ const register = async (req, res) => {
           "Your account was created, but we could not send the verification email. Please try resending it.",
         requiresVerification: true,
         emailSent: false,
+        email: user.email,
       });
     }
 
@@ -239,10 +296,13 @@ const register = async (req, res) => {
   }
 };
 
+// ============================================
 // VERIFY EMAIL
+// ============================================
+
 const verifyEmail = async (req, res) => {
   try {
-    const { token } = req.body;
+    const { token } = req.body || {};
 
     if (typeof token !== "string" || !token) {
       return res.status(400).json({
@@ -276,6 +336,7 @@ const verifyEmail = async (req, res) => {
     await user.save();
 
     return res.status(200).json({
+      success: true,
       message:
         "Your email has been verified successfully. You can now log in.",
     });
@@ -288,10 +349,13 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+// ============================================
 // RESEND VERIFICATION EMAIL
+// ============================================
+
 const resendVerification = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.body || {};
 
     if (typeof email !== "string" || !email.trim()) {
       return res.status(400).json({
@@ -299,8 +363,10 @@ const resendVerification = async (req, res) => {
       });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+
     const user = await User.findOne({
-      email: email.trim().toLowerCase(),
+      email: cleanEmail,
     });
 
     const genericMessage =
@@ -308,6 +374,7 @@ const resendVerification = async (req, res) => {
 
     if (!user || user.isEmailVerified) {
       return res.status(200).json({
+        success: true,
         message: genericMessage,
       });
     }
@@ -327,6 +394,7 @@ const resendVerification = async (req, res) => {
     }
 
     return res.status(200).json({
+      success: true,
       message: genericMessage,
     });
   } catch (error) {
@@ -338,13 +406,16 @@ const resendVerification = async (req, res) => {
   }
 };
 
+// ============================================
 // FORGOT PASSWORD
+// ============================================
+
 const forgotPassword = async (req, res) => {
   const genericMessage =
     "If an account exists with this email, a password reset link will be sent.";
 
   try {
-    const { email } = req.body;
+    const { email } = req.body || {};
 
     if (typeof email !== "string" || !email.trim()) {
       return res.status(400).json({
@@ -358,9 +429,9 @@ const forgotPassword = async (req, res) => {
       email: cleanEmail,
     }).select("+password");
 
-    // Do not reveal whether the account exists.
     if (!user || !user.password) {
       return res.status(200).json({
+        success: true,
         message: genericMessage,
       });
     }
@@ -374,10 +445,12 @@ const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    const resetUrl =
-      `${process.env.CLIENT_URL}/reset-password?token=${rawToken}`;
-
     try {
+      const clientUrl = getClientUrl();
+
+      const resetUrl =
+        `${clientUrl}/reset-password?token=${encodeURIComponent(rawToken)}`;
+
       await sendEmail({
         to: user.email,
         subject: "Reset your SkillSwap password",
@@ -402,20 +475,30 @@ Team SkillSwap`,
 
             <p>Hello ${escapeHtml(user.name)},</p>
 
-            <p>We received a request to reset your SkillSwap password.</p>
+            <p>
+              We received a request to reset your SkillSwap password.
+            </p>
 
             <a href="${resetUrl}"
               style="display: inline-block; padding: 14px 24px; background: #6d4aff; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
               Reset my password
             </a>
 
-            <p style="margin-top: 24px;">This link expires in <strong>15 minutes</strong>.</p>
+            <p style="margin-top: 24px;">
+              This link expires in <strong>15 minutes</strong>.
+            </p>
 
-            <p>If the button does not work, copy this link into your browser:</p>
+            <p>
+              If the button does not work, copy this link into your browser:
+            </p>
 
-            <p style="word-break: break-all;">${resetUrl}</p>
+            <p style="word-break: break-all;">
+              ${resetUrl}
+            </p>
 
-            <p>If you did not request this, you can ignore this email.</p>
+            <p>
+              If you did not request this, you can ignore this email.
+            </p>
 
             <p>— Team SkillSwap</p>
           </div>
@@ -427,13 +510,15 @@ Team SkillSwap`,
         emailError.message
       );
 
-      // Invalidate token if email delivery fails.
+      // Invalidate reset token if email delivery fails.
       user.passwordResetToken = null;
       user.passwordResetExpires = null;
+
       await user.save();
     }
 
     return res.status(200).json({
+      success: true,
       message: genericMessage,
     });
   } catch (error) {
@@ -445,10 +530,13 @@ Team SkillSwap`,
   }
 };
 
+// ============================================
 // RESET PASSWORD
+// ============================================
+
 const resetPassword = async (req, res) => {
   try {
-    const { token, password } = req.body;
+    const { token, password } = req.body || {};
 
     if (
       typeof token !== "string" ||
@@ -493,6 +581,7 @@ const resetPassword = async (req, res) => {
     await user.save();
 
     return res.status(200).json({
+      success: true,
       message:
         "Your password has been reset successfully. You can now log in.",
     });
@@ -505,10 +594,13 @@ const resetPassword = async (req, res) => {
   }
 };
 
+// ============================================
 // LOGIN
+// ============================================
+
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {};
 
     if (
       typeof email !== "string" ||
@@ -556,9 +648,11 @@ const login = async (req, res) => {
     }
 
     const token = createToken(user._id.toString());
+
     setAuthCookie(res, token);
 
     return res.status(200).json({
+      success: true,
       message: "Login successful.",
       user: publicUser(user),
     });
@@ -571,21 +665,33 @@ const login = async (req, res) => {
   }
 };
 
+// ============================================
 // GET CURRENT USER
+// ============================================
+
 const getMe = async (req, res) => {
   return res.status(200).json({
+    success: true,
     user: publicUser(req.user),
   });
 };
 
+// ============================================
 // LOGOUT
+// ============================================
+
 const logout = (req, res) => {
   res.clearCookie("skillswap_token", cookieOptions);
 
   return res.status(200).json({
+    success: true,
     message: "Logged out successfully.",
   });
 };
+
+// ============================================
+// EXPORT CONTROLLERS
+// ============================================
 
 module.exports = {
   register,

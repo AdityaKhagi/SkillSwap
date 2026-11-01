@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
@@ -9,12 +8,19 @@ export default function VerifyEmail() {
   const { verifyEmail, resendVerification } = useAuth();
 
   const token = searchParams.get("token");
+
   const [status, setStatus] = useState("loading");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
+  const [resendMessage, setResendMessage] = useState("");
   const [resending, setResending] = useState(false);
 
+  const started = useRef(false);
+
   useEffect(() => {
+    if (started.current) return;
+
+    started.current = true;
     let active = true;
 
     const verify = async () => {
@@ -36,7 +42,7 @@ export default function VerifyEmail() {
           setStatus("error");
           setMessage(
             error.response?.data?.message ||
-              "Verification failed. Please try again."
+              "Verification failed. Please request a new link."
           );
         }
       }
@@ -47,17 +53,20 @@ export default function VerifyEmail() {
     return () => {
       active = false;
     };
-  }, [token]);
+  }, [token, verifyEmail]);
 
   const handleResend = async (event) => {
     event.preventDefault();
+    setResendMessage("");
 
     try {
       setResending(true);
-      const response = await resendVerification(email);
-      setMessage(response.message);
+
+      const response = await resendVerification(email.trim());
+
+      setResendMessage(response.message);
     } catch (error) {
-      setMessage(
+      setResendMessage(
         error.response?.data?.message ||
           "Unable to resend verification email."
       );
@@ -70,7 +79,9 @@ export default function VerifyEmail() {
     <main className="auth-page">
       <Link to="/" className="auth-brand">
         <span className="auth-brand-mark">S</span>
-        <span>Skill<span>Swap</span></span>
+        <span>
+          Skill<span>Swap</span>
+        </span>
       </Link>
 
       <section className="auth-card">
@@ -78,8 +89,8 @@ export default function VerifyEmail() {
           {status === "loading"
             ? "..."
             : status === "success"
-            ? "✓"
-            : "✉"}
+              ? "✓"
+              : "✉"}
         </div>
 
         <p className="auth-eyebrow">EMAIL VERIFICATION</p>
@@ -88,8 +99,8 @@ export default function VerifyEmail() {
           {status === "loading"
             ? "Verifying your email"
             : status === "success"
-            ? "Email verified!"
-            : "Verification unsuccessful"}
+              ? "Email verified!"
+              : "Verification unsuccessful"}
         </h1>
 
         <p className="auth-subtitle">
@@ -105,27 +116,32 @@ export default function VerifyEmail() {
         )}
 
         {status === "error" && (
-          <>
-            <form onSubmit={handleResend} className="auth-form">
-              <label htmlFor="resend-email">Email address</label>
-              <input
-                id="resend-email"
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="you@example.com"
-                required
-              />
+          <form onSubmit={handleResend} className="auth-form">
+            <label htmlFor="resend-email">Email address</label>
 
-              <button
-                className="auth-submit"
-                type="submit"
-                disabled={resending}
-              >
-                {resending ? "Sending..." : "Resend verification email"}
-              </button>
-            </form>
-          </>
+            <input
+              id="resend-email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@example.com"
+              required
+            />
+
+            <button
+              className="auth-submit"
+              type="submit"
+              disabled={resending}
+            >
+              {resending ? "Sending..." : "Resend verification email"}
+            </button>
+
+            {resendMessage && (
+              <p className="auth-hint" role="status">
+                {resendMessage}
+              </p>
+            )}
+          </form>
         )}
 
         <p className="auth-switch">

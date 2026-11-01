@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -6,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const http = require("http");
 const { Server } = require("socket.io");
 const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 
 const Conversation = require("./models/Conversation");
@@ -18,32 +18,73 @@ const skillRoutes = require("./routes/skillRoutes");
 const exchangeRoutes = require("./routes/exchangeRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 
+// ============================================
+// APP INITIALIZATION
+// ============================================
+
 const app = express();
 const server = http.createServer(app);
 
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+const PORT = process.env.PORT || 5000;
+
+const CLIENT_URL = process.env.CLIENT_URL;
+
+if (!CLIENT_URL) {
+  throw new Error("CLIENT_URL is missing from environment variables.");
+}
+
+// Supports multiple allowed frontend origins separated by commas.
+const allowedOrigins = CLIENT_URL.split(",")
+  .map((url) => url.trim().replace(/\/$/, ""))
+  .filter(Boolean);
+
+// Trust Render's reverse proxy for secure cookie handling.
+app.set("trust proxy", 1);
+
+// ============================================
+// MIDDLEWARE
+// ============================================
 
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      // Allow requests without Origin, such as health checks.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const normalizedOrigin = origin.replace(/\/$/, "");
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
 
-// API routes
+// ============================================
+// API ROUTES
+// ============================================
+
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/exchange", exchangeRoutes);
 app.use("/api/chat", chatRoutes);
 
-// Socket.IO setup
+// ============================================
+// SOCKET.IO SETUP
+// ============================================
+
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_URL,
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -55,7 +96,10 @@ const onlineUsers = new Map();
 
 const getOnlineUserIds = () => Array.from(onlineUsers.keys());
 
-// Read authentication cookie.
+// ============================================
+// COOKIE EXTRACTION
+// ============================================
+
 function getCookieValue(cookieHeader, cookieName) {
   if (!cookieHeader) return null;
 
@@ -72,11 +116,18 @@ function getCookieValue(cookieHeader, cookieName) {
   return null;
 }
 
-// Authenticate every Socket.IO connection.
+// ============================================
+// SOCKET AUTHENTICATION
+// ============================================
+
 io.use(async (socket, next) => {
   try {
     const cookieHeader = socket.handshake.headers.cookie;
-    const token = getCookieValue(cookieHeader, "skillswap_token");
+
+    const token = getCookieValue(
+      cookieHeader,
+      "skillswap_token"
+    );
 
     if (!token) {
       return next(
@@ -84,30 +135,50 @@ io.use(async (socket, next) => {
       );
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
+
     const userId = decoded.userId || decoded.id || decoded._id;
 
     if (!userId) {
-      return next(new Error("Invalid authentication token."));
+      return next(
+        new Error("Invalid authentication token.")
+      );
     }
 
-    const user = await User.findById(userId).select("_id name email");
+    const user = await User.findById(userId).select(
+      "_id name email"
+    );
 
     if (!user) {
-      return next(new Error("User account not found."));
+      return next(
+        new Error("User account not found.")
+      );
     }
 
     socket.user = user;
+
     next();
   } catch (error) {
-    console.error("Socket authentication error:", error.message);
-    next(new Error("Authentication failed. Please log in again."));
+    console.error(
+      "Socket authentication error:",
+      error.message
+    );
+
+    next(
+      new Error("Authentication failed. Please log in again.")
+    );
   }
 });
 
-// Health endpoint
+// ============================================
+// HEALTH ENDPOINT
+// ============================================
+
 app.get("/api/health", (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
     message: "SkillSwap API is running!",
     database:
@@ -117,7 +188,10 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Format messages consistently for the frontend.
+// ============================================
+// MESSAGE FORMATTER
+// ============================================
+
 function formatMessage(message) {
   const senderId = message.sender?._id
     ? message.sender._id.toString()
@@ -141,7 +215,9 @@ function formatMessage(message) {
 io.on("connection", (socket) => {
   const userId = socket.user._id.toString();
 
-  console.log(`Authenticated socket connected: ${socket.user.name}`);
+  console.log(
+    `Authenticated socket connected: ${socket.user.name}`
+  );
 
   // ============================================
   // ONLINE / OFFLINE PRESENCE
@@ -155,10 +231,8 @@ io.on("connection", (socket) => {
 
   onlineUsers.get(userId).add(socket.id);
 
-  // Send the current online users to this user.
   socket.emit("onlineUsers", getOnlineUserIds());
 
-  // Notify others only on the user's first connection.
   if (isFirstConnection) {
     socket.broadcast.emit("userOnline", userId);
   }
@@ -184,7 +258,9 @@ io.on("connection", (socket) => {
         });
       }
 
-      const conversation = await Conversation.findById(conversationId)
+      const conversation = await Conversation.findById(
+        conversationId
+      )
         .populate("exchangeRequest", "status")
         .lean();
 
@@ -214,14 +290,13 @@ io.on("connection", (socket) => {
         });
       }
 
-      // Leave previous conversation rooms.
+      // Leave previously joined conversation rooms.
       for (const room of socket.rooms) {
         if (room !== socket.id) {
           socket.leave(room);
         }
       }
 
-      // Room name is the conversation ID.
       socket.join(conversationId);
 
       const history = await Message.find({
@@ -245,7 +320,10 @@ io.on("connection", (socket) => {
         conversationId,
       });
     } catch (error) {
-      console.error("Join conversation error:", error.message);
+      console.error(
+        "Join conversation error:",
+        error.message
+      );
 
       respond({
         success: false,
@@ -264,6 +342,7 @@ io.on("connection", (socket) => {
 
     try {
       const conversationId = payload?.conversationId;
+
       const text =
         typeof payload?.text === "string"
           ? payload.text.trim()
@@ -281,7 +360,6 @@ io.on("connection", (socket) => {
         });
       }
 
-      // Verify this socket has joined the conversation.
       const room = io.sockets.adapter.rooms.get(conversationId);
 
       if (!room || !room.has(socket.id)) {
@@ -291,8 +369,9 @@ io.on("connection", (socket) => {
         });
       }
 
-      const conversation = await Conversation.findById(conversationId)
-        .populate("exchangeRequest", "status");
+      const conversation = await Conversation.findById(
+        conversationId
+      ).populate("exchangeRequest", "status");
 
       if (!conversation) {
         return respond({
@@ -337,13 +416,14 @@ io.on("connection", (socket) => {
         }
       );
 
-      const populatedMessage = await Message.findById(savedMessage._id)
+      const populatedMessage = await Message.findById(
+        savedMessage._id
+      )
         .populate("sender", "name")
         .lean();
 
       const formatted = formatMessage(populatedMessage);
 
-      // Send only to sockets in this private conversation.
       io.to(conversationId).emit("newMessage", formatted);
 
       respond({
@@ -351,7 +431,10 @@ io.on("connection", (socket) => {
         messageId: formatted.id,
       });
     } catch (error) {
-      console.error("Send message error:", error.message);
+      console.error(
+        "Send message error:",
+        error.message
+      );
 
       respond({
         success: false,
@@ -418,7 +501,9 @@ io.on("connection", (socket) => {
         });
       }
 
-      const conversation = await Conversation.findById(conversationId);
+      const conversation = await Conversation.findById(
+        conversationId
+      );
 
       if (
         !conversation ||
@@ -458,7 +543,6 @@ io.on("connection", (socket) => {
         }
       );
 
-      // Notify the other participant(s).
       socket.to(conversationId).emit("messagesRead", {
         conversationId,
         userId,
@@ -470,7 +554,10 @@ io.on("connection", (socket) => {
         count: messageIds.length,
       });
     } catch (error) {
-      console.error("Mark messages read error:", error.message);
+      console.error(
+        "Mark messages read error:",
+        error.message
+      );
 
       respond({
         success: false,
@@ -489,15 +576,35 @@ io.on("connection", (socket) => {
     if (userSockets) {
       userSockets.delete(socket.id);
 
-      // Mark offline only when the last tab/device disconnects.
       if (userSockets.size === 0) {
         onlineUsers.delete(userId);
-
         io.emit("userOffline", userId);
       }
     }
 
-    console.log(`Socket disconnected: ${socket.user.name}`);
+    console.log(
+      `Socket disconnected: ${socket.user.name}`
+    );
+  });
+});
+
+// ============================================
+// ERROR HANDLER
+// ============================================
+
+app.use((error, req, res, next) => {
+  console.error("Server error:", error.message);
+
+  if (error.message === "Not allowed by CORS") {
+    return res.status(403).json({
+      success: false,
+      message: "Origin not allowed.",
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: "Internal server error.",
   });
 });
 
@@ -505,23 +612,26 @@ io.on("connection", (socket) => {
 // START SERVER
 // ============================================
 
-const PORT = process.env.PORT || 5000;
-
 async function startServer() {
   try {
     if (!process.env.MONGO_URI) {
-      throw new Error("MONGO_URI is missing in server/.env");
+      throw new Error("MONGO_URI is missing.");
     }
 
     if (!process.env.JWT_SECRET) {
-      throw new Error("JWT_SECRET is missing in server/.env");
+      throw new Error("JWT_SECRET is missing.");
+    }
+
+    if (!process.env.CLIENT_URL) {
+      throw new Error("CLIENT_URL is missing.");
     }
 
     await mongoose.connect(process.env.MONGO_URI);
+
     console.log("MongoDB connected successfully!");
 
     server.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`SkillSwap server running on port ${PORT}`);
     });
   } catch (error) {
     console.error("Startup error:", error.message);
