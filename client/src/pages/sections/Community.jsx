@@ -2,125 +2,186 @@
 import { Link } from "react-router-dom";
 import "./Community.css";
 
-const members = [
+const profiles = [
   {
-    initials: "AK",
-    name: "Alex Kumar",
-    role: "Computer Science Student",
-    color: "community-purple",
-    skills: ["React", "Node.js"],
-    learning: "UI/UX Design",
-    status: "Ready to exchange",
+    number: "01",
+    initials: "01",
+    title: "The Builder",
+    description: "Turning ideas into working products.",
+    teaches: ["React", "Node.js"],
+    learns: ["UI / UX Design"],
+    theme: "builder",
+    symbol: "⌘",
   },
   {
-    initials: "PS",
-    name: "Priya Sharma",
-    role: "Creative Designer",
-    color: "community-peach",
-    skills: ["Figma", "Graphic Design"],
-    learning: "Python",
-    status: "Open to learning",
+    number: "02",
+    initials: "02",
+    title: "The Creator",
+    description: "Making digital experiences beautiful.",
+    teaches: ["Figma", "Graphic Design"],
+    learns: ["Python"],
+    theme: "creator",
+    symbol: "✳",
   },
   {
-    initials: "RV",
-    name: "Rahul Verma",
-    role: "Aspiring Data Scientist",
-    color: "community-green",
-    skills: ["Python", "SQL"],
-    learning: "Web Development",
-    status: "Ready to exchange",
+    number: "03",
+    initials: "03",
+    title: "The Explorer",
+    description: "Finding patterns and solving problems.",
+    teaches: ["Python", "SQL"],
+    learns: ["Web Development"],
+    theme: "explorer",
+    symbol: "↗",
   },
 ];
 
 export default function Community() {
   return (
-    <section className="section community-section" id="community">
-      <div className="container">
-        <div className="community-heading">
-          <div className="community-heading-copy">
-            <span className="eyebrow">MORE THAN A PLATFORM</span>
+    <section className="community-section" id="community">
+      <div className="community-container">
+
+        {/* Heading */}
+        <div className="community-header">
+          <div>
+            <span className="community-eyebrow">
+              <span />
+              05 / THE PEOPLE
+            </span>
 
             <h2>
-              Find your people.
+              Different people.
               <br />
-              <span className="gradient-text">Grow together.</span>
+              <span>Shared curiosity.</span>
             </h2>
-
-            <p>
-              Meet curious minds, share what you know, and discover
-              opportunities to learn from each other.
-            </p>
           </div>
 
-          <Link to="/explore" className="community-explore-btn">
-            Meet your next learning partner <span>↗</span>
-          </Link>
+          <div className="community-header-side">
+            <span className="community-question">?</span>
+            <p>
+              Your next learning partner
+              <br />
+              might be one connection away.
+            </p>
+            <Link to="/explore">
+              DISCOVER PEOPLE <span>↗</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="community-grid">
-          {members.map((member, index) => (
-            <article className="community-card" key={member.initials}>
-              <div className="community-card-top">
-                <div className={`community-avatar ${member.color}`}>
-                  {member.initials}
+        {/* Profile showcase */}
+        <div className="community-showcase">
+          {profiles.map((profile) => (
+            <article
+              className={`community-profile community-${profile.theme}`}
+              key={profile.number}
+            >
+              <div className="community-profile-top">
+                <span>EXAMPLE PROFILE / {profile.number}</span>
+                <span className="community-profile-arrow">↗</span>
+              </div>
+
+              <div className="community-profile-art">
+                <div className="community-profile-orbit">
+                  <div className="community-profile-symbol">
+                    {profile.symbol}
+                  </div>
                 </div>
 
-                <span className="community-member-number">
-                  MEMBER 0{index + 1}
+                <span className="community-profile-initial">
+                  {profile.initials}
+                </span>
+
+                <span className="community-profile-decoration">
+                  ✳
                 </span>
               </div>
 
-              <h3>{member.name}</h3>
-              <p className="community-role">{member.role}</p>
+              <div className="community-profile-info">
+                <span className="community-profile-type">
+                  A CURIOUS MIND
+                </span>
 
-              <div className="community-divider" />
+                <h3>{profile.title}</h3>
+                <p>{profile.description}</p>
+              </div>
 
-              <div className="community-skill-group">
-                <span className="community-label">CAN TEACH</span>
+              <div className="community-profile-skills">
+                <div className="community-skill-block">
+                  <span className="community-skill-label">
+                    <span className="community-teach-dot" />
+                    CAN TEACH
+                  </span>
 
-                <div className="community-tags">
-                  {member.skills.map((skill) => (
-                    <span className="community-tag" key={skill}>
-                      {skill}
-                    </span>
-                  ))}
+                  <div className="community-tags">
+                    {profile.teaches.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="community-skill-block">
+                  <span className="community-skill-label">
+                    <span className="community-learn-dot" />
+                    WANTS TO LEARN
+                  </span>
+
+                  <div className="community-tags">
+                    {profile.learns.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="community-skill-group">
-                <span className="community-label">WANTS TO LEARN</span>
-
-                <span className="community-learning-tag">
-                  <span>✦</span> {member.learning}
-                </span>
-              </div>
-
-              <div className="community-card-footer">
-                <span className="community-online-dot" />
-                <span>{member.status}</span>
-              </div>
+              <Link
+                to="/explore"
+                className="community-profile-link"
+                aria-label={`Explore learners like ${profile.title}`}
+              >
+                <span>FIND YOUR MATCH</span>
+                <span>↗</span>
+              </Link>
             </article>
           ))}
         </div>
 
+        {/* Bottom banner */}
         <div className="community-banner">
-          <div className="community-banner-symbol">✳</div>
+          <div className="community-banner-art">
+            <span>?</span>
+            <span>✳</span>
+            <span>↗</span>
+          </div>
 
           <div className="community-banner-copy">
-            <h3>Your knowledge could be someone's breakthrough.</h3>
+            <span>YOUR SKILL. SOMEONE'S NEXT BIG THING.</span>
+            <h3>
+              You belong in
+              <br />
+              this exchange.
+            </h3>
             <p>
-              Start with one skill. Meet one person. Make a difference.
+              Bring your knowledge. Find your people.
+              Make learning a two-way street.
             </p>
           </div>
 
-          <Link to="/register" className="community-banner-btn">
-            Join the community <span>→</span>
+          <Link to="/register" className="community-banner-button">
+            Join Skill? <span>↗</span>
           </Link>
         </div>
 
+        <div className="community-endline">
+          <span>NO ONE KNOWS EVERYTHING.</span>
+          <span className="community-endline-brand">
+            Skill<span>?</span>
+          </span>
+          <span>EVERYONE KNOWS SOMETHING.</span>
+        </div>
+
         <p className="community-disclaimer">
-          Meet the kinds of learners you could connect with on SkillSwap.
-          Profiles shown here are illustrative examples.
+          The profiles above are illustrative examples of possible
+          skill exchanges, not actual registered members.
         </p>
       </div>
     </section>

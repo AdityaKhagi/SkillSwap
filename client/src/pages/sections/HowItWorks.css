@@ -1,344 +1,984 @@
 
-.how-section {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.exchange-section {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  padding: 90px 0;
-  background:
-    radial-gradient(ellipse at 100% 45%, #f1edff 0%, transparent 28%),
-    #faf9fe;
+  padding: 115px 6% 55px;
+  background: #19152b;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
 }
 
-.how-heading {
-  max-width: 700px;
-  margin: 0 auto 52px;
-  text-align: center;
+.exchange-bg {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.how-heading .eyebrow {
-  display: inline-block;
-  margin-bottom: 15px;
-  color: #8066e7;
+.exchange-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.exchange-glow-one {
+  top: -300px;
+  left: -200px;
+  background: rgba(121, 85, 236, 0.2);
+}
+
+.exchange-glow-two {
+  right: -250px;
+  bottom: 0;
+  background: rgba(116, 75, 201, 0.16);
+}
+
+.exchange-grid-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.exchange-container {
+  position: relative;
+  width: min(1240px, 100%);
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.exchange-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 65px;
+}
+
+.exchange-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: #aaa0ca;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
 }
 
-.how-heading h2 {
-  margin: 0 0 16px;
-  font-size: clamp(30px, 4vw, 46px);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -1.8px;
+.exchange-eyebrow > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9d7bff;
+  box-shadow: 0 0 14px #9d7bff;
 }
 
-.how-heading .gradient-text {
-  background: linear-gradient(100deg, #7655e8, #a45dd6, #dd927e);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+.exchange-header h2 {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 0.99;
+  letter-spacing: -5px;
 }
 
-.how-heading > p {
-  max-width: 570px;
-  margin: 0 auto;
-  color: var(--muted, #777287);
-  font-size: 14px;
+.exchange-header h2 > span {
+  color: #9b7bff;
+}
+
+.exchange-header-note {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+
+.exchange-note-mark {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+  border: 1px solid rgba(165, 140, 255, 0.3);
+  border-radius: 50%;
+  color: #a88eff;
+  font-size: 21px;
+}
+
+.exchange-header-note p {
+  margin: 0;
+  color: #aaa2be;
+  font-size: 12px;
   line-height: 1.9;
 }
 
-.how-steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 17px;
-}
+/* CENTRAL VISUAL */
 
-.how-step {
+.exchange-visual {
   position: relative;
-  min-width: 0;
-  padding: 24px 20px 19px;
-  border: 1px solid #ece8f6;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 6px 24px rgb(42 31 80 / 3%);
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.how-step:hover {
-  transform: translateY(-5px);
-  border-color: #dcd3ff;
-  box-shadow: 0 17px 38px rgb(42 31 80 / 7%);
-}
-
-.how-step-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.how-step-icon {
   display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  align-items: center;
+  min-height: 365px;
+  padding: 40px 6%;
+  overflow: hidden;
+  border: 1px solid rgba(183, 159, 255, 0.18);
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at center, rgba(121, 85, 236, 0.18), transparent 60%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.exchange-person {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.exchange-person-orbit {
+  position: relative;
+  display: grid;
+  width: 135px;
+  height: 135px;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 15px;
-  font-size: 25px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(173, 151, 255, 0.24);
+  border-radius: 50%;
 }
 
-.how-step-icon.lavender {
-  background: #eeeaff;
+.exchange-person-orbit::before,
+.exchange-person-orbit::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(173, 151, 255, 0.15);
+  border-radius: 50%;
 }
 
-.how-step-icon.peach {
-  background: #fff0e7;
+.exchange-person-orbit::before {
+  inset: 10px;
 }
 
-.how-step-icon.mint {
-  background: #e4f8ee;
+.exchange-person-orbit::after {
+  inset: -13px;
 }
 
-.how-step-icon.blue {
-  background: #e8f1ff;
+.exchange-avatar {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  place-items: center;
+  border-radius: 27px;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  box-shadow: 0 15px 35px rgba(0,0,0,.2);
+  transform: rotate(-8deg);
+  transition: transform 0.35s ease;
 }
 
-.how-step-number {
-  color: #c4bdcf;
-  font-size: 12px;
+.exchange-person:hover .exchange-avatar {
+  transform: rotate(0deg) scale(1.08);
+}
+
+.exchange-avatar-left {
+  background: linear-gradient(135deg, #9272ff, #6542d8);
+}
+
+.exchange-avatar-right {
+  background: linear-gradient(135deg, #e29abf, #a959a0);
+}
+
+.exchange-orbit-dot {
+  position: absolute;
+  top: 15px;
+  right: 4px;
+  width: 11px;
+  height: 11px;
+  border: 3px solid #19152b;
+  border-radius: 50%;
+  background: #a68aff;
+}
+
+.exchange-person-right .exchange-orbit-dot {
+  background: #e29abf;
+}
+
+.exchange-person-label {
+  margin-bottom: 8px;
+  color: #9589b1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.exchange-person h3 {
+  margin: 0 0 11px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.exchange-person-skill {
+  padding: 8px 11px;
+  border: 1px solid rgba(168, 142, 255, 0.24);
+  border-radius: 7px;
+  background: rgba(121, 85, 236, 0.12);
+  color: #b8a6ff;
+  font-size: 8px;
   font-weight: 800;
   letter-spacing: 1px;
 }
 
-.how-step h3 {
-  margin: 0 0 12px;
-  font-size: 16px;
+/* CONNECTING LINE */
+
+.exchange-middle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+}
+
+.exchange-line {
+  position: absolute;
+  top: 37px;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9a7aff);
+}
+
+.exchange-line-left {
+  left: 0;
+}
+
+.exchange-line-right {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.exchange-middle-symbol {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border: 1px solid rgba(175, 151, 255, 0.45);
+  border-radius: 22px;
+  background: #302450;
+  box-shadow: 0 0 45px rgba(121, 85, 236, 0.28);
+  color: #b49aff;
+  font-size: 36px;
+  transform: rotate(-7deg);
+  animation: exchangePulse 3s ease-in-out infinite;
+}
+
+@keyframes exchangePulse {
+  0%, 100% { box-shadow: 0 0 25px rgba(121,85,236,.2); }
+  50% { box-shadow: 0 0 55px rgba(121,85,236,.45); }
+}
+
+.exchange-middle-caption {
+  position: absolute;
+  top: 88px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #a69bbd;
+  font-size: 8px;
   font-weight: 800;
-  line-height: 1.5;
-  letter-spacing: -0.4px;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
 }
 
-.how-step-description {
-  min-height: 105px;
-  margin: 0 0 20px;
-  color: var(--muted, #777287);
-  font-size: 11px;
-  line-height: 1.9;
+.exchange-caption-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9b7bff;
+  box-shadow: 0 0 10px #9b7bff;
 }
 
-.how-step-bottom {
+/* FLOATING LABELS */
+
+.exchange-floating {
+  position: absolute;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-top: 15px;
-  border-top: 1px solid #f0edf7;
-  color: #6e6686;
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.how-step-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 7px;
-  border-radius: 50%;
-  background: #9279ee;
-}
-
-.how-step:nth-child(2) .how-step-dot {
-  background: #e8a078;
-}
-
-.how-step:nth-child(3) .how-step-dot {
-  background: #4bb58a;
-}
-
-.how-step:nth-child(4) .how-step-dot {
-  background: #6398e9;
-}
-
-.how-step-connector {
-  position: absolute;
-  z-index: 2;
-  top: 45px;
-  right: -22px;
-  display: grid;
-  place-items: center;
-  width: 27px;
-  height: 27px;
-  border: 1px solid #e9e2ff;
-  border-radius: 50%;
-  background: #fff;
-  color: #8a72e7;
-  font-size: 15px;
-}
-
-.how-cta {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  overflow: hidden;
-  padding: 27px 30px;
-  margin-top: 30px;
-  border: 1px solid #e9e1ff;
-  border-radius: 18px;
-  background: linear-gradient(110deg, #f1edff, #fbf6ff 65%, #fff5ee);
-}
-
-.how-cta-decoration {
-  position: absolute;
-  right: 230px;
-  bottom: -52px;
-  color: rgb(135 108 226 / 9%);
-  font-size: 180px;
-  line-height: 1;
-  pointer-events: none;
-}
-
-.how-cta-copy {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-}
-
-.how-cta-eyebrow {
-  display: inline-block;
-  margin-bottom: 9px;
-  color: #8066e7;
-  font-size: 9px;
+  padding: 10px 14px;
+  border: 1px solid rgba(184, 165, 255, 0.17);
+  border-radius: 9px;
+  background: rgba(48, 36, 80, 0.9);
+  color: #c4b4ff;
+  font-size: 8px;
   font-weight: 800;
   letter-spacing: 1.5px;
 }
 
-.how-cta-copy h3 {
-  margin: 0 0 8px;
-  font-size: 20px;
+.exchange-floating-left {
+  top: 38px;
+  left: 28%;
+  transform: rotate(-8deg);
+}
+
+.exchange-floating-right {
+  right: 27%;
+  bottom: 40px;
+  color: #e6a8d0;
+  transform: rotate(7deg);
+}
+
+.exchange-floating span {
+  font-size: 15px;
+}
+
+.exchange-visual-bottom {
+  position: absolute;
+  right: 25px;
+  bottom: 18px;
+  left: 25px;
+  display: flex;
+  justify-content: space-between;
+  color: #817696;
+  font-size: 8px;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  letter-spacing: 1.5px;
 }
 
-.how-cta-copy p {
+/* STEPS */
+
+.exchange-steps-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 65px 0 20px;
+  color: #a99dc2;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.exchange-steps-heading > span:last-child span {
+  color: #a78aff;
+  font-size: 15px;
+}
+
+.exchange-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.exchange-step {
+  display: flex;
+  min-width: 0;
+  min-height: 210px;
+  flex-direction: column;
+  padding: 21px 20px 17px;
+  border: 1px solid rgba(181, 160, 255, 0.15);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.exchange-step:hover {
+  transform: translateY(-7px);
+  border-color: rgba(170, 141, 255, 0.55);
+  background: rgba(121, 85, 236, 0.1);
+}
+
+.exchange-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.exchange-step-number {
+  color: #8b7ea8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.exchange-step-icon {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  border: 1px solid rgba(175, 151, 255, 0.24);
+  border-radius: 12px;
+  background: rgba(121, 85, 236, 0.13);
+  color: #b19aff;
+  font-size: 22px;
+}
+
+.exchange-step-content h3 {
+  margin: 0 0 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.exchange-step-content p {
   margin: 0;
-  color: var(--muted, #777287);
+  color: #a69bb9;
   font-size: 11px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-.how-cta-button {
-  position: relative;
-  z-index: 1;
+.exchange-step-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 14px;
+  margin-top: auto;
+  border-top: 1px solid rgba(181, 160, 255, 0.13);
+  color: #aa98df;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.exchange-step-bottom span:last-child {
+  font-size: 16px;
+}
+
+/* CTA */
+
+.exchange-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 29px 30px;
+  margin-top: 28px;
+  border: 1px solid rgba(178, 153, 255, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(
+    105deg,
+    rgba(121, 85, 236, 0.2),
+    rgba(121, 85, 236, 0.07)
+  );
+}
+
+.exchange-cta-copy > span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #a990ff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.exchange-cta-copy h3 {
+  margin: 0 0 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.exchange-cta-copy p {
+  margin: 0;
+  color: #aaa0bd;
+  font-size: 11px;
+}
+
+.exchange-cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 20px;
   flex-shrink: 0;
-  min-height: 47px;
-  padding: 0 18px;
-  border-radius: 11px;
-  background: #7655e8;
-  color: #fff;
-  box-shadow: 0 8px 20px rgb(118 85 232 / 20%);
-  font-size: 12px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: #7955ec;
+  color: white;
+  font-size: 11px;
   font-weight: 750;
   text-decoration: none;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.25s ease,
+    background 0.25s ease;
 }
 
-.how-cta-button:hover {
+.exchange-cta-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgb(118 85 232 / 28%);
+  background: #8b6cf5;
 }
 
-.how-cta-button:focus-visible {
-  outline: 3px solid #b9aaff;
-  outline-offset: 4px;
+.exchange-cta-button span {
+  font-size: 17px;
 }
 
-@media (max-width: 1050px) {
-  .how-steps {
+.exchange-footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 45px;
+  color: #766d8c;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.exchange-footer-brand {
+  color: #a98cff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+  letter-spacing: -1px;
+}
+
+.exchange-footer-brand span {
+  color: #d1c3ff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .exchange-section {
+    padding: 90px 5% 45px;
+  }
+
+  .exchange-visual {
+    min-height: 330px;
+    padding: 35px 3%;
+  }
+
+  .exchange-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
   }
 
-  .how-step-description {
-    min-height: 70px;
+  .exchange-floating-left {
+    left: 20%;
   }
 
-  .how-step-connector {
+  .exchange-floating-right {
+    right: 18%;
+  }
+}
+
+@media (max-width: 600px) {
+  .exchange-section {
+    padding: 75px 20px 35px;
+  }
+
+  .exchange-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .exchange-header h2 {
+    font-size: 58px;
+    letter-spacing: -3.5px;
+  }
+
+  .exchange-header-note {
+    padding: 0;
+  }
+
+  .exchange-visual {
+    grid-template-columns: 1fr 55px 1fr;
+    min-height: 280px;
+    padding: 35px 9px;
+    border-radius: 18px;
+  }
+
+  .exchange-person-orbit {
+    width: 90px;
+    height: 90px;
+  }
+
+  .exchange-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    font-size: 25px;
+  }
+
+  .exchange-person h3 {
+    font-size: 15px;
+  }
+
+  .exchange-person-skill {
+    padding: 7px 6px;
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .exchange-person-label {
+    font-size: 7px;
+  }
+
+  .exchange-middle-symbol {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    font-size: 25px;
+  }
+
+  .exchange-line {
+    top: 24px;
+  }
+
+  .exchange-middle-caption {
+    top: 65px;
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .exchange-floating {
+    padding: 7px 9px;
+    font-size: 6px;
+  }
+
+  .exchange-floating-left {
+    top: 10px;
+    left: 12%;
+  }
+
+  .exchange-floating-right {
+    right: 10%;
+    bottom: 27px;
+  }
+
+  .exchange-visual-bottom {
     display: none;
   }
-}
 
-@media (max-width: 760px) {
-  .how-section {
-    padding: 68px 0;
+  .exchange-steps-heading {
+    padding-top: 48px;
+    font-size: 7px;
   }
 
-  .how-heading {
-    margin-bottom: 35px;
-  }
-
-  .how-heading h2 {
-    letter-spacing: -1.2px;
-  }
-
-  .how-cta {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 24px;
-  }
-
-  .how-cta-decoration {
-    right: 10px;
-  }
-
-  .how-cta-button {
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-@media (max-width: 480px) {
-  .how-section {
-    padding: 55px 0;
-  }
-
-  .how-steps {
+  .exchange-steps {
     grid-template-columns: 1fr;
-    gap: 13px;
+    gap: 12px;
   }
 
-  .how-step {
-    padding: 21px 19px 17px;
+  .exchange-step {
+    min-height: 175px;
   }
 
-  .how-step-top {
-    margin-bottom: 17px;
-  }
-
-  .how-step-description {
-    min-height: 0;
+  .exchange-step-top {
     margin-bottom: 18px;
   }
 
-  .how-cta {
-    padding: 20px;
+  .exchange-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 23px;
   }
 
-  .how-cta-copy h3 {
-    font-size: 18px;
+  .exchange-cta-copy h3 {
+    font-size: 21px;
+  }
+
+  .exchange-cta-button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .exchange-footer-line {
+    font-size: 6px;
+    letter-spacing: 0.7px;
+  }
+
+  .exchange-footer-brand {
+    font-size: 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .how-step,
-  .how-cta-button {
+  .exchange-middle-symbol {
+    animation: none;
+  }
+
+  .exchange-step,
+  .exchange-avatar,
+  .exchange-cta-button {
     transition: none;
   }
 }
+
+
+
+/* =========================================
+   RESPONSIVE FIXES — SKILL? EXCHANGE
+========================================= */
+
+/* TABLETS AND SMALL LAPTOPS */
+@media (max-width: 900px) {
+
+  .exchange-section {
+    padding: 85px 5% 45px;
+  }
+
+  .exchange-header {
+    margin-bottom: 45px;
+  }
+
+  .exchange-visual {
+    grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr);
+    min-height: 350px;
+    padding: 35px 20px;
+  }
+
+  /* Give the center symbol and caption separate space */
+  .exchange-middle {
+    height: 170px;
+  }
+
+  .exchange-middle-symbol {
+    width: 62px;
+    height: 62px;
+    font-size: 30px;
+  }
+
+  .exchange-line {
+    top: 52px;
+  }
+
+  .exchange-middle-caption {
+    top: 112px;
+    justify-content: center;
+    font-size: 7px;
+    letter-spacing: 0.7px;
+  }
+
+  /* Remove decorative labels that collide with the avatars */
+  .exchange-floating {
+    display: none;
+  }
+
+  .exchange-person-orbit {
+    width: 115px;
+    height: 115px;
+  }
+
+  .exchange-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 31px;
+  }
+
+  .exchange-person h3 {
+    font-size: 19px;
+  }
+
+  .exchange-person-skill {
+    font-size: 7px;
+  }
+
+  .exchange-visual-bottom {
+    bottom: 15px;
+    font-size: 7px;
+    letter-spacing: 0.8px;
+  }
+
+  .exchange-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .exchange-step {
+    min-height: 195px;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+  .exchange-section {
+    padding: 70px 18px 35px;
+  }
+
+  .exchange-header {
+    gap: 24px;
+    margin-bottom: 35px;
+  }
+
+  .exchange-header h2 {
+    font-size: clamp(43px, 11vw, 58px);
+    letter-spacing: -3px;
+  }
+
+  .exchange-header-note p {
+    font-size: 11px;
+  }
+
+  .exchange-visual {
+    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+    min-height: 275px;
+    padding: 25px 8px 45px;
+    border-radius: 17px;
+  }
+
+  .exchange-person-orbit {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 15px;
+  }
+
+  .exchange-person-orbit::after {
+    inset: -7px;
+  }
+
+  .exchange-avatar {
+    width: 53px;
+    height: 53px;
+    border-radius: 17px;
+    font-size: 24px;
+  }
+
+  .exchange-person-label {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+
+  .exchange-person h3 {
+    font-size: clamp(12px, 3.5vw, 16px);
+    white-space: nowrap;
+  }
+
+  .exchange-person-skill {
+    max-width: 100%;
+    padding: 6px 5px;
+    font-size: 5px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  .exchange-middle {
+    height: 115px;
+  }
+
+  .exchange-middle-symbol {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    font-size: 23px;
+  }
+
+  .exchange-line {
+    top: 36px;
+  }
+
+  .exchange-middle-caption {
+    top: 82px;
+    font-size: 5px;
+    letter-spacing: 0;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .exchange-visual-bottom {
+    right: 10px;
+    bottom: 13px;
+    left: 10px;
+    font-size: 5px;
+    letter-spacing: 0.3px;
+  }
+
+  .exchange-steps-heading {
+    padding-top: 40px;
+  }
+
+  .exchange-steps {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .exchange-step {
+    min-height: 160px;
+    padding: 19px;
+  }
+
+  .exchange-step-top {
+    margin-bottom: 17px;
+  }
+
+  .exchange-step-content h3 {
+    font-size: 20px;
+  }
+
+  .exchange-step-content p {
+    font-size: 11px;
+  }
+
+  .exchange-cta {
+    padding: 21px;
+  }
+}
+
+
+/* VERY SMALL PHONES */
+@media (max-width: 380px) {
+
+  .exchange-visual {
+    grid-template-columns: minmax(0, 1fr) 38px minmax(0, 1fr);
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .exchange-person-orbit {
+    width: 70px;
+    height: 70px;
+  }
+
+  .exchange-avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
+  }
+
+  .exchange-person h3 {
+    font-size: 12px;
+  }
+
+  .exchange-person-skill {
+    font-size: 4.5px;
+  }
+
+  .exchange-middle-symbol {
+    width: 37px;
+    height: 37px;
+    font-size: 20px;
+  }
+
+  .exchange-middle-caption {
+    font-size: 4px;
+  }
+
+  .exchange-visual-bottom {
+    font-size: 4px;
+  }
+
+  .exchange-footer-line {
+    letter-spacing: 0;
+  }
+}
+

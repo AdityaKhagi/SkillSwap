@@ -5,75 +5,103 @@ import "./FinalCTA.css";
 export default function FinalCTA() {
   return (
     <section className="final-cta-section" id="join">
-      <div className="final-cta-glow final-cta-glow-left" />
-      <div className="final-cta-glow final-cta-glow-right" />
+      <div className="final-cta-background">
+        <div className="final-cta-glow final-cta-glow-one" />
+        <div className="final-cta-glow final-cta-glow-two" />
+        <div className="final-cta-grid" />
+      </div>
 
-      <div className="container">
-        <div className="final-cta-card">
-          <div className="final-cta-decoration final-cta-decoration-one">
-            ✳
-          </div>
-          <div className="final-cta-decoration final-cta-decoration-two">
-            ✦
-          </div>
+      <div className="final-cta-container">
+        <div className="final-cta-topline">
+          <span>06 / YOUR NEXT CHAPTER</span>
+          <span>
+            THE END IS A NEW BEGINNING <span>↗</span>
+          </span>
+        </div>
 
+        <div className="final-cta-main">
+          {/* LEFT CONTENT */}
           <div className="final-cta-content">
             <span className="final-cta-eyebrow">
-              YOUR NEXT CHAPTER STARTS HERE
+              ONE SKILL CAN CHANGE EVERYTHING.
             </span>
 
             <h2>
-              You have a skill.
+              What you
               <br />
-              <span>Someone needs it.</span>
+              know
+              <br />
+              <span>matters.</span>
             </h2>
 
             <p>
-              Join a community where knowledge goes both ways.
-              Share what you know, discover something new, and
-              make every connection count.
+              Someone out there wants to learn what you already know.
+              And someone else knows exactly what you're looking for.
             </p>
 
             <div className="final-cta-actions">
               <Link to="/register" className="final-cta-primary">
-                Start swapping <span>→</span>
+                Become a member <span>↗</span>
               </Link>
 
               <Link to="/explore" className="final-cta-secondary">
-                Explore skills
+                Explore skills <span>→</span>
               </Link>
             </div>
 
             <div className="final-cta-note">
-              <span>✦</span>
-              Learn something new. Teach something valuable.
+              <span className="final-cta-note-dot" />
+              COME AS A LEARNER. LEAVE AS A CONTRIBUTOR.
             </div>
           </div>
 
+          {/* RIGHT VISUAL */}
           <div className="final-cta-visual" aria-hidden="true">
-            <div className="cta-orbit cta-orbit-one" />
-            <div className="cta-orbit cta-orbit-two" />
+            <div className="final-cta-orbit final-cta-orbit-one" />
+            <div className="final-cta-orbit final-cta-orbit-two" />
+            <div className="final-cta-orbit final-cta-orbit-three" />
 
-            <div className="cta-center">
-              <span className="cta-center-symbol">S</span>
-              <span className="cta-center-sparkle">✦</span>
+            <div className="final-cta-symbol">
+              <span>Skill</span>
+              <span>?</span>
+              <div className="final-cta-symbol-spark">✳</div>
             </div>
 
-            <div className="cta-bubble cta-bubble-one">
-              <span className="cta-bubble-icon cta-icon-purple">💻</span>
-              <span>Teach coding</span>
+            <div className="final-cta-floating final-cta-float-one">
+              <span>⌘</span>
+              <div>
+                <small>SHARE</small>
+                <strong>What you know</strong>
+              </div>
             </div>
 
-            <div className="cta-bubble cta-bubble-two">
-              <span className="cta-bubble-icon cta-icon-peach">🎨</span>
-              <span>Learn design</span>
+            <div className="final-cta-floating final-cta-float-two">
+              <span>✦</span>
+              <div>
+                <small>DISCOVER</small>
+                <strong>Something new</strong>
+              </div>
             </div>
 
-            <div className="cta-bubble cta-bubble-three">
-              <span className="cta-bubble-icon cta-icon-green">✦</span>
-              <span>Grow together</span>
+            <div className="final-cta-floating final-cta-float-three">
+              ↗
+            </div>
+
+            <div className="final-cta-visual-caption">
+              KNOWLEDGE HAS NO FINISH LINE.
             </div>
           </div>
+        </div>
+
+        {/* BOTTOM BRAND LINE */}
+        <div className="final-cta-bottom">
+          <span>SHARE KNOWLEDGE.</span>
+
+          <span className="final-cta-bottom-brand">
+            Skill<span>?</span>
+          </span>
+
+          <span>BUILD CONNECTIONS.</span>
         </div>
       </div>
     </section>

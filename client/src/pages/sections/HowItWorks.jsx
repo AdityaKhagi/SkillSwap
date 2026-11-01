@@ -5,103 +5,174 @@ import "./HowItWorks.css";
 const steps = [
   {
     number: "01",
-    icon: "👋",
-    theme: "lavender",
-    title: "Create your profile",
-    description:
-      "Tell the community what you know, what you love, and which skills you'd like to learn.",
-    label: "Show your strengths",
+    title: "Discover",
+    description: "Find someone who knows what you want to learn.",
+    label: "Explore skills",
+    icon: "⌕",
   },
   {
     number: "02",
-    icon: "🔎",
-    theme: "peach",
-    title: "Discover your match",
-    description:
-      "Explore skills and connect with learners who have the knowledge you're looking for.",
-    label: "Find your people",
+    title: "Request",
+    description: "Send an exchange request and introduce yourself.",
+    label: "Make a connection",
+    icon: "↗",
   },
   {
     number: "03",
-    icon: "🤝",
-    theme: "mint",
-    title: "Make an exchange",
-    description:
-      "Send a request, agree on a session, and share your knowledge with each other.",
-    label: "Learn both ways",
+    title: "Connect",
+    description: "Agree on a time and how you'll learn together.",
+    label: "Plan your session",
+    icon: "◎",
   },
   {
     number: "04",
-    icon: "🚀",
-    theme: "blue",
-    title: "Grow together",
-    description:
-      "Practice new skills, exchange feedback, and keep building your confidence.",
-    label: "Keep progressing",
+    title: "Exchange",
+    description: "Teach what you know. Learn something new.",
+    label: "Grow together",
+    icon: "✳",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="section how-section" id="how-it-works">
-      <div className="container">
-        <div className="section-heading how-heading">
-          <span className="eyebrow">SIMPLE BY DESIGN</span>
+    <section className="exchange-section" id="how-it-works">
+      <div className="exchange-bg">
+        <div className="exchange-glow exchange-glow-one" />
+        <div className="exchange-glow exchange-glow-two" />
+        <div className="exchange-grid-pattern" />
+      </div>
 
-          <h2>
-            From curious to{" "}
-            <span className="gradient-text">capable.</span>
-          </h2>
+      <div className="exchange-container">
 
-          <p>
-            Learning something new doesn't have to be complicated.
-            Find your people and turn shared knowledge into real progress.
-          </p>
+        {/* Section heading */}
+        <div className="exchange-header">
+          <div>
+            <span className="exchange-eyebrow">
+              <span />
+              04 / THE PROCESS
+            </span>
+
+            <h2>
+              Learning is
+              <br />
+              <span>better together.</span>
+            </h2>
+          </div>
+
+          <div className="exchange-header-note">
+            <span className="exchange-note-mark">↗</span>
+            <p>
+              Not another course.
+              <br />
+              A real exchange of knowledge.
+            </p>
+          </div>
         </div>
 
-        <div className="how-steps">
-          {steps.map((step, index) => (
-            <article className="how-step" key={step.number}>
-              <div className="how-step-top">
-                <div className={`how-step-icon ${step.theme}`}>
-                  {step.icon}
-                </div>
+        {/* Main exchange illustration */}
+        <div className="exchange-visual">
 
-                <span className="how-step-number">{step.number}</span>
+          <div className="exchange-person exchange-person-left">
+            <div className="exchange-person-orbit">
+              <div className="exchange-avatar exchange-avatar-left">
+                <span>A</span>
               </div>
+              <span className="exchange-orbit-dot" />
+            </div>
 
-              <h3>{step.title}</h3>
+            <span className="exchange-person-label">PERSON A</span>
+            <h3>Can teach</h3>
+            <span className="exchange-person-skill">WEB DEVELOPMENT</span>
+          </div>
 
-              <p className="how-step-description">{step.description}</p>
+          <div className="exchange-middle">
+            <div className="exchange-line exchange-line-left" />
+            <div className="exchange-middle-symbol">
+              <span>↔</span>
+            </div>
+            <div className="exchange-line exchange-line-right" />
 
-              <div className="how-step-bottom">
-                <span className="how-step-dot" />
-                <span>{step.label}</span>
+            <div className="exchange-middle-caption">
+              <span className="exchange-caption-dot" />
+              KNOWLEDGE EXCHANGE
+            </div>
+          </div>
+
+          <div className="exchange-person exchange-person-right">
+            <div className="exchange-person-orbit">
+              <div className="exchange-avatar exchange-avatar-right">
+                <span>B</span>
               </div>
+              <span className="exchange-orbit-dot" />
+            </div>
 
-              {index < steps.length - 1 && (
-                <span className="how-step-connector" aria-hidden="true">
-                  →
+            <span className="exchange-person-label">PERSON B</span>
+            <h3>Wants to learn</h3>
+            <span className="exchange-person-skill">WEB DEVELOPMENT</span>
+          </div>
+
+          <div className="exchange-floating exchange-floating-left">
+            <span>✳</span> SHARE
+          </div>
+
+          <div className="exchange-floating exchange-floating-right">
+            LEARN <span>✦</span>
+          </div>
+
+          <div className="exchange-visual-bottom">
+            <span>YOUR KNOWLEDGE HAS VALUE</span>
+            <span>EVERYONE HAS SOMETHING TO TEACH</span>
+          </div>
+        </div>
+
+        {/* Process steps */}
+        <div className="exchange-steps-heading">
+          <span>THE JOURNEY</span>
+          <span>FOUR SIMPLE STEPS <span>↓</span></span>
+        </div>
+
+        <div className="exchange-steps">
+          {steps.map((step) => (
+            <article className="exchange-step" key={step.number}>
+              <div className="exchange-step-top">
+                <span className="exchange-step-number">
+                  {step.number}
                 </span>
-              )}
+                <span className="exchange-step-icon">
+                  {step.icon}
+                </span>
+              </div>
+
+              <div className="exchange-step-content">
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+
+              <div className="exchange-step-bottom">
+                <span>{step.label}</span>
+                <span>↗</span>
+              </div>
             </article>
           ))}
         </div>
 
-        <div className="how-cta">
-          <div className="how-cta-decoration">✳</div>
-
-          <div className="how-cta-copy">
-            <span className="how-cta-eyebrow">YOUR JOURNEY STARTS HERE</span>
-            <h3>Ready to exchange your first skill?</h3>
-            <p>
-              Bring what you know. Discover what you don't. Grow with others.
-            </p>
+        {/* CTA */}
+        <div className="exchange-cta">
+          <div className="exchange-cta-copy">
+            <span>YOUR FIRST EXCHANGE STARTS HERE</span>
+            <h3>What will you learn today?</h3>
+            <p>One skill shared can open up a whole new world.</p>
           </div>
 
-          <Link to="/register" className="how-cta-button">
-            Join SkillSwap <span>→</span>
+          <Link to="/register" className="exchange-cta-button">
+            Start your journey <span>↗</span>
           </Link>
+        </div>
+
+        <div className="exchange-footer-line">
+          <span>SHARE WHAT YOU KNOW.</span>
+          <span className="exchange-footer-brand">Skill<span>?</span></span>
+          <span>DISCOVER WHAT YOU DON'T.</span>
         </div>
       </div>
     </section>

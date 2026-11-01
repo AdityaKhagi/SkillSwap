@@ -1,181 +1,112 @@
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import "./Hero.css";
 
 export default function Hero() {
-  const navigate = useNavigate();
-  const location = useLocation();
+ const handleScroll = useCallback(() => {
+  const scroller = document.querySelector(".section-scroller");
+  const nextSection = document.getElementById("next-section");
 
-  const goToSection = (sectionId) => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: sectionId } });
-      return;
-    }
+  if (!scroller || !nextSection) return;
 
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+  const targetTop =
+    nextSection.getBoundingClientRect().top -
+    scroller.getBoundingClientRect().top +
+    scroller.scrollTop;
+
+  scroller.scrollTo({
+    top: targetTop,
+    behavior: "smooth",
+  });
+}, []);
 
   return (
-    <section className="hero" id="home">
-      <div className="hero-background-glow hero-glow-left" />
-      <div className="hero-background-glow hero-glow-right" />
+    <section className="hero-new" id="home">
+      <div className="hero-noise" aria-hidden="true" />
+      <div className="hero-glow hero-glow-one" aria-hidden="true" />
+      <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
-      <div className="container hero-grid">
-        <div className="hero-content">
-          <div className="announcement">
-            <span className="announcement-dot" />
-            A better way to learn together
-            <span className="announcement-sparkle">✦</span>
-          </div>
+      <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
+      <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
 
-          <h1>
-            Exchange skills.
-            <br />
-            <span className="gradient-text">Unlock potential.</span>
-          </h1>
+      <header className="hero-header">
+        <a href="/" className="hero-brand" aria-label="Skill? home">
+          Skill<span>?</span>
+        </a>
 
-          <p className="hero-description">
-            You have something valuable to teach, and something exciting
-            to learn. Connect with students, exchange skills, and grow
-            together — without breaking the bank.
-          </p>
+        <div className="hero-header-mark">
+          <span className="hero-status-dot" />
+          PEER LEARNING, REIMAGINED
+        </div>
+      </header>
 
-          <div className="hero-actions">
-            <Link to="/register" className="btn btn-primary btn-large">
-              Start swapping <span>→</span>
-            </Link>
+      <div className="hero-center">
+        <div className="hero-symbol" aria-hidden="true">
+          <span className="symbol-ring symbol-ring-one" />
+          <span className="symbol-ring symbol-ring-two" />
 
-            <button
-              type="button"
-              className="btn btn-outline btn-large"
-              onClick={() => goToSection("how-it-works")}
-            >
-              Discover how <span className="discover-arrow">↘</span>
-            </button>
-          </div>
+          <span className="symbol-question">?</span>
 
-          <div className="hero-proof">
-            <div className="avatar-stack" aria-hidden="true">
-              <span className="mini-avatar mini-one">A</span>
-              <span className="mini-avatar mini-two">R</span>
-              <span className="mini-avatar mini-three">S</span>
-              <span className="mini-avatar mini-four">+</span>
-            </div>
-
-            <div className="hero-proof-copy">
-              <strong>Built for curious minds</strong>
-              <span>Learn a skill. Share your knowledge.</span>
-            </div>
-          </div>
-
-          <div className="hero-mini-features">
-            <span><span className="feature-check">✓</span> Learn for free</span>
-            <span><span className="feature-check">✓</span> Teach what you love</span>
-          </div>
+          <span className="symbol-spark symbol-spark-one">✳</span>
+          <span className="symbol-spark symbol-spark-two">✦</span>
         </div>
 
-        <div className="hero-visual">
-          <div className="visual-glow" />
-          <div className="visual-orbit orbit-one" />
-          <div className="visual-orbit orbit-two" />
+        <div className="hero-title-wrap">
+          <h1 className="hero-new-title">
+            Skill<span>?</span>
+          </h1>
 
-          <div className="exchange-card">
-            <div className="exchange-card-header">
-              <div>
-                <span className="eyebrow">
-                  <span className="eyebrow-dot" />
-                  SKILL EXCHANGE
-                </span>
-                <h3>Everyone has something to share.</h3>
-              </div>
+          <div className="hero-title-line" />
+        </div>
 
-              <span className="sparkle">✦</span>
-            </div>
+        <p className="hero-new-subtitle">
+          Learn something. Teach something.
+        </p>
 
-            <div className="exchange-person">
-              <div className="avatar avatar-purple">A</div>
+        <div className="hero-floating hero-floating-one">
+          <span className="floating-dot dot-purple" />
+          DESIGN
+        </div>
 
-              <div className="exchange-person-info">
-                <strong>Alex Morgan</strong>
-                <span>Computer Science Student</span>
-              </div>
+        <div className="hero-floating hero-floating-two">
+          <span className="floating-dot dot-orange" />
+          DEVELOPMENT
+        </div>
 
-              <span className="skill-pill">React JS</span>
-            </div>
-
-            <div className="exchange-line">
-              <span className="exchange-line-icon">↕</span>
-              <span>Shares knowledge with</span>
-            </div>
-
-            <div className="exchange-person">
-              <div className="avatar avatar-peach">J</div>
-
-              <div className="exchange-person-info">
-                <strong>Jamie Lee</strong>
-                <span>Creative Design Student</span>
-              </div>
-
-              <span className="skill-pill skill-pill-green">UI/UX</span>
-            </div>
-
-            <div className="credit-banner">
-              <span className="credit-icon">✦</span>
-
-              <div>
-                <strong>A win-win exchange</strong>
-                <span>Both students learn something new.</span>
-              </div>
-
-              <span className="credit-sparkle">✧</span>
-            </div>
-
-            <div className="exchange-card-footer">
-              <span className="footer-status-dot" />
-              <span>Knowledge goes both ways</span>
-              <span className="footer-heart">♥</span>
-            </div>
-          </div>
-
-          <div className="floating-label label-top">
-            <span className="label-icon label-icon-purple">⌘</span>
-
-            <div>
-              <strong>Tech skills</strong>
-              <span>Learn by doing</span>
-            </div>
-
-            <span className="floating-check">✓</span>
-          </div>
-
-          <div className="floating-label label-bottom">
-            <span className="label-icon label-icon-green">✿</span>
-
-            <div>
-              <strong>Creative skills</strong>
-              <span>Share your talent</span>
-            </div>
-
-            <span className="floating-check">✓</span>
-          </div>
-
-          <span className="decor decor-one">✦</span>
-          <span className="decor decor-two">✧</span>
-          <span className="decor decor-three">·</span>
+        <div className="hero-floating hero-floating-three">
+          <span className="floating-dot dot-green" />
+          CREATIVITY
         </div>
       </div>
 
-      <div className="hero-bottom">
-        <div className="hero-bottom-inner">
-          <span>YOUR KNOWLEDGE HAS VALUE</span>
-          <span className="bottom-divider">✳</span>
-          <span>YOUR NEXT SKILL STARTS HERE</span>
-          <span className="bottom-divider">✳</span>
-          <span>GROW TOGETHER</span>
-        </div>
+      <button
+        type="button"
+        className="hero-scroll"
+        onClick={handleScroll}
+        aria-label="Scroll to discover Skill?"
+        aria-controls="next-section"
+      >
+        <span className="hero-scroll-text">
+          SCROLL TO EXPLORE
+        </span>
+
+        <span className="hero-scroll-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 4V19M5.5 12.5L12 19L18.5 12.5"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
+
+      <div className="hero-corner-text" aria-hidden="true">
+        <span>01</span>
+        <span className="hero-corner-line" />
+        <span>INTRODUCTION</span>
       </div>
     </section>
   );

@@ -1,147 +1,160 @@
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Skills.css";
 
 const skillCategories = [
   {
-    icon: "💻",
-    theme: "lavender",
     number: "01",
     title: "Technology",
-    description:
-      "Build practical technical skills with fellow learners and turn ideas into real projects.",
-    tags: ["Web Development", "Python", "AI/ML"],
-    people: "Coding & tech",
+    subtitle: "Build the future.",
+    icon: "⌘",
+    theme: "tech",
     search: "Technology",
+    tags: ["Web Development", "Python", "AI / ML"],
+    visual: ["CODE", "CREATE", "DEPLOY"],
   },
   {
-    icon: "🎨",
-    theme: "peach",
     number: "02",
-    title: "Design & Creativity",
-    description:
-      "Explore design, creativity, and visual storytelling with people who share your passion.",
-    tags: ["UI/UX", "Graphic Design", "Video"],
-    people: "Creative skills",
+    title: "Design",
+    subtitle: "Make ideas visible.",
+    icon: "✳",
+    theme: "design",
     search: "Design",
+    tags: ["UI / UX", "Graphic Design", "Video"],
+    visual: ["IMAGINE", "DESIGN", "CREATE"],
   },
   {
-    icon: "📈",
-    theme: "mint",
     number: "03",
     title: "Business",
-    description:
-      "Learn how to communicate, market ideas, and turn your next big idea into action.",
-    tags: ["Marketing", "Finance", "Startups"],
-    people: "Business skills",
+    subtitle: "Turn ideas into action.",
+    icon: "↗",
+    theme: "business",
     search: "Business",
+    tags: ["Marketing", "Finance", "Startups"],
+    visual: ["IDEAS", "STRATEGY", "GROWTH"],
   },
   {
-    icon: "🗣️",
-    theme: "blue",
     number: "04",
     title: "Personal Growth",
-    description:
-      "Build confidence, improve communication, and develop skills that last a lifetime.",
-    tags: ["Public Speaking", "English", "Productivity"],
-    people: "Life skills",
+    subtitle: "Become your next self.",
+    icon: "✦",
+    theme: "growth",
     search: "Personal Growth",
+    tags: ["Communication", "English", "Productivity"],
+    visual: ["SPEAK", "CONNECT", "GROW"],
   },
 ];
 
 export default function Skills() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const goToCommunity = () => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: "community" } });
-      return;
-    }
-
-    document.getElementById("community")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
   return (
-    <section className="section skills-section" id="skills">
-      <div className="container">
-        <div className="section-heading skills-heading">
-          <span className="eyebrow">EXPLORE POSSIBILITIES</span>
+    <section className="explore-section" id="skills">
+      <div className="explore-container">
 
-          <h2>
-            What do you want to{" "}
-            <span className="gradient-text">learn?</span>
-          </h2>
+        {/* Section heading */}
+        <div className="explore-header">
+          <div className="explore-heading-left">
+            <span className="explore-eyebrow">
+              <span className="explore-eyebrow-dot" />
+              03 / EXPLORE YOUR POTENTIAL
+            </span>
 
-          <p>
-            Discover skills you want to learn and people who can help
-            you master them. Share your own expertise in return.
-          </p>
+            <h2>
+              There's more
+              <br />
+              <span>to learn.</span>
+            </h2>
+          </div>
+
+          <div className="explore-heading-right">
+            <span className="explore-side-mark">?</span>
+            <p>
+              Every person knows something
+              <br />
+              worth sharing.
+            </p>
+            <span className="explore-heading-note">
+              FIND YOUR NEXT SKILL <span>↘</span>
+            </span>
+          </div>
         </div>
 
-        <div className="skills-grid">
+        {/* Category cards */}
+        <div className="explore-grid">
           {skillCategories.map((skill) => (
-            <article
-              className={`skill-card skill-card-${skill.theme}`}
-              key={skill.title}
+            <Link
+              to={`/explore?category=${encodeURIComponent(skill.search)}`}
+              className={`explore-card explore-card-${skill.theme}`}
+              key={skill.number}
+              aria-label={`Explore ${skill.title} skills`}
             >
-              <div className="skill-card-top">
-                <div className={`skill-icon ${skill.theme}`}>
-                  {skill.icon}
-                </div>
-
-                <span className="skill-number">{skill.number}</span>
-              </div>
-
-              <h3>{skill.title}</h3>
-
-              <p className="skill-description">{skill.description}</p>
-
-              <div className="tag-list">
-                {skill.tags.map((tag) => (
-                  <span className="tag" key={tag}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="skill-card-bottom">
-                <span className="people-count">
-                  <span className="people-count-icon">✦</span>
-                  {skill.people}
+              <div className="explore-card-top">
+                <span className="explore-card-number">
+                  {skill.number} / 04
                 </span>
 
-                <Link
-                  className="arrow-link"
-                  to={`/explore?category=${encodeURIComponent(skill.search)}`}
-                  aria-label={`Explore ${skill.title}`}
-                >
-                  <span>↗</span>
-                </Link>
+                <span className="explore-card-arrow">↗</span>
               </div>
-            </article>
+
+              {/* Decorative visual */}
+              <div className="explore-card-visual">
+                <div className="explore-visual-orbit">
+                  <span className="explore-visual-icon">
+                    {skill.icon}
+                  </span>
+                </div>
+
+                <div className="explore-visual-words">
+                  {skill.visual.map((word, index) => (
+                    <span key={word} className={`visual-word visual-word-${index}`}>
+                      {word}
+                    </span>
+                  ))}
+                </div>
+
+                <span className="explore-visual-star">✳</span>
+              </div>
+
+              {/* Card content */}
+              <div className="explore-card-content">
+                <div>
+                  <h3>{skill.title}</h3>
+                  <p>{skill.subtitle}</p>
+                </div>
+
+                <div className="explore-tags">
+                  {skill.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="explore-card-footer">
+                <span>DISCOVER THIS WORLD</span>
+                <span className="explore-footer-arrow">→</span>
+              </div>
+            </Link>
           ))}
         </div>
 
-        <div className="skills-bottom">
-          <div className="skills-bottom-copy">
-            <span className="skills-bottom-icon">✳</span>
-            <p>
-              <strong>Your next skill is out there.</strong>
-              <span>Find your people. Exchange knowledge. Grow together.</span>
-            </p>
+        {/* Bottom strip */}
+        <div className="explore-bottom">
+          <div className="explore-bottom-left">
+            <span className="explore-bottom-symbol">✳</span>
+            <div>
+              <strong>Know something different?</strong>
+              <p>Your knowledge could be someone's next big skill.</p>
+            </div>
           </div>
 
-          <button
-            type="button"
-            className="skills-community-link"
-            onClick={goToCommunity}
-          >
-            Explore the community <span>→</span>
-          </button>
+          <Link to="/add-skill" className="explore-add-link">
+            Share your skill <span>↗</span>
+          </Link>
+        </div>
+
+        <div className="explore-endline">
+          <span>LEARN FROM PEOPLE.</span>
+          <span className="explore-endline-center">Skill<span>?</span></span>
+          <span>GROW WITH PEOPLE.</span>
         </div>
       </div>
     </section>

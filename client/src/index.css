@@ -1,5 +1,9 @@
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* =========================================
+   1. GLOBAL THEME
+========================================= */
 
 :root {
   font-family: "DM Sans", sans-serif;
@@ -15,22 +19,56 @@
   --green: #2d9971;
 }
 
-* {
+/* =========================================
+   2. RESET
+========================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+}
+
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
   min-width: 320px;
+  overflow: hidden;
 }
 
-body, button, a {
+body,
+button,
+a,
+input,
+textarea,
+select {
   font-family: "DM Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Manrope", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
 }
 
 a {
@@ -42,7 +80,8 @@ button {
   color: inherit;
 }
 
-button, a {
+button,
+a {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -52,13 +91,14 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
-h1, h2, h3, h4, p {
-  margin-top: 0;
+img,
+svg {
+  max-width: 100%;
 }
 
-h1, h2, h3, h4 {
-  font-family: "Manrope", sans-serif;
-}
+/* =========================================
+   3. SHARED CONTAINER
+========================================= */
 
 .container {
   width: min(1160px, calc(100% - 48px));
@@ -69,22 +109,32 @@ h1, h2, h3, h4 {
   padding: 100px 0;
 }
 
-/* Shared buttons */
+/* =========================================
+   4. SHARED BUTTONS
+========================================= */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
+
   min-height: 44px;
   padding: 0 20px;
+
   border: 1px solid transparent;
   border-radius: 11px;
+
   font-size: 13px;
   font-weight: 700;
+
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s,
-    border-color 0.2s, box-shadow 0.2s;
+
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .btn:hover {
@@ -132,9 +182,14 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 
+/* =========================================
+   5. SHARED TEXT
+========================================= */
+
 .eyebrow {
   display: block;
   margin-bottom: 10px;
+
   color: var(--primary);
   font-size: 10px;
   font-weight: 800;
@@ -143,13 +198,21 @@ h1, h2, h3, h4 {
 
 .gradient-text {
   color: var(--primary);
-  background: linear-gradient(110deg, #6554f5, #8a5be9, #b15bdc);
+  background: linear-gradient(
+    110deg,
+    #6554f5,
+    #8a5be9,
+    #b15bdc
+  );
+
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Shared section headings */
+/* =========================================
+   6. SHARED SECTION HEADINGS
+========================================= */
 
 .section-heading {
   max-width: 650px;
@@ -169,10 +232,171 @@ h1, h2, h3, h4 {
 .community-header > div > p {
   max-width: 560px;
   margin: 0 auto;
+
   color: var(--muted);
   font-size: 14px;
   line-height: 1.85;
 }
+
+/* =========================================
+   7. CONTROLLED FULL-PAGE SCROLLER
+========================================= */
+
+.section-scroller {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+
+  scrollbar-width: none;
+}
+
+.section-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+  Every landing page section occupies one viewport.
+
+  The parent scroller moves between sections.
+  Individual sections can scroll internally when
+  their content exceeds the available height.
+*/
+
+.section-scroller > section {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  overscroll-behavior-y: contain;
+  scroll-snap-align: none;
+}
+
+/* =========================================
+   8. HERO SECTION
+========================================= */
+
+/*
+  Hero is designed to fit the viewport.
+  It should not have its own scrollbar.
+*/
+
+.section-scroller > .hero-new {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow: hidden;
+}
+
+/* =========================================
+   9. INTRO SECTION
+========================================= */
+
+.section-scroller > .intro-section {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   10. SKILLS SECTION
+========================================= */
+
+.section-scroller > .skills-section {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   11. HOW IT WORKS SECTION
+========================================= */
+
+.section-scroller > .how-section {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   12. COMMUNITY SECTION
+========================================= */
+
+.section-scroller > .community-section {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   13. FINAL CTA SECTION
+========================================= */
+
+.section-scroller > .final-cta-section {
+  height: 100vh;
+  height: 100svh;
+
+  min-height: 0;
+  max-height: none;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   14. RESPONSIVE GLOBAL STYLES
+========================================= */
 
 @media (max-width: 760px) {
   .container {
@@ -199,6 +423,40 @@ h1, h2, h3, h4 {
   }
 }
 
+/* =========================================
+   15. MOBILE VIEWPORT
+========================================= */
+
+@media (max-width: 700px) {
+  .section-scroller {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  .section-scroller > section {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+  }
+
+  .section-scroller > .hero-new {
+    overflow: hidden;
+  }
+
+  .section-scroller > .intro-section,
+  .section-scroller > .skills-section,
+  .section-scroller > .how-section,
+  .section-scroller > .community-section,
+  .section-scroller > .final-cta-section {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+/* =========================================
+   16. ACCESSIBILITY
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -206,5 +464,10 @@ h1, h2, h3, h4 {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .section-scroller {
+    scroll-behavior: auto;
   }
 }
