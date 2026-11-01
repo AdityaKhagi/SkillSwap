@@ -81,6 +81,8 @@ export default function Chat() {
   const messagesEndRef = useRef(null);
   const selectedConversationRef = useRef(null);
   const currentUserRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
+  const isTypingRef = useRef(false);
 
   const [currentUser, setCurrentUser] = useState(null);
   const [conversations, setConversations] = useState([]);
@@ -96,8 +98,74 @@ export default function Chat() {
   const [connected, setConnected] = useState(false);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [typingUser, setTypingUser] = useState(false);
 
   const currentUserId = getId(currentUser);
+
+  const isUserOnline = useCallback(
+    (userId) => onlineUsers.includes(getId(userId)),
+    [onlineUsers]
+  );
+
+  const markMessagesAsRead = useCallback((conversationId) => {
+    const socket = socketRef.current;
+
+    if (!socket?.connected || !conversationId) return;
+
+    socket.emit("markMessagesRead", { conversationId }, (result) => {
+      if (result?.success) {
+        setConversations((previous) =>
+          previous.map((conversation) =>
+            getId(conversation) === conversationId
+              ? { ...conversation, unreadCount: 0 }
+              : conversation
+          )
+        );
+      }
+    });
+  }, []);
+
+  const stopTyping = useCallback(() => {
+    const socket = socketRef.current;
+    const conversationId = getId(selectedConversationRef.current);
+
+    if (socket?.connected && conversationId && isTypingRef.current) {
+      socket.emit("stopTyping", { conversationId });
+    }
+
+    isTypingRef.current = false;
+
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+      typingTimeoutRef.current = null;
+    }
+  }, []);
+
+  const handleDraftChange = (event) => {
+    const value = event.target.value;
+    setDraft(value);
+
+    const socket = socketRef.current;
+    const conversationId = getId(selectedConversationRef.current);
+
+    if (!socket?.connected || !conversationId) return;
+
+    if (value.trim()) {
+      if (!isTypingRef.current) {
+        socket.emit("typing", { conversationId });
+        isTypingRef.current = true;
+      }
+
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+
+      typingTimeoutRef.current = setTimeout(stopTyping, 1200);
+    } else {
+      stopTyping();
+    }
+  };
 
   const filteredConversations = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -195,18 +263,65 @@ export default function Chat() {
     socket.on("connect", () => {
       setConnected(true);
       setError("");
-
-      const activeConversation = selectedConversationRef.current;
-
-      if (activeConversation) {
-        socket.emit("joinConversation", {
-          conversationId: getId(activeConversation),
-        });
-      }
+      // The selected-conversation effect joins the active room
+      // after React updates the connected state.
     });
 
     socket.on("disconnect", () => {
       setConnected(false);
+      setOnlineUsers([]);
+      setTypingUser(false);
+    });
+
+    socket.on("onlineUsers", (users) => {
+      setOnlineUsers(Array.isArray(users) ? users : []);
+    });
+
+    socket.on("userOnline", (userId) => {
+      setOnlineUsers((previous) =>
+        previous.includes(userId) ? previous : [...previous, userId]
+      );
+    });
+
+    socket.on("userOffline", (userId) => {
+      setOnlineUsers((previous) =>
+        previous.filter((id) => id !== userId)
+      );
+    });
+
+    socket.on("userTyping", ({ conversationId, userId }) => {
+      const activeId = getId(selectedConversationRef.current);
+      const activeUserId = getId(currentUserRef.current);
+
+      if (conversationId === activeId && userId !== activeUserId) {
+        setTypingUser(true);
+      }
+    });
+
+    socket.on("userStoppedTyping", ({ conversationId, userId }) => {
+      const activeId = getId(selectedConversationRef.current);
+      const activeUserId = getId(currentUserRef.current);
+
+      if (conversationId === activeId && userId !== activeUserId) {
+        setTypingUser(false);
+      }
+    });
+
+    socket.on("messagesRead", ({ conversationId, userId, messageIds }) => {
+      const activeId = getId(selectedConversationRef.current);
+
+      if (conversationId !== activeId || !Array.isArray(messageIds)) return;
+
+      setMessages((previous) =>
+        previous.map((message) =>
+          messageIds.includes(message.id)
+            ? {
+                ...message,
+                readBy: [...new Set([...(message.readBy || []), userId])],
+              }
+            : message
+        )
+      );
     });
 
     socket.on("connect_error", (err) => {
@@ -219,12 +334,36 @@ export default function Chat() {
     socket.on("messageHistory", (history) => {
       setMessages(Array.isArray(history) ? history : []);
       setMessagesLoading(false);
+
+      const activeId = getId(selectedConversationRef.current);
+      if (activeId) markMessagesAsRead(activeId);
     });
 
     socket.on("newMessage", (message) => {
       const activeId = getId(selectedConversationRef.current);
+      const isActive = message.conversationId === activeId;
+      const isIncoming =
+        message.senderId !== getId(currentUserRef.current);
 
-      if (message.conversationId !== activeId) return;
+      setConversations((previous) =>
+        previous.map((conversation) => {
+          if (getId(conversation) !== message.conversationId) {
+            return conversation;
+          }
+
+          return {
+            ...conversation,
+            lastMessage: message.text,
+            lastMessageAt: message.createdAt,
+            unreadCount:
+              isActive || !isIncoming
+                ? 0
+                : (conversation.unreadCount || 0) + 1,
+          };
+        })
+      );
+
+      if (!isActive) return;
 
       setMessages((previous) => {
         if (previous.some((item) => item.id === message.id)) {
@@ -234,24 +373,16 @@ export default function Chat() {
         return [...previous, message];
       });
 
-      setConversations((previous) =>
-        previous.map((conversation) => {
-          if (getId(conversation) !== activeId) return conversation;
-
-          return {
-            ...conversation,
-            lastMessage: message.text,
-            lastMessageAt: message.createdAt,
-          };
-        })
-      );
+      if (isIncoming) {
+        markMessagesAsRead(message.conversationId);
+      }
     });
 
     return () => {
       socket.disconnect();
       socketRef.current = null;
     };
-  }, []);
+  }, [markMessagesAsRead]);
 
   // Join the selected private conversation.
   useEffect(() => {
@@ -261,7 +392,9 @@ export default function Chat() {
 
     const conversationId = getId(selectedConversation);
 
+    stopTyping();
     setMessages([]);
+    setTypingUser(false);
     setMessagesLoading(true);
     setError("");
 
@@ -275,7 +408,16 @@ export default function Chat() {
         }
       }
     );
-  }, [selectedConversation, connected]);
+  }, [selectedConversation, connected, stopTyping]);
+
+  // Clear typing timer when the chat page unmounts.
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Scroll to the latest message.
   useEffect(() => {
@@ -286,10 +428,22 @@ export default function Chat() {
   }, [messages]);
 
   function openConversation(conversation) {
+    stopTyping();
     setMessages([]);
+    setTypingUser(false);
     setSelectedConversation(conversation);
     setShowEmojiPicker(false);
     setError("");
+
+    const conversationId = getId(conversation);
+
+    setConversations((previous) =>
+      previous.map((item) =>
+        getId(item) === conversationId
+          ? { ...item, unreadCount: 0 }
+          : item
+      )
+    );
   }
 
   function insertEmoji(emoji) {
@@ -327,6 +481,7 @@ export default function Chat() {
           return;
         }
 
+        stopTyping();
         setDraft("");
         setShowEmojiPicker(false);
       }
@@ -440,7 +595,11 @@ export default function Chat() {
                   >
                     <div className="chat-person-avatar">
                       {getInitials(person.name)}
-                      <span className="chat-avatar-status" />
+                      <span
+                        className={`chat-avatar-status ${
+                          isUserOnline(getId(person)) ? "online" : "offline"
+                        }`}
+                      />
                     </div>
 
                     <div className="chat-conversation-details">
@@ -457,11 +616,21 @@ export default function Chat() {
                         {conversation.lastMessage || "Start a conversation 👋"}
                       </p>
 
-                      <span className="chat-skill-label">
-                        🎯{" "}
-                        {conversation.exchangeRequest?.listing?.title ||
-                          "Skill exchange"}
-                      </span>
+                      <div className="chat-conversation-bottom">
+                        <span className="chat-skill-label">
+                          🎯{" "}
+                          {conversation.exchangeRequest?.listing?.title ||
+                            "Skill exchange"}
+                        </span>
+
+                        {conversation.unreadCount > 0 && (
+                          <span className="chat-unread-badge">
+                            {conversation.unreadCount > 99
+                              ? "99+"
+                              : conversation.unreadCount}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </button>
                 );
@@ -508,13 +677,21 @@ export default function Chat() {
                 <div className="chat-main-person">
                   <div className="chat-person-avatar large">
                     {getInitials(activePerson?.name)}
-                    <span className="chat-avatar-status" />
+                    <span
+                      className={`chat-avatar-status ${
+                        isUserOnline(getId(activePerson)) ? "online" : "offline"
+                      }`}
+                    />
                   </div>
 
                   <div>
                     <h2>{activePerson?.name || "SkillSwap Member"}</h2>
                     <p>
-                      {activePerson?.college || "SkillSwap community member"}
+                      {typingUser
+                        ? "typing..."
+                        : isUserOnline(getId(activePerson))
+                          ? "Online"
+                          : activePerson?.college || "Offline"}
                     </p>
                   </div>
                 </div>
@@ -619,10 +796,40 @@ export default function Chat() {
                             </time>
                           </div>
 
-                          {isMine && <span className="chat-message-check">✓✓</span>}
+                          {isMine && (
+                            <span
+                              className={`chat-message-check ${
+                                (message.readBy || []).some(
+                                  (id) => id !== currentUserId
+                                )
+                                  ? "read"
+                                  : ""
+                              }`}
+                              title={
+                                (message.readBy || []).some(
+                                  (id) => id !== currentUserId
+                                )
+                                  ? "Read"
+                                  : "Sent"
+                              }
+                            >
+                              ✓✓
+                            </span>
+                          )}
                         </article>
                       );
                     })}
+
+                    {typingUser && (
+                      <div className="chat-typing-indicator">
+                        <span className="chat-typing-dots">
+                          <i />
+                          <i />
+                          <i />
+                        </span>
+                        {activePerson?.name || "Someone"} is typing...
+                      </div>
+                    )}
 
                     <div ref={messagesEndRef} />
                   </div>
@@ -671,7 +878,7 @@ export default function Chat() {
 
                 <textarea
                   value={draft}
-                  onChange={(event) => setDraft(event.target.value)}
+                  onChange={handleDraftChange}
                   onKeyDown={handleComposerKeyDown}
                   placeholder="Write something thoughtful..."
                   rows={1}

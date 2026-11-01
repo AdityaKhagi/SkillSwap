@@ -68,6 +68,7 @@ export default function Login() {
     <main className="auth-page">
       <div className="auth-decoration auth-decoration-one" />
       <div className="auth-decoration auth-decoration-two" />
+      <div className="auth-decoration auth-decoration-three" />
 
       <Link to="/" className="auth-brand">
         <span className="auth-brand-mark">S</span>
@@ -80,7 +81,9 @@ export default function Login() {
         <div className="auth-icon">↗</div>
 
         <p className="auth-eyebrow">WELCOME BACK</p>
+
         <h1>Log in to SkillSwap</h1>
+
         <p className="auth-subtitle">
           Your next skill exchange is waiting for you.
         </p>
@@ -92,7 +95,10 @@ export default function Login() {
         )}
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <label htmlFor="login-email">Email address</label>
+          <label htmlFor="login-email">
+            Email address
+          </label>
+
           <input
             id="login-email"
             name="email"
@@ -104,7 +110,10 @@ export default function Login() {
             required
           />
 
-          <label htmlFor="login-password">Password</label>
+          <label htmlFor="login-password">
+            Password
+          </label>
+
           <div className="auth-password-field">
             <input
               id="login-password"
@@ -120,10 +129,18 @@ export default function Login() {
             <button
               type="button"
               className="auth-show-password"
-              onClick={() => setShowPassword((previous) => !previous)}
+              onClick={() =>
+                setShowPassword((previous) => !previous)
+              }
             >
               {showPassword ? "Hide" : "Show"}
             </button>
+          </div>
+
+          <div className="auth-forgot-password">
+            <Link to="/forgot-password">
+              Forgot password?
+            </Link>
           </div>
 
           <button
@@ -131,8 +148,17 @@ export default function Login() {
             type="submit"
             disabled={submitting}
           >
-            {submitting ? "Logging in..." : "Log in"}
-            {!submitting && <span aria-hidden="true">→</span>}
+            {submitting ? (
+              <>
+                <span className="auth-button-spinner" />
+                Logging in...
+              </>
+            ) : (
+              <>
+                Log in
+                <span aria-hidden="true">→</span>
+              </>
+            )}
           </button>
         </form>
 

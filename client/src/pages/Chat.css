@@ -1400,3 +1400,131 @@
     width: 230px;
   }
 }
+
+
+/* =========================================
+   REAL-TIME CHAT FEATURES
+========================================= */
+
+/* Accurate online / offline presence */
+.chat-avatar-status.online,
+.chat-conversation-item.active .chat-avatar-status.online {
+  background: #35b887;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.chat-avatar-status.offline,
+.chat-conversation-item.active .chat-avatar-status.offline {
+  background: #a8a5b7;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+/* Conversation bottom row and unread badge */
+.chat-conversation-bottom {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chat-conversation-bottom .chat-skill-label {
+  min-width: 0;
+}
+
+.chat-unread-badge {
+  min-width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--chat-primary);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 3px 8px rgba(102, 84, 232, 0.2);
+}
+
+/* Typing indicator */
+.chat-typing-indicator {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 13px;
+  margin: 0 0 2px 39px;
+  border: 1px solid #eeebf8;
+  border-radius: 12px;
+  background: #faf9ff;
+  color: #89849f;
+  font-size: 10px;
+  animation: message-enter 0.2s ease both;
+}
+
+.chat-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.chat-typing-dots i {
+  width: 5px;
+  height: 5px;
+  display: block;
+  border-radius: 50%;
+  background: var(--chat-primary);
+  animation: chat-typing-bounce 1s infinite ease-in-out;
+}
+
+.chat-typing-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.chat-typing-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes chat-typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Read receipts */
+.chat-message-check {
+  color: #aaa6b8;
+  transition: color 0.2s ease;
+}
+
+.chat-message-check.read {
+  color: #35b887;
+}
+
+/* Better focus visibility */
+.chat-page button:focus-visible,
+.chat-page a:focus-visible,
+.chat-page input:focus-visible,
+.chat-page textarea:focus-visible {
+  outline: 3px solid rgba(102, 84, 232, 0.25);
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .chat-typing-indicator {
+    margin-left: 3px;
+  }
+
+  .chat-conversation-bottom {
+    gap: 5px;
+  }
+}

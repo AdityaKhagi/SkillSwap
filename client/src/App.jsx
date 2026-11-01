@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter,
   Routes,
@@ -17,8 +16,12 @@ import Chat from "./pages/Chat";
 import AddSkill from "./pages/AddSkill";
 import Requests from "./pages/Requests";
 import Sessions from "./pages/Sessions";
+
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import VerifyEmail from "./pages/VerifyEmail";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 // Keep logged-in users away from login and registration pages.
 function GuestRoute({ children }) {
@@ -47,7 +50,7 @@ function AppRoutes() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/explore" element={<ExploreSkills />} />
 
-      {/* Authentication pages */}
+      {/* Registration */}
       <Route
         path="/register"
         element={
@@ -57,6 +60,7 @@ function AppRoutes() {
         }
       />
 
+      {/* Login */}
       <Route
         path="/login"
         element={
@@ -64,6 +68,28 @@ function AppRoutes() {
             <Login />
           </GuestRoute>
         }
+      />
+
+      {/* Email verification */}
+      <Route
+        path="/verify-email"
+        element={<VerifyEmail />}
+      />
+
+      {/* Forgot password */}
+      <Route
+        path="/forgot-password"
+        element={
+          <GuestRoute>
+            <ForgotPassword />
+          </GuestRoute>
+        }
+      />
+
+      {/* Reset password */}
+      <Route
+        path="/reset-password"
+        element={<ResetPassword />}
       />
 
       {/* Protected pages */}

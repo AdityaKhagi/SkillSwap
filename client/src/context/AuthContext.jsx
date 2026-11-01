@@ -1,4 +1,3 @@
-
 import {
   createContext,
   useContext,
@@ -27,13 +26,19 @@ export function AuthProvider({ children }) {
     api
       .get("/auth/me")
       .then((response) => {
-        if (active) setUser(response.data.user);
+        if (active) {
+          setUser(response.data.user);
+        }
       })
       .catch(() => {
-        if (active) setUser(null);
+        if (active) {
+          setUser(null);
+        }
       })
       .finally(() => {
-        if (active) setLoading(false);
+        if (active) {
+          setLoading(false);
+        }
       });
 
     return () => {
@@ -41,18 +46,61 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
+  // REGISTER
   const register = async (formData) => {
     const response = await api.post("/auth/register", formData);
-    setUser(response.data.user);
     return response.data;
   };
 
+  // VERIFY EMAIL
+  const verifyEmail = async (token) => {
+    const response = await api.post("/auth/verify-email", {
+      token,
+    });
+
+    return response.data;
+  };
+
+  // RESEND VERIFICATION
+  const resendVerification = async (email) => {
+    const response = await api.post(
+      "/auth/resend-verification",
+      { email }
+    );
+
+    return response.data;
+  };
+
+  // LOGIN
   const login = async (formData) => {
     const response = await api.post("/auth/login", formData);
+
     setUser(response.data.user);
+
     return response.data;
   };
 
+  // FORGOT PASSWORD
+  const forgotPassword = async (email) => {
+    const response = await api.post(
+      "/auth/forgot-password",
+      { email }
+    );
+
+    return response.data;
+  };
+
+  // RESET PASSWORD
+  const resetPassword = async (token, password) => {
+    const response = await api.post(
+      "/auth/reset-password",
+      { token, password }
+    );
+
+    return response.data;
+  };
+
+  // LOGOUT
   const logout = async () => {
     try {
       await api.post("/auth/logout");
@@ -68,7 +116,11 @@ export function AuthProvider({ children }) {
         loading,
         isAuthenticated: Boolean(user),
         register,
+        verifyEmail,
+        resendVerification,
         login,
+        forgotPassword,
+        resetPassword,
         logout,
       }}
     >

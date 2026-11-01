@@ -1,12 +1,11 @@
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
 
 export default function Register() {
-  const navigate = useNavigate();
-  const { register } = useAuth();
+  const { register, resendVerification } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -17,6 +16,9 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [registered, setRegistered] = useState(false);
+  const [resending, setResending] = useState(false);
+  const [resendMessage, setResendMessage] = useState("");
 
   const handleChange = (event) => {
     setForm({
@@ -30,10 +32,10 @@ export default function Register() {
     setError("");
 
     const name = form.name.trim();
-    const email = form.email.trim();
+    const email = form.email.trim().toLowerCase();
 
-    if (name.length < 2) {
-      setError("Your name must contain at least 2 characters.");
+    if (name.length < 2 || name.length > 60) {
+      setError("Your name must contain between 2 and 60 characters.");
       return;
     }
 
@@ -51,21 +53,127 @@ export default function Register() {
         password: form.password,
       });
 
-      navigate("/dashboard", { replace: true });
+      setForm((previous) => ({
+        ...previous,
+        email,
+        password: "",
+      }));
+
+      setRegistered(true);
     } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          "Unable to create your account. Please try again."
-      );
+      const data = err.response?.data;
+
+      if (data?.requiresVerification) {
+        setForm((previous) => ({
+          ...previous,
+          email,
+          password: "",
+        }));
+
+        setRegistered(true);
+        setResendMessage(
+          "An account already exists with this email. You can request a new verification link."
+        );
+      } else {
+        setError(
+          data?.message ||
+            "Unable to create your account. Please try again."
+        );
+      }
     } finally {
       setSubmitting(false);
     }
   };
 
+  const handleResend = async () => {
+    try {
+      setResending(true);
+      setResendMessage("");
+
+      const response = await resendVerification(form.email);
+
+      setResendMessage(response.message);
+    } catch (err) {
+      setResendMessage(
+        err.response?.data?.message ||
+          "Unable to resend the email. Please try again."
+      );
+    } finally {
+      setResending(false);
+    }
+  };
+
+  // Verification email confirmation screen
+  if (registered) {
+    return (
+      <main className="auth-page">
+        <div className="auth-decoration auth-decoration-one" />
+        <div className="auth-decoration auth-decoration-two" />
+        <div className="auth-decoration auth-decoration-three" />
+
+        <Link to="/" className="auth-brand">
+          <span className="auth-brand-mark">S</span>
+          <span>
+            Skill<span>Swap</span>
+          </span>
+        </Link>
+
+        <section className="auth-card auth-success-card">
+          <div className="auth-success-icon">
+            <span>✉</span>
+            <div className="auth-success-pulse" />
+          </div>
+
+          <p className="auth-eyebrow">ONE LAST STEP</p>
+
+          <h1>Check your inbox!</h1>
+
+          <p className="auth-subtitle">
+            We've sent a verification link to:
+          </p>
+
+          <div className="auth-email-display">
+            {form.email}
+          </div>
+
+          <p className="auth-hint auth-success-hint">
+            Open the email and click the verification button to activate
+            your SkillSwap account. Don't forget to check your Spam folder.
+          </p>
+
+          {resendMessage && (
+            <div className="auth-success-message" role="status">
+              {resendMessage}
+            </div>
+          )}
+
+          <button
+            type="button"
+            className="auth-submit auth-resend-btn"
+            onClick={handleResend}
+            disabled={resending}
+          >
+            {resending ? "Sending email..." : "Resend verification email"}
+          </button>
+
+          <p className="auth-switch">
+            Already verified?{" "}
+            <Link to="/login">Continue to login</Link>
+          </p>
+        </section>
+
+        <p className="auth-footer">
+          Made for curious minds <span>♥</span>
+        </p>
+      </main>
+    );
+  }
+
   return (
     <main className="auth-page">
       <div className="auth-decoration auth-decoration-one" />
       <div className="auth-decoration auth-decoration-two" />
+      <div className="auth-decoration auth-decoration-three" />
 
       <Link to="/" className="auth-brand">
         <span className="auth-brand-mark">S</span>
@@ -78,7 +186,9 @@ export default function Register() {
         <div className="auth-icon">✦</div>
 
         <p className="auth-eyebrow">YOUR JOURNEY STARTS HERE</p>
+
         <h1>Create your account</h1>
+
         <p className="auth-subtitle">
           Share what you know. Discover what you can learn.
         </p>
@@ -91,6 +201,7 @@ export default function Register() {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <label htmlFor="register-name">Full name</label>
+
           <input
             id="register-name"
             name="name"
@@ -105,6 +216,7 @@ export default function Register() {
           />
 
           <label htmlFor="register-email">Email address</label>
+
           <input
             id="register-email"
             name="email"
@@ -117,6 +229,7 @@ export default function Register() {
           />
 
           <label htmlFor="register-password">Password</label>
+
           <div className="auth-password-field">
             <input
               id="register-password"
@@ -149,8 +262,17 @@ export default function Register() {
             type="submit"
             disabled={submitting}
           >
-            {submitting ? "Creating account..." : "Create account"}
-            {!submitting && <span aria-hidden="true">→</span>}
+            {submitting ? (
+              <>
+                <span className="auth-button-spinner" />
+                Creating account...
+              </>
+            ) : (
+              <>
+                Create account
+                <span aria-hidden="true">→</span>
+              </>
+            )}
           </button>
         </form>
 

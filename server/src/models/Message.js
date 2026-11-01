@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema(
@@ -20,10 +19,17 @@ const messageSchema = new mongoose.Schema(
       trim: true,
       maxlength: 2000,
     },
+    readBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
 
 messageSchema.index({ conversation: 1, createdAt: -1 });
+messageSchema.index({ conversation: 1, sender: 1, readBy: 1 });
 
 module.exports = mongoose.model("Message", messageSchema);

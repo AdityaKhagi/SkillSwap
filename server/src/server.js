@@ -16,6 +16,7 @@ const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const exchangeRoutes = require("./routes/exchangeRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/exchange", exchangeRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Socket.IO setup
 const io = new Server(server, {
@@ -47,7 +49,13 @@ const io = new Server(server, {
   },
 });
 
-// Read the existing authentication cookie from the Socket.IO handshake.
+// Track connected users.
+// One user can have multiple browser tabs or devices.
+const onlineUsers = new Map();
+
+const getOnlineUserIds = () => Array.from(onlineUsers.keys());
+
+// Read authentication cookie.
 function getCookieValue(cookieHeader, cookieName) {
   if (!cookieHeader) return null;
 
@@ -71,7 +79,9 @@ io.use(async (socket, next) => {
     const token = getCookieValue(cookieHeader, "skillswap_token");
 
     if (!token) {
-      return next(new Error("Authentication required. Please log in."));
+      return next(
+        new Error("Authentication required. Please log in.")
+      );
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -107,24 +117,56 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Format a message for the frontend.
+// Format messages consistently for the frontend.
 function formatMessage(message) {
+  const senderId = message.sender?._id
+    ? message.sender._id.toString()
+    : message.sender.toString();
+
   return {
     id: message._id.toString(),
     conversationId: message.conversation.toString(),
-    senderId: message.sender._id
-      ? message.sender._id.toString()
-      : message.sender.toString(),
-    sender: message.sender.name || "SkillSwap member",
+    senderId,
+    sender: message.sender?.name || "SkillSwap member",
     text: message.text,
     createdAt: message.createdAt.toISOString(),
+    readBy: (message.readBy || []).map((id) => id.toString()),
   };
 }
 
+// ============================================
+// SOCKET.IO CONNECTION
+// ============================================
+
 io.on("connection", (socket) => {
+  const userId = socket.user._id.toString();
+
   console.log(`Authenticated socket connected: ${socket.user.name}`);
 
-  // Join an existing private conversation.
+  // ============================================
+  // ONLINE / OFFLINE PRESENCE
+  // ============================================
+
+  const isFirstConnection = !onlineUsers.has(userId);
+
+  if (!onlineUsers.has(userId)) {
+    onlineUsers.set(userId, new Set());
+  }
+
+  onlineUsers.get(userId).add(socket.id);
+
+  // Send the current online users to this user.
+  socket.emit("onlineUsers", getOnlineUserIds());
+
+  // Notify others only on the user's first connection.
+  if (isFirstConnection) {
+    socket.broadcast.emit("userOnline", userId);
+  }
+
+  // ============================================
+  // JOIN PRIVATE CONVERSATION
+  // ============================================
+
   socket.on("joinConversation", async (payload, callback) => {
     const respond =
       typeof callback === "function" ? callback : () => {};
@@ -153,7 +195,6 @@ io.on("connection", (socket) => {
         });
       }
 
-      // Only accepted exchange requests can have active conversations.
       if (conversation.exchangeRequest?.status !== "accepted") {
         return respond({
           success: false,
@@ -161,10 +202,9 @@ io.on("connection", (socket) => {
         });
       }
 
-      // Verify that the authenticated user is a participant.
       const isParticipant = conversation.participants.some(
         (participantId) =>
-          participantId.toString() === socket.user._id.toString()
+          participantId.toString() === userId
       );
 
       if (!isParticipant) {
@@ -181,6 +221,7 @@ io.on("connection", (socket) => {
         }
       }
 
+      // Room name is the conversation ID.
       socket.join(conversationId);
 
       const history = await Message.find({
@@ -213,7 +254,10 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Send a message to an authorized conversation.
+  // ============================================
+  // SEND MESSAGE
+  // ============================================
+
   socket.on("sendMessage", async (payload, callback) => {
     const respond =
       typeof callback === "function" ? callback : () => {};
@@ -237,7 +281,7 @@ io.on("connection", (socket) => {
         });
       }
 
-      // Confirm that this socket has joined this conversation.
+      // Verify this socket has joined the conversation.
       const room = io.sockets.adapter.rooms.get(conversationId);
 
       if (!room || !room.has(socket.id)) {
@@ -266,7 +310,7 @@ io.on("connection", (socket) => {
 
       const isParticipant = conversation.participants.some(
         (participantId) =>
-          participantId.toString() === socket.user._id.toString()
+          participantId.toString() === userId
       );
 
       if (!isParticipant) {
@@ -280,6 +324,7 @@ io.on("connection", (socket) => {
         conversation: conversation._id,
         sender: socket.user._id,
         text,
+        readBy: [],
       });
 
       await Conversation.updateOne(
@@ -298,7 +343,7 @@ io.on("connection", (socket) => {
 
       const formatted = formatMessage(populatedMessage);
 
-      // Send the message only to participants in this conversation room.
+      // Send only to sockets in this private conversation.
       io.to(conversationId).emit("newMessage", formatted);
 
       respond({
@@ -315,10 +360,150 @@ io.on("connection", (socket) => {
     }
   });
 
+  // ============================================
+  // TYPING INDICATORS
+  // ============================================
+
+  socket.on("typing", (payload) => {
+    const conversationId = payload?.conversationId;
+
+    if (
+      typeof conversationId !== "string" ||
+      !socket.rooms.has(conversationId)
+    ) {
+      return;
+    }
+
+    socket.to(conversationId).emit("userTyping", {
+      conversationId,
+      userId,
+    });
+  });
+
+  socket.on("stopTyping", (payload) => {
+    const conversationId = payload?.conversationId;
+
+    if (
+      typeof conversationId !== "string" ||
+      !socket.rooms.has(conversationId)
+    ) {
+      return;
+    }
+
+    socket.to(conversationId).emit("userStoppedTyping", {
+      conversationId,
+      userId,
+    });
+  });
+
+  // ============================================
+  // MARK MESSAGES AS READ
+  // ============================================
+
+  socket.on("markMessagesRead", async (payload, callback) => {
+    const respond =
+      typeof callback === "function" ? callback : () => {};
+
+    try {
+      const conversationId = payload?.conversationId;
+
+      if (
+        typeof conversationId !== "string" ||
+        !mongoose.Types.ObjectId.isValid(conversationId) ||
+        !socket.rooms.has(conversationId)
+      ) {
+        return respond({
+          success: false,
+          message: "You are not in this conversation.",
+        });
+      }
+
+      const conversation = await Conversation.findById(conversationId);
+
+      if (
+        !conversation ||
+        !conversation.participants.some(
+          (participant) => participant.toString() === userId
+        )
+      ) {
+        return respond({
+          success: false,
+          message: "Conversation not found or access denied.",
+        });
+      }
+
+      const unreadMessages = await Message.find({
+        conversation: conversationId,
+        sender: { $ne: socket.user._id },
+        readBy: { $ne: socket.user._id },
+      }).select("_id");
+
+      if (unreadMessages.length === 0) {
+        return respond({
+          success: true,
+          count: 0,
+        });
+      }
+
+      const messageIds = unreadMessages.map(
+        (message) => message._id
+      );
+
+      await Message.updateMany(
+        { _id: { $in: messageIds } },
+        {
+          $addToSet: {
+            readBy: socket.user._id,
+          },
+        }
+      );
+
+      // Notify the other participant(s).
+      socket.to(conversationId).emit("messagesRead", {
+        conversationId,
+        userId,
+        messageIds: messageIds.map((id) => id.toString()),
+      });
+
+      respond({
+        success: true,
+        count: messageIds.length,
+      });
+    } catch (error) {
+      console.error("Mark messages read error:", error.message);
+
+      respond({
+        success: false,
+        message: "Failed to mark messages as read.",
+      });
+    }
+  });
+
+  // ============================================
+  // DISCONNECT / OFFLINE PRESENCE
+  // ============================================
+
   socket.on("disconnect", () => {
+    const userSockets = onlineUsers.get(userId);
+
+    if (userSockets) {
+      userSockets.delete(socket.id);
+
+      // Mark offline only when the last tab/device disconnects.
+      if (userSockets.size === 0) {
+        onlineUsers.delete(userId);
+
+        io.emit("userOffline", userId);
+      }
+    }
+
     console.log(`Socket disconnected: ${socket.user.name}`);
   });
 });
+
+// ============================================
+// START SERVER
+// ============================================
 
 const PORT = process.env.PORT || 5000;
 
