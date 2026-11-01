@@ -29,7 +29,28 @@ const initialFilters = {
 };
 
 function getSkillId(skill) {
-  return skill._id || skill.id;
+  return skill?._id || skill?.id;
+}
+
+function getRequestListingId(request) {
+  const listing = request?.listing || request?.skillListing || request?.listingId;
+
+  if (listing && typeof listing === "object") {
+    return listing._id || listing.id || listing.listingId || null;
+  }
+
+  return listing || null;
+}
+
+function getRequestArray(response) {
+  const data = response?.data;
+
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.requests)) return data.requests;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.data?.requests)) return data.data.requests;
+
+  return [];
 }
 
 function initialsFromName(name = "") {
@@ -67,6 +88,8 @@ function SkillCard({
   isSaved,
   showMatch = false,
   onRequest,
+  isRequestPending = false,
+  requestsLoaded = false,
 }) {
   const isTeaching = skill.type === "teach";
   const skillId = getSkillId(skill);
@@ -157,10 +180,22 @@ function SkillCard({
 
         <button
           type="button"
-          className="explore-connect-btn"
+          className={`explore-connect-btn ${
+            isRequestPending ? "request-already-sent" : ""
+          }`}
           onClick={() => onRequest(skill)}
+          disabled={!requestsLoaded || isRequestPending}
+          aria-label={
+            isRequestPending
+              ? "A pending request has already been sent for this skill"
+              : "Request skill exchange"
+          }
         >
-          Request skill exchange <span>→</span>
+          {!requestsLoaded
+            ? "Checking request..."
+            : isRequestPending
+              ? "✓ Request Sent"
+              : <>Request skill exchange <span>→</span></>}
         </button>
       </div>
     </article>
@@ -178,6 +213,8 @@ export default function ExploreSkills() {
   const [listings, setListings] = useState([]);
   const [matches, setMatches] = useState([]);
   const [savedSkills, setSavedSkills] = useState([]);
+  const [pendingRequestIds, setPendingRequestIds] = useState([]);
+  const [requestsLoaded, setRequestsLoaded] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [matchesLoading, setMatchesLoading] = useState(false);
@@ -287,6 +324,31 @@ export default function ExploreSkills() {
     }
   }, []);
 
+  /* =========================================
+     LOAD THE USER'S OUTGOING EXCHANGE REQUESTS
+  ========================================= */
+
+  const loadOutgoingRequests = useCallback(async () => {
+    try {
+      const response = await API.get("/exchange/outgoing");
+      const requests = getRequestArray(response);
+
+      const pendingIds = requests
+        .filter(
+          (request) => request.status?.toLowerCase() === "pending"
+        )
+        .map(getRequestListingId)
+        .filter(Boolean)
+        .map(String);
+
+      setPendingRequestIds(pendingIds);
+    } catch (err) {
+      console.error("Unable to load outgoing exchange requests:", err);
+    } finally {
+      setRequestsLoaded(true);
+    }
+  }, []);
+
   useEffect(() => {
     loadListings(1);
   }, [loadListings]);
@@ -294,6 +356,10 @@ export default function ExploreSkills() {
   useEffect(() => {
     loadMatches();
   }, [loadMatches]);
+
+  useEffect(() => {
+    loadOutgoingRequests();
+  }, [loadOutgoingRequests]);
 
   /* =========================================
      FILTER HANDLERS
@@ -367,6 +433,12 @@ export default function ExploreSkills() {
         message: requestMessage.trim(),
       });
 
+      setPendingRequestIds((current) =>
+        current.includes(String(listingId))
+          ? current
+          : [...current, String(listingId)]
+      );
+
       setSelectedSkill(null);
       setRequestMessage("");
 
@@ -379,6 +451,18 @@ export default function ExploreSkills() {
       if (err.response?.status === 401) {
         setRequestError(
           "Please log in before sending an exchange request."
+        );
+      } else if (err.response?.status === 409) {
+        // Keep the UI in sync if the server already has a pending request.
+        setPendingRequestIds((current) =>
+          current.includes(String(listingId))
+            ? current
+            : [...current, String(listingId)]
+        );
+        setSelectedSkill(null);
+        setRequestMessage("");
+        setRequestSuccess(
+          `You already have a pending request for "${selectedSkill.title}".`
         );
       } else {
         setRequestError(
@@ -694,6 +778,8 @@ export default function ExploreSkills() {
                       isSaved={savedSkills.includes(skillId)}
                       showMatch
                       onRequest={openRequestModal}
+                      isRequestPending={pendingRequestIds.includes(String(skillId))}
+                      requestsLoaded={requestsLoaded}
                     />
                   );
                 })}
@@ -772,6 +858,8 @@ export default function ExploreSkills() {
                         onSave={toggleSaved}
                         isSaved={savedSkills.includes(skillId)}
                         onRequest={openRequestModal}
+                        isRequestPending={pendingRequestIds.includes(String(skillId))}
+                        requestsLoaded={requestsLoaded}
                       />
                     );
                   })}
