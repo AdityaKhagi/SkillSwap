@@ -28,18 +28,33 @@ const initialFilters = {
   mode: "all",
 };
 
+function normalizeId(value) {
+  if (value == null) return null;
+
+  if (typeof value === "object") {
+    // Support populated MongoDB documents and serialized ObjectIds.
+    return normalizeId(
+      value._id ?? value.id ?? value.$oid ?? value.listingId
+    );
+  }
+
+  const id = String(value).trim();
+  return id || null;
+}
+
 function getSkillId(skill) {
-  return skill?._id || skill?.id;
+  return normalizeId(skill?._id ?? skill?.id ?? skill?.listingId);
 }
 
 function getRequestListingId(request) {
-  const listing = request?.listing || request?.skillListing || request?.listingId;
+  const listing =
+    request?.listing ??
+    request?.skillListing ??
+    request?.listingId ??
+    request?.skill ??
+    request?.requestedSkill;
 
-  if (listing && typeof listing === "object") {
-    return listing._id || listing.id || listing.listingId || null;
-  }
-
-  return listing || null;
+  return normalizeId(listing);
 }
 
 function getRequestArray(response) {
@@ -330,20 +345,28 @@ export default function ExploreSkills() {
 
   const loadOutgoingRequests = useCallback(async () => {
     try {
+      console.log("[SkillSwap] Loading outgoing exchange requests...");
+
       const response = await API.get("/exchange/outgoing");
       const requests = getRequestArray(response);
 
+      console.log("[SkillSwap] Outgoing requests:", response.data);
+
       const pendingIds = requests
-        .filter(
-          (request) => request.status?.toLowerCase() === "pending"
+        .filter((request) =>
+          String(request?.status || "").trim().toLowerCase() === "pending"
         )
         .map(getRequestListingId)
-        .filter(Boolean)
-        .map(String);
+        .filter(Boolean);
 
-      setPendingRequestIds(pendingIds);
+      console.log("[SkillSwap] Pending listing IDs:", pendingIds);
+
+      setPendingRequestIds([...new Set(pendingIds)]);
     } catch (err) {
-      console.error("Unable to load outgoing exchange requests:", err);
+      console.error(
+        "[SkillSwap] Unable to load outgoing exchange requests:",
+        err.response?.data || err.message
+      );
     } finally {
       setRequestsLoaded(true);
     }
@@ -434,9 +457,9 @@ export default function ExploreSkills() {
       });
 
       setPendingRequestIds((current) =>
-        current.includes(String(listingId))
+        current.includes(normalizeId(listingId))
           ? current
-          : [...current, String(listingId)]
+          : [...current, normalizeId(listingId)]
       );
 
       setSelectedSkill(null);
@@ -455,9 +478,9 @@ export default function ExploreSkills() {
       } else if (err.response?.status === 409) {
         // Keep the UI in sync if the server already has a pending request.
         setPendingRequestIds((current) =>
-          current.includes(String(listingId))
+          current.includes(normalizeId(listingId))
             ? current
-            : [...current, String(listingId)]
+            : [...current, normalizeId(listingId)]
         );
         setSelectedSkill(null);
         setRequestMessage("");
@@ -778,7 +801,7 @@ export default function ExploreSkills() {
                       isSaved={savedSkills.includes(skillId)}
                       showMatch
                       onRequest={openRequestModal}
-                      isRequestPending={pendingRequestIds.includes(String(skillId))}
+                      isRequestPending={pendingRequestIds.includes(normalizeId(skillId))}
                       requestsLoaded={requestsLoaded}
                     />
                   );
@@ -858,7 +881,7 @@ export default function ExploreSkills() {
                         onSave={toggleSaved}
                         isSaved={savedSkills.includes(skillId)}
                         onRequest={openRequestModal}
-                        isRequestPending={pendingRequestIds.includes(String(skillId))}
+                        isRequestPending={pendingRequestIds.includes(normalizeId(skillId))}
                         requestsLoaded={requestsLoaded}
                       />
                     );

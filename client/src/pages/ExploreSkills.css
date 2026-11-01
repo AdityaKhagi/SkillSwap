@@ -2,43 +2,43 @@
 
 
 
-  --explore-primary: #5546e8;
+  --explore-primary: #5546e8;
 
 
 
-  --explore-primary-dark: #4233ce;
+  --explore-primary-dark: #4233ce;
 
 
 
-  --explore-ink: #20213a;
+  --explore-ink: #20213a;
 
 
 
-  --explore-muted: #73758a;
+  --explore-muted: #73758a;
 
 
 
-  --explore-border: #e9e8f2;
+  --explore-border: #e9e8f2;
 
 
 
-  --explore-soft: #f8f7fc;
+  --explore-soft: #f8f7fc;
 
 
 
-  min-height: 100vh;
+  min-height: 100vh;
 
 
 
-  background: #fbfaff;
+  background: #fbfaff;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans", sans-serif;
 
 
 
@@ -46,11 +46,11 @@
 
 
 
-.explore-page \* {
+.explore-page * {
 
 
 
-  box-sizing: border-box;
+  box-sizing: border-box;
 
 
 
@@ -70,7 +70,7 @@
 
 
 
-  font: inherit;
+  font: inherit;
 
 
 
@@ -82,47 +82,47 @@
 
 
 
-  position: sticky;
+  position: sticky;
 
 
 
-  top: 0;
+  top: 0;
 
 
 
-  z-index: 20;
+  z-index: 20;
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: space-between;
+  justify-content: space-between;
 
 
 
-  gap: 24px;
+  gap: 24px;
 
 
 
-  padding: 15px max(5%, calc((100% - 1400px) / 2));
+  padding: 15px max(5%, calc((100% - 1400px) / 2));
 
 
 
-  border-bottom: 1px solid var(--explore-border);
+  border-bottom: 1px solid var(--explore-border);
 
 
 
-  background: rgb(255 255 255 / 94%);
+  background: rgb(255 255 255 / 94%);
 
 
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 
 
 
@@ -138,39 +138,39 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 10px;
+  gap: 10px;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 22px;
+  font-size: 22px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  text-decoration: none;
+  text-decoration: none;
 
 
 
-  white-space: nowrap;
+  white-space: nowrap;
 
 
 
@@ -186,7 +186,7 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -198,35 +198,35 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 37px;
+  width: 37px;
 
 
 
-  height: 37px;
+  height: 37px;
 
 
 
-  border-radius: 11px;
+  border-radius: 11px;
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  color: white;
+  color: white;
 
 
 
-  font-size: 21px;
+  font-size: 21px;
 
 
 
@@ -238,19 +238,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  gap: 30px;
+  gap: 30px;
 
 
 
@@ -262,23 +262,23 @@
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  font-weight: 600;
+  font-weight: 600;
 
 
 
-  text-decoration: none;
+  text-decoration: none;
 
 
 
-  transition: color 0.2s;
+  transition: color 0.2s;
 
 
 
@@ -290,7 +290,7 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -302,51 +302,51 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 9px;
+  gap: 9px;
 
 
 
-  padding: 7px 12px 7px 7px;
+  padding: 7px 12px 7px 7px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 11px;
+  border-radius: 11px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  text-decoration: none;
+  text-decoration: none;
 
 
 
-  white-space: nowrap;
+  white-space: nowrap;
 
 
 
@@ -358,39 +358,39 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 30px;
+  width: 30px;
 
 
 
-  height: 30px;
+  height: 30px;
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: #eae6ff;
+  background: #eae6ff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
@@ -402,11 +402,11 @@
 
 
 
-  width: min(1320px, 90%);
+  width: min(1320px, 90%);
 
 
 
-  margin: 0 auto;
+  margin: 0 auto;
 
 
 
@@ -418,59 +418,59 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: space-between;
+  justify-content: space-between;
 
 
 
-  gap: 30px;
+  gap: 30px;
 
 
 
-  min-height: 310px;
+  min-height: 310px;
 
 
 
-  margin-top: 32px;
+  margin-top: 32px;
 
 
 
-  padding: 45px 55px;
+  padding: 45px 55px;
 
 
 
-  overflow: hidden;
+  overflow: hidden;
 
 
 
-  border: 1px solid #e8e3ff;
+  border: 1px solid #e8e3ff;
 
 
 
-  border-radius: 24px;
+  border-radius: 24px;
 
 
 
-  background:
+  background:
 
 
 
-    radial-gradient(ellipse at 85% 20%, #e8e2ff 0, transparent 40%),
+    radial-gradient(ellipse at 85% 20%, #e8e2ff 0, transparent 40%),
 
 
 
-    linear-gradient(120deg, #f6f3ff, #fff 70%);
+    linear-gradient(120deg, #f6f3ff, #fff 70%);
 
 
 
@@ -482,15 +482,15 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  z-index: 2;
+  z-index: 2;
 
 
 
-  max-width: 620px;
+  max-width: 620px;
 
 
 
@@ -502,27 +502,27 @@
 
 
 
-  margin: 0 0 12px;
+  margin: 0 0 12px;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.5px;
 
 
 
-  line-height: 1.6;
+  line-height: 1.6;
 
 
 
@@ -534,27 +534,27 @@
 
 
 
-  margin: 0;
+  margin: 0;
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: clamp(36px, 4.2vw, 54px);
+  font-size: clamp(36px, 4.2vw, 54px);
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: -2px;
+  letter-spacing: -2px;
 
 
 
-  line-height: 1.15;
+  line-height: 1.15;
 
 
 
@@ -566,7 +566,7 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -578,23 +578,23 @@
 
 
 
-  max-width: 540px;
+  max-width: 540px;
 
 
 
-  margin: 18px 0 0;
+  margin: 18px 0 0;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 13px;
+  font-size: 13px;
 
 
 
-  line-height: 1.9;
+  line-height: 1.9;
 
 
 
@@ -606,19 +606,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 18px;
+  gap: 18px;
 
 
 
-  margin-top: 22px;
+  margin-top: 22px;
 
 
 
@@ -630,15 +630,15 @@
 
 
 
-  color: #4b806b;
+  color: #4b806b;
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
@@ -650,23 +650,23 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  flex: 0 0 300px;
+  flex: 0 0 300px;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  min-height: 230px;
+  min-height: 230px;
 
 
 
@@ -678,15 +678,15 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  border: 1px solid #d8d0ff;
+  border: 1px solid #d8d0ff;
 
 
 
-  border-radius: 50%;
+  border-radius: 50%;
 
 
 
@@ -698,11 +698,11 @@
 
 
 
-  width: 245px;
+  width: 245px;
 
 
 
-  height: 245px;
+  height: 245px;
 
 
 
@@ -714,11 +714,11 @@
 
 
 
-  width: 185px;
+  width: 185px;
 
 
 
-  height: 185px;
+  height: 185px;
 
 
 
@@ -730,31 +730,31 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-direction: column;
+  flex-direction: column;
 
 
 
-  border: 1px solid rgb(255 255 255 / 80%);
+  border: 1px solid rgb(255 255 255 / 80%);
 
 
 
-  border-radius: 17px;
+  border-radius: 17px;
 
 
 
-  background: rgb(255 255 255 / 94%);
+  background: rgb(255 255 255 / 94%);
 
 
 
-  box-shadow: 0 15px 40px rgb(69 51 164 / 10%);
+  box-shadow: 0 15px 40px rgb(69 51 164 / 10%);
 
 
 
@@ -766,27 +766,27 @@
 
 
 
-  z-index: 1;
+  z-index: 1;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  width: 205px;
+  width: 205px;
 
 
 
-  padding: 22px 18px;
+  padding: 22px 18px;
 
 
 
-  text-align: center;
+  text-align: center;
 
 
 
-  transform: rotate(-4deg);
+  transform: rotate(-4deg);
 
 
 
@@ -798,35 +798,35 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 60px;
+  width: 60px;
 
 
 
-  height: 60px;
+  height: 60px;
 
 
 
-  margin-bottom: 15px;
+  margin-bottom: 15px;
 
 
 
-  border-radius: 19px;
+  border-radius: 19px;
 
 
 
-  background: #f0edff;
+  background: #f0edff;
 
 
 
-  font-size: 31px;
+  font-size: 31px;
 
 
 
@@ -838,11 +838,11 @@
 
 
 
-  font-size: 13px;
+  font-size: 13px;
 
 
 
-  line-height: 1.6;
+  line-height: 1.6;
 
 
 
@@ -854,15 +854,15 @@
 
 
 
-  margin-top: 7px;
+  margin-top: 7px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -874,35 +874,35 @@
 
 
 
-  z-index: 2;
+  z-index: 2;
 
 
 
-  right: -5px;
+  right: -5px;
 
 
 
-  bottom: 15px;
+  bottom: 15px;
 
 
 
-  flex-direction: row;
+  flex-direction: row;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 10px;
+  gap: 10px;
 
 
 
-  padding: 12px;
+  padding: 12px;
 
 
 
-  transform: rotate(3deg);
+  transform: rotate(3deg);
 
 
 
@@ -914,31 +914,31 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 37px;
+  width: 37px;
 
 
 
-  height: 37px;
+  height: 37px;
 
 
 
-  border-radius: 10px;
+  border-radius: 10px;
 
 
 
-  background: #e5f7ee;
+  background: #e5f7ee;
 
 
 
-  font-size: 19px;
+  font-size: 19px;
 
 
 
@@ -954,11 +954,11 @@
 
 
 
-  display: block;
+  display: block;
 
 
 
-  white-space: nowrap;
+  white-space: nowrap;
 
 
 
@@ -970,7 +970,7 @@
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -982,15 +982,15 @@
 
 
 
-  margin-top: 4px;
+  margin-top: 4px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
@@ -1002,7 +1002,7 @@
 
 
 
-  padding-top: 53px;
+  padding-top: 53px;
 
 
 
@@ -1018,19 +1018,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: flex-end;
+  align-items: flex-end;
 
 
 
-  justify-content: space-between;
+  justify-content: space-between;
 
 
 
-  gap: 20px;
+  gap: 20px;
 
 
 
@@ -1046,23 +1046,23 @@
 
 
 
-  margin: 0;
+  margin: 0;
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 27px;
+  font-size: 27px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: -0.8px;
+  letter-spacing: -0.8px;
 
 
 
@@ -1078,19 +1078,19 @@
 
 
 
-  margin: 9px 0 0;
+  margin: 9px 0 0;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  line-height: 1.8;
+  line-height: 1.8;
 
 
 
@@ -1102,19 +1102,19 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  gap: 4px;
+  gap: 4px;
 
 
 
-  padding-bottom: 4px;
+  padding-bottom: 4px;
 
 
 
-  text-align: right;
+  text-align: right;
 
 
 
@@ -1126,15 +1126,15 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 25px;
+  font-size: 25px;
 
 
 
@@ -1146,11 +1146,11 @@
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -1162,47 +1162,47 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 12px;
+  gap: 12px;
 
 
 
-  min-height: 59px;
+  min-height: 59px;
 
 
 
-  margin-top: 25px;
+  margin-top: 25px;
 
 
 
-  padding: 8px 10px 8px 18px;
+  padding: 8px 10px 8px 18px;
 
 
 
-  border: 1px solid #e5e2f1;
+  border: 1px solid #e5e2f1;
 
 
 
-  border-radius: 14px;
+  border-radius: 14px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  box-shadow: 0 5px 20px rgb(40 31 100 / 3%);
+  box-shadow: 0 5px 20px rgb(40 31 100 / 3%);
 
 
 
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 
 
 
@@ -1214,11 +1214,11 @@
 
 
 
-  border-color: #aaa0ff;
+  border-color: #aaa0ff;
 
 
 
-  box-shadow: 0 0 0 3px rgb(85 70 232 / 8%);
+  box-shadow: 0 0 0 3px rgb(85 70 232 / 8%);
 
 
 
@@ -1230,15 +1230,15 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 27px;
+  font-size: 27px;
 
 
 
-  line-height: 1;
+  line-height: 1;
 
 
 
@@ -1250,35 +1250,35 @@
 
 
 
-  flex: 1;
+  flex: 1;
 
 
 
-  width: 0;
+  width: 0;
 
 
 
-  min-width: 0;
+  min-width: 0;
 
 
 
-  border: 0;
+  border: 0;
 
 
 
-  outline: none;
+  outline: none;
 
 
 
-  background: transparent;
+  background: transparent;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
@@ -1290,7 +1290,7 @@
 
 
 
-  color: #a3a2b4;
+  color: #a3a2b4;
 
 
 
@@ -1302,43 +1302,43 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  flex: 0 0 28px;
+  flex: 0 0 28px;
 
 
 
-  height: 28px;
+  height: 28px;
 
 
 
-  border: 0;
+  border: 0;
 
 
 
-  border-radius: 8px;
+  border-radius: 8px;
 
 
 
-  background: #f3f1fa;
+  background: #f3f1fa;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 20px;
+  font-size: 20px;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
@@ -1350,55 +1350,55 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  gap: 8px;
+  gap: 8px;
 
 
 
-  padding: 11px 15px;
+  padding: 11px 15px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
-  transition: *background* 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s;
 
 
 
@@ -1414,15 +1414,15 @@
 
 
 
-  border-color: #d6d0ff;
+  border-color: #d6d0ff;
 
 
 
-  background: #f2efff;
+  background: #f2efff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -1434,39 +1434,39 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: flex-end;
+  align-items: flex-end;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 16px;
+  gap: 16px;
 
 
 
-  margin-top: 14px;
+  margin-top: 14px;
 
 
 
-  padding: 19px;
+  padding: 19px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 13px;
+  border-radius: 13px;
 
 
 
-  background: white;
+  background: white;
 
 
 
@@ -1478,23 +1478,23 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  gap: 8px;
+  gap: 8px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
@@ -1506,35 +1506,35 @@
 
 
 
-  min-width: 165px;
+  min-width: 165px;
 
 
 
-  padding: 10px 12px;
+  padding: 10px 12px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 8px;
+  border-radius: 8px;
 
 
 
-  outline-color: var(--explore-primary);
+  outline-color: var(--explore-primary);
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: var(--explore-ink);
+  color: var(--explore-ink);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
@@ -1546,35 +1546,35 @@
 
 
 
-  padding: 10px 12px;
+  padding: 10px 12px;
 
 
 
-  border: 0;
+  border: 0;
 
 
 
-  border-radius: 8px;
+  border-radius: 8px;
 
 
 
-  background: #f0edff;
+  background: #f0edff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
@@ -1586,27 +1586,27 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  gap: 9px;
+  gap: 9px;
 
 
 
-  margin-top: 20px;
+  margin-top: 20px;
 
 
 
-  padding: 2px 1px 8px;
+  padding: 2px 1px 8px;
 
 
 
-  overflow-x: auto;
+  overflow-x: auto;
 
 
 
-  scrollbar-width: thin;
+  scrollbar-width: thin;
 
 
 
@@ -1618,55 +1618,55 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 7px;
+  gap: 7px;
 
 
 
-  flex: 0 0 auto;
+  flex: 0 0 auto;
 
 
 
-  padding: 10px 15px;
+  padding: 10px 15px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #77768a;
+  color: #77768a;
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
-  transition: border-color 0.2s, *background* 0.2s, color 0.2s;
+  transition: border-color 0.2s, *background* 0.2s, color 0.2s;
 
 
 
@@ -1678,11 +1678,11 @@
 
 
 
-  border-color: #c9c1ff;
+  border-color: #c9c1ff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -1694,15 +1694,15 @@
 
 
 
-  border-color: var(--explore-primary);
+  border-color: var(--explore-primary);
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  color: white;
+  color: white;
 
 
 
@@ -1714,35 +1714,35 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  min-width: 20px;
+  min-width: 20px;
 
 
 
-  height: 20px;
+  height: 20px;
 
 
 
-  padding: 0 5px;
+  padding: 0 5px;
 
 
 
-  border-radius: 6px;
+  border-radius: 6px;
 
 
 
-  background: rgb(255 255 255 / 20%);
+  background: rgb(255 255 255 / 20%);
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
@@ -1754,11 +1754,11 @@
 
 
 
-  padding-top: 39px;
+  padding-top: 39px;
 
 
 
-  scroll-margin-top: 90px;
+  scroll-margin-top: 90px;
 
 
 
@@ -1770,11 +1770,11 @@
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  margin-bottom: 23px;
+  margin-bottom: 23px;
 
 
 
@@ -1786,7 +1786,7 @@
 
 
 
-  font-size: 21px;
+  font-size: 21px;
 
 
 
@@ -1798,11 +1798,11 @@
 
 
 
-  margin-top: 6px;
+  margin-top: 6px;
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
@@ -1814,31 +1814,31 @@
 
 
 
-  padding: 8px 11px;
+  padding: 8px 11px;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 8px;
+  border-radius: 8px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  white-space: nowrap;
+  white-space: nowrap;
 
 
 
@@ -1850,19 +1850,19 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
 
 
-  gap: 21px;
+  gap: 21px;
 
 
 
-  align-items: stretch;
+  align-items: stretch;
 
 
 
@@ -1874,39 +1874,39 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  min-width: 0;
+  min-width: 0;
 
 
 
-  flex-direction: column;
+  flex-direction: column;
 
 
 
-  overflow: hidden;
+  overflow: hidden;
 
 
 
-  border: 1px solid var(--explore-border);
+  border: 1px solid var(--explore-border);
 
 
 
-  border-radius: 17px;
+  border-radius: 17px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  box-shadow: 0 3px 12px rgb(36 30 85 / 2%);
+  box-shadow: 0 3px 12px rgb(36 30 85 / 2%);
 
 
 
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 
 
 
@@ -1918,15 +1918,15 @@
 
 
 
-  transform: translateY(-4px);
+  transform: translateY(-4px);
 
 
 
-  border-color: #dcd6ff;
+  border-color: #dcd6ff;
 
 
 
-  box-shadow: 0 15px 35px rgb(36 30 85 / 7%);
+  box-shadow: 0 15px 35px rgb(36 30 85 / 7%);
 
 
 
@@ -1938,23 +1938,23 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  min-height: 150px;
+  min-height: 150px;
 
 
 
-  overflow: hidden;
+  overflow: hidden;
 
 
 
@@ -1970,27 +1970,27 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  width: 155px;
+  width: 155px;
 
 
 
-  height: 155px;
+  height: 155px;
 
 
 
-  border: 1px solid rgb(255 255 255 / 60%);
+  border: 1px solid rgb(255 255 255 / 60%);
 
 
 
-  border-radius: 50%;
+  border-radius: 50%;
 
 
 
-  content: "";
+  content: "";
 
 
 
@@ -2002,11 +2002,11 @@
 
 
 
-  top: -75px;
+  top: -75px;
 
 
 
-  right: -20px;
+  right: -20px;
 
 
 
@@ -2018,11 +2018,11 @@
 
 
 
-  bottom: -115px;
+  bottom: -115px;
 
 
 
-  left: -20px;
+  left: -20px;
 
 
 
@@ -2034,7 +2034,7 @@
 
 
 
-  background: linear-gradient(135deg, #e9e5ff, #f5f2ff);
+  background: linear-gradient(135deg, #e9e5ff, #f5f2ff);
 
 
 
@@ -2046,7 +2046,7 @@
 
 
 
-  background: linear-gradient(135deg, #ffe6f0, #fff5f8);
+  background: linear-gradient(135deg, #ffe6f0, #fff5f8);
 
 
 
@@ -2058,7 +2058,7 @@
 
 
 
-  background: linear-gradient(135deg, #e0edff, #f3f7ff);
+  background: linear-gradient(135deg, #e0edff, #f3f7ff);
 
 
 
@@ -2070,7 +2070,7 @@
 
 
 
-  background: linear-gradient(135deg, #def7eb, #f2fcf7);
+  background: linear-gradient(135deg, #def7eb, #f2fcf7);
 
 
 
@@ -2082,7 +2082,7 @@
 
 
 
-  background: linear-gradient(135deg, #ffead9, #fff7ed);
+  background: linear-gradient(135deg, #ffead9, #fff7ed);
 
 
 
@@ -2094,7 +2094,7 @@
 
 
 
-  background: linear-gradient(135deg, #d9f5f2, #f1fcfb);
+  background: linear-gradient(135deg, #d9f5f2, #f1fcfb);
 
 
 
@@ -2106,7 +2106,7 @@
 
 
 
-  background: linear-gradient(135deg, #fff2c9, #fffaf0);
+  background: linear-gradient(135deg, #fff2c9, #fffaf0);
 
 
 
@@ -2118,7 +2118,7 @@
 
 
 
-  background: linear-gradient(135deg, #ffe3e2, #fff5f4);
+  background: linear-gradient(135deg, #ffe3e2, #fff5f4);
 
 
 
@@ -2130,47 +2130,47 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  z-index: 2;
+  z-index: 2;
 
 
 
-  top: 15px;
+  top: 15px;
 
 
 
-  left: 15px;
+  left: 15px;
 
 
 
-  padding: 7px 9px;
+  padding: 7px 9px;
 
 
 
-  border: 1px solid rgb(255 255 255 / 75%);
+  border: 1px solid rgb(255 255 255 / 75%);
 
 
 
-  border-radius: 7px;
+  border-radius: 7px;
 
 
 
-  background: rgb(255 255 255 / 75%);
+  background: rgb(255 255 255 / 75%);
 
 
 
-  color: #57546c;
+  color: #57546c;
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
@@ -2182,63 +2182,63 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  z-index: 2;
+  z-index: 2;
 
 
 
-  top: 12px;
+  top: 12px;
 
 
 
-  right: 13px;
+  right: 13px;
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 33px;
+  width: 33px;
 
 
 
-  height: 33px;
+  height: 33px;
 
 
 
-  border: 1px solid rgb(255 255 255 / 85%);
+  border: 1px solid rgb(255 255 255 / 85%);
 
 
 
-  border-radius: 10px;
+  border-radius: 10px;
 
 
 
-  background: rgb(255 255 255 / 85%);
+  background: rgb(255 255 255 / 85%);
 
 
 
-  color: #6c6883;
+  color: #6c6883;
 
 
 
-  font-size: 20px;
+  font-size: 20px;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
-  transition: *background* 0.2s, color 0.2s;
+  transition: *background* 0.2s, color 0.2s;
 
 
 
@@ -2254,11 +2254,11 @@
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #e34e83;
+  color: #e34e83;
 
 
 
@@ -2270,47 +2270,47 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  z-index: 1;
+  z-index: 1;
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  width: 76px;
+  width: 76px;
 
 
 
-  height: 76px;
+  height: 76px;
 
 
 
-  border: 1px solid rgb(255 255 255 / 80%);
+  border: 1px solid rgb(255 255 255 / 80%);
 
 
 
-  border-radius: 24px;
+  border-radius: 24px;
 
 
 
-  background: rgb(255 255 255 / 70%);
+  background: rgb(255 255 255 / 70%);
 
 
 
-  box-shadow: 0 10px 30px rgb(50 40 100 / 7%);
+  box-shadow: 0 10px 30px rgb(50 40 100 / 7%);
 
 
 
-  font-size: 36px;
+  font-size: 36px;
 
 
 
@@ -2322,19 +2322,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex: 1;
+  flex: 1;
 
 
 
-  flex-direction: column;
+  flex-direction: column;
 
 
 
-  padding: 19px;
+  padding: 19px;
 
 
 
@@ -2346,19 +2346,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: flex-start;
+  align-items: flex-start;
 
 
 
-  justify-content: space-between;
+  justify-content: space-between;
 
 
 
-  gap: 8px;
+  gap: 8px;
 
 
 
@@ -2370,27 +2370,27 @@
 
 
 
-  margin: 0;
+  margin: 0;
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 15px;
+  font-size: 15px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: -0.3px;
+  letter-spacing: -0.3px;
 
 
 
-  line-height: 1.5;
+  line-height: 1.5;
 
 
 
@@ -2402,35 +2402,35 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 4px;
+  gap: 4px;
 
 
 
-  flex: 0 0 auto;
+  flex: 0 0 auto;
 
 
 
-  padding-top: 3px;
+  padding-top: 3px;
 
 
 
-  color: #5e5b70;
+  color: #5e5b70;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
@@ -2442,11 +2442,11 @@
 
 
 
-  color: #f4b740;
+  color: #f4b740;
 
 
 
-  font-size: 13px;
+  font-size: 13px;
 
 
 
@@ -2458,23 +2458,23 @@
 
 
 
-  min-height: 62px;
+  min-height: 62px;
 
 
 
-  margin: 10px 0 15px;
+  margin: 10px 0 15px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  line-height: 1.8;
+  line-height: 1.8;
 
 
 
@@ -2486,27 +2486,27 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 10px;
+  gap: 10px;
 
 
 
-  padding: 13px 0;
+  padding: 13px 0;
 
 
 
-  border-top: 1px solid #f0eff6;
+  border-top: 1px solid #f0eff6;
 
 
 
-  border-bottom: 1px solid #f0eff6;
+  border-bottom: 1px solid #f0eff6;
 
 
 
@@ -2518,39 +2518,39 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  flex: 0 0 36px;
+  flex: 0 0 36px;
 
 
 
-  height: 36px;
+  height: 36px;
 
 
 
-  border-radius: 11px;
+  border-radius: 11px;
 
 
 
-  background: #efedff;
+  background: #efedff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
@@ -2562,11 +2562,11 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  gap: 4px;
+  gap: 4px;
 
 
 
@@ -2578,7 +2578,7 @@
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
@@ -2590,11 +2590,11 @@
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
@@ -2606,23 +2606,23 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 9px;
+  gap: 9px;
 
 
 
-  margin-top: 15px;
+  margin-top: 15px;
 
 
 
@@ -2634,15 +2634,15 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  min-width: 0;
+  min-width: 0;
 
 
 
-  gap: 6px;
+  gap: 6px;
 
 
 
@@ -2654,23 +2654,23 @@
 
 
 
-  color: #9290a5;
+  color: #9290a5;
 
 
 
-  font-size: 8px;
+  font-size: 8px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
 
 
 
-  line-height: 1.5;
+  line-height: 1.5;
 
 
 
@@ -2682,19 +2682,19 @@
 
 
 
-  overflow-wrap: anywhere;
+  overflow-wrap: anywhere;
 
 
 
-  color: #56546c;
+  color: #56546c;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  line-height: 1.6;
+  line-height: 1.6;
 
 
 
@@ -2706,11 +2706,11 @@
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 18px;
+  font-size: 18px;
 
 
 
@@ -2722,27 +2722,27 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 12px;
+  gap: 12px;
 
 
 
-  margin-top: 15px;
+  margin-top: 15px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
@@ -2754,67 +2754,67 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  gap: 10px;
+  gap: 10px;
 
 
 
-  width: 100%;
+  width: 100%;
 
 
 
-  margin-top: auto;
+  margin-top: auto;
 
 
 
-  padding: 12px 10px;
+  padding: 12px 10px;
 
 
 
-  border: 1px solid var(--explore-primary);
+  border: 1px solid var(--explore-primary);
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  color: white;
+  color: white;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
-  transition: *background* 0.2s, transform 0.2s;
+  transition: *background* 0.2s, transform 0.2s;
 
 
 
-  margin-top: 17px;
+  margin-top: 17px;
 
 
 
@@ -2826,11 +2826,11 @@
 
 
 
-  transform: translateY(-1px);
+  transform: translateY(-1px);
 
 
 
-  background: var(--explore-primary-dark);
+  background: var(--explore-primary-dark);
 
 
 
@@ -2842,35 +2842,35 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  flex-direction: column;
+  flex-direction: column;
 
 
 
-  padding: 55px 20px;
+  padding: 55px 20px;
 
 
 
-  border: 1px dashed #dcd7f1;
+  border: 1px dashed #dcd7f1;
 
 
 
-  border-radius: 17px;
+  border-radius: 17px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  text-align: center;
+  text-align: center;
 
 
 
@@ -2882,7 +2882,7 @@
 
 
 
-  font-size: 37px;
+  font-size: 37px;
 
 
 
@@ -2894,15 +2894,15 @@
 
 
 
-  margin: 15px 0 0;
+  margin: 15px 0 0;
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 19px;
+  font-size: 19px;
 
 
 
@@ -2914,23 +2914,23 @@
 
 
 
-  max-width: 400px;
+  max-width: 400px;
 
 
 
-  margin: 10px 0 20px;
+  margin: 10px 0 20px;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  line-height: 1.8;
+  line-height: 1.8;
 
 
 
@@ -2942,35 +2942,35 @@
 
 
 
-  padding: 11px 15px;
+  padding: 11px 15px;
 
 
 
-  border: 0;
+  border: 0;
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  color: white;
+  color: white;
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
@@ -2982,35 +2982,35 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 17px;
+  gap: 17px;
 
 
 
-  margin: 45px 0 0;
+  margin: 45px 0 0;
 
 
 
-  padding: 25px;
+  padding: 25px;
 
 
 
-  border: 1px solid #e6e1ff;
+  border: 1px solid #e6e1ff;
 
 
 
-  border-radius: 16px;
+  border-radius: 16px;
 
 
 
-  background: linear-gradient(110deg, #f1edff, white);
+  background: linear-gradient(110deg, #f1edff, white);
 
 
 
@@ -3022,35 +3022,35 @@
 
 
 
-  display: grid;
+  display: grid;
 
 
 
-  place-items: center;
+  place-items: center;
 
 
 
-  flex: 0 0 47px;
+  flex: 0 0 47px;
 
 
 
-  height: 47px;
+  height: 47px;
 
 
 
-  border-radius: 13px;
+  border-radius: 13px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
-  font-size: 25px;
+  font-size: 25px;
 
 
 
@@ -3062,7 +3062,7 @@
 
 
 
-  flex: 1;
+  flex: 1;
 
 
 
@@ -3074,15 +3074,15 @@
 
 
 
-  margin: 0;
+  margin: 0;
 
 
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
 
 
-  font-size: 15px;
+  font-size: 15px;
 
 
 
@@ -3094,19 +3094,19 @@
 
 
 
-  margin: 6px 0 0;
+  margin: 6px 0 0;
 
 
 
-  color: var(--explore-muted);
+  color: var(--explore-muted);
 
 
 
-  font-size: 11px;
+  font-size: 11px;
 
 
 
-  line-height: 1.8;
+  line-height: 1.8;
 
 
 
@@ -3118,55 +3118,55 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  gap: 12px;
+  gap: 12px;
 
 
 
-  padding: 12px 15px;
+  padding: 12px 15px;
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  color: white;
+  color: white;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  text-decoration: none;
+  text-decoration: none;
 
 
 
-  white-space: nowrap;
+  white-space: nowrap;
 
 
 
-  transition: *background* 0.2s;
+  transition: *background* 0.2s;
 
 
 
@@ -3178,7 +3178,7 @@
 
 
 
-  background: var(--explore-primary-dark);
+  background: var(--explore-primary-dark);
 
 
 
@@ -3190,31 +3190,31 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: space-between;
+  justify-content: space-between;
 
 
 
-  gap: 20px;
+  gap: 20px;
 
 
 
-  margin-top: 35px;
+  margin-top: 35px;
 
 
 
-  padding: 22px 0;
+  padding: 22px 0;
 
 
 
-  border-top: 1px solid var(--explore-border);
+  border-top: 1px solid var(--explore-border);
 
 
 
@@ -3226,7 +3226,7 @@
 
 
 
-  font-size: 17px;
+  font-size: 17px;
 
 
 
@@ -3242,15 +3242,15 @@
 
 
 
-  margin: 0;
+  margin: 0;
 
 
 
-  color: #9291a5;
+  color: #9291a5;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -3262,15 +3262,15 @@
 
 
 
-  .explore-skills-grid {
+  .explore-skills-grid {
 
 
 
-    gap: 25px;
+    gap: 25px;
 
 
 
-  }
+  }
 
 
 
@@ -3282,67 +3282,67 @@
 
 
 
-  .explore-topbar {
+  .explore-topbar {
 
 
 
-    padding-right: 5%;
+    padding-right: 5%;
 
 
 
-    padding-left: 5%;
+    padding-left: 5%;
 
 
 
-  }
+  }
 
 
 
-  .explore-main {
+  .explore-main {
 
 
 
-    width: 92%;
+    width: 92%;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero {
+  .explore-hero {
 
 
 
-    padding: 38px;
+    padding: 38px;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero-art {
+  .explore-hero-art {
 
 
 
-    flex-basis: 245px;
+    flex-basis: 245px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skills-grid {
+  .explore-skills-grid {
 
 
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
 
 
-  }
+  }
 
 
 
@@ -3354,487 +3354,487 @@
 
 
 
-  .explore-topbar {
+  .explore-topbar {
 
 
 
-    flex-wrap: wrap;
+    flex-wrap: wrap;
 
 
 
-    gap: 12px;
+    gap: 12px;
 
 
 
-    padding: 13px 4%;
+    padding: 13px 4%;
 
 
 
-  }
+  }
 
 
 
-  .explore-brand {
+  .explore-brand {
 
 
 
-    font-size: 20px;
+    font-size: 20px;
 
 
 
-  }
+  }
 
 
 
-  .explore-brand-mark {
+  .explore-brand-mark {
 
 
 
-    width: 34px;
+    width: 34px;
 
 
 
-    height: 34px;
+    height: 34px;
 
 
 
-  }
+  }
 
 
 
-  .explore-top-links {
+  .explore-top-links {
 
 
 
-    order: 3;
+    order: 3;
 
 
 
-    justify-content: flex-start;
+    justify-content: flex-start;
 
 
 
-    width: 100%;
+    width: 100%;
 
 
 
-    gap: 22px;
+    gap: 22px;
 
 
 
-    padding: 5px 0 2px;
+    padding: 5px 0 2px;
 
 
 
-    overflow-x: auto;
+    overflow-x: auto;
 
 
 
-  }
+  }
 
 
 
-  .explore-top-links a {
+  .explore-top-links a {
 
 
 
-    flex: 0 0 auto;
+    flex: 0 0 auto;
 
 
 
-    font-size: 11px;
+    font-size: 11px;
 
 
 
-  }
+  }
 
 
 
-  .explore-profile-link {
+  .explore-profile-link {
 
 
 
-    margin-left: auto;
+    margin-left: auto;
 
 
 
-  }
+  }
 
 
 
-  .explore-main {
+  .explore-main {
 
 
 
-    width: 92%;
+    width: 92%;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero {
+  .explore-hero {
 
 
 
-    min-height: auto;
+    min-height: auto;
 
 
 
-    margin-top: 20px;
+    margin-top: 20px;
 
 
 
-    padding: 32px 25px;
+    padding: 32px 25px;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero h1 {
+  .explore-hero h1 {
 
 
 
-    font-size: clamp(32px, 7vw, 43px);
+    font-size: clamp(32px, 7vw, 43px);
 
 
 
-    letter-spacing: -1.4px;
+    letter-spacing: -1.4px;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero-content > p {
+  .explore-hero-content > p {
 
 
 
-    font-size: 12px;
+    font-size: 12px;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero-art {
+  .explore-hero-art {
 
 
 
-    display: none;
+    display: none;
 
 
 
-  }
+  }
 
 
 
-  .explore-search-section {
+  .explore-search-section {
 
 
 
-    padding-top: 37px;
+    padding-top: 37px;
 
 
 
-  }
+  }
 
 
 
-  .explore-section-heading h2 {
+  .explore-section-heading h2 {
 
 
 
-    font-size: 24px;
+    font-size: 24px;
 
 
 
-  }
+  }
 
 
 
-  .explore-section-heading > div:first-child > p:last-child {
+  .explore-section-heading > div:first-child > p:last-child {
 
 
 
-    max-width: 440px;
+    max-width: 440px;
 
 
 
-    font-size: 11px;
+    font-size: 11px;
 
 
 
-  }
+  }
 
 
 
-  .explore-search-box {
+  .explore-search-box {
 
 
 
-    gap: 8px;
+    gap: 8px;
 
 
 
-    padding-left: 12px;
+    padding-left: 12px;
 
 
 
-  }
+  }
 
 
 
-  .explore-filter-toggle {
+  .explore-filter-toggle {
 
 
 
-    gap: 5px;
+    gap: 5px;
 
 
 
-    padding: 10px;
+    padding: 10px;
 
 
 
-  }
+  }
 
 
 
-  .explore-advanced-filters {
+  .explore-advanced-filters {
 
 
 
-    align-items: stretch;
+    align-items: stretch;
 
 
 
-    flex-direction: column;
+    flex-direction: column;
 
 
 
-  }
+  }
 
 
 
-  .explore-advanced-filters select {
+  .explore-advanced-filters select {
 
 
 
-    width: 100%;
+    width: 100%;
 
 
 
-  }
+  }
 
 
 
-  .explore-results {
+  .explore-results {
 
 
 
-    padding-top: 29px;
+    padding-top: 29px;
 
 
 
-  }
+  }
 
 
 
-  .explore-results-heading h2 {
+  .explore-results-heading h2 {
 
 
 
-    font-size: 19px;
+    font-size: 19px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skills-grid {
+  .explore-skills-grid {
 
 
 
-    gap: 14px;
+    gap: 14px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-body {
+  .explore-skill-body {
 
 
 
-    padding: 14px;
+    padding: 14px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-art {
+  .explore-skill-art {
 
 
 
-    min-height: 125px;
+    min-height: 125px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-illustration {
+  .explore-skill-illustration {
 
 
 
-    width: 64px;
+    width: 64px;
 
 
 
-    height: 64px;
+    height: 64px;
 
 
 
-    border-radius: 20px;
+    border-radius: 20px;
 
 
 
-    font-size: 30px;
+    font-size: 30px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-title-row {
+  .explore-skill-title-row {
 
 
 
-    flex-wrap: wrap;
+    flex-wrap: wrap;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-title-row h3 {
+  .explore-skill-title-row h3 {
 
 
 
-    font-size: 13px;
+    font-size: 13px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-description {
+  .explore-skill-description {
 
 
 
-    min-height: 0;
+    min-height: 0;
 
 
 
-    font-size: 10px;
+    font-size: 10px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-exchange {
+  .explore-skill-exchange {
 
 
 
-    gap: 5px;
+    gap: 5px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-exchange strong {
+  .explore-skill-exchange strong {
 
 
 
-    font-size: 9px;
+    font-size: 9px;
 
 
 
-  }
+  }
 
 
 
-  .exchange-label {
+  .exchange-label {
 
 
 
-    font-size: 7px;
+    font-size: 7px;
 
 
 
-  }
+  }
 
 
 
-  .explore-share-banner {
+  .explore-share-banner {
 
 
 
-    align-items: flex-start;
+    align-items: flex-start;
 
 
 
-    flex-wrap: wrap;
+    flex-wrap: wrap;
 
 
 
-    padding: 19px;
+    padding: 19px;
 
 
 
-  }
+  }
 
 
 
-  .explore-share-banner > div:nth-child(2) {
+  .explore-share-banner > div:nth-child(2) {
 
 
 
-    flex-basis: calc(100% - 70px);
+    flex-basis: calc(100% - 70px);
 
 
 
-  }
+  }
 
 
 
-  .explore-share-btn {
+  .explore-share-btn {
 
 
 
-    margin-left: 64px;
+    margin-left: 64px;
 
 
 
-  }
+  }
 
 
 
@@ -3846,303 +3846,303 @@
 
 
 
-  .explore-profile-link {
+  .explore-profile-link {
 
 
 
-    padding: 6px;
+    padding: 6px;
 
 
 
-  }
+  }
 
 
 
-  .explore-profile-link > span:last-child {
+  .explore-profile-link > span:last-child {
 
 
 
-    display: none;
+    display: none;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero {
+  .explore-hero {
 
 
 
-    padding: 27px 21px;
+    padding: 27px 21px;
 
 
 
-  }
+  }
 
 
 
-  .explore-hero-points {
+  .explore-hero-points {
 
 
 
-    flex-direction: column;
+    flex-direction: column;
 
 
 
-    gap: 9px;
+    gap: 9px;
 
 
 
-  }
+  }
 
 
 
-  .explore-section-heading {
+  .explore-section-heading {
 
 
 
-    align-items: flex-start;
+    align-items: flex-start;
 
 
 
-  }
+  }
 
 
 
-  .explore-total {
+  .explore-total {
 
 
 
-    padding-top: 6px;
+    padding-top: 6px;
 
 
 
-  }
+  }
 
 
 
-  .explore-section-heading h2 {
+  .explore-section-heading h2 {
 
 
 
-    font-size: 22px;
+    font-size: 22px;
 
 
 
-  }
+  }
 
 
 
-  .explore-search-box {
+  .explore-search-box {
 
 
 
-    flex-wrap: wrap;
+    flex-wrap: wrap;
 
 
 
-    padding: 12px;
+    padding: 12px;
 
 
 
-  }
+  }
 
 
 
-  .explore-search-box input {
+  .explore-search-box input {
 
 
 
-    flex-basis: calc(100% - 45px);
+    flex-basis: calc(100% - 45px);
 
 
 
-    min-height: 32px;
+    min-height: 32px;
 
 
 
-  }
+  }
 
 
 
-  .explore-filter-toggle {
+  .explore-filter-toggle {
 
 
 
-    flex: 1;
+    flex: 1;
 
 
 
-    margin-top: 4px;
+    margin-top: 4px;
 
 
 
-  }
+  }
 
 
 
-  .explore-category-chip {
+  .explore-category-chip {
 
 
 
-    padding: 9px 12px;
+    padding: 9px 12px;
 
 
 
-    font-size: 10px;
+    font-size: 10px;
 
 
 
-  }
+  }
 
 
 
-  .explore-results-heading {
+  .explore-results-heading {
 
 
 
-    align-items: flex-start;
+    align-items: flex-start;
 
 
 
-  }
+  }
 
 
 
-  .explore-results-heading > div > p {
+  .explore-results-heading > div > p {
 
 
 
-    max-width: 245px;
+    max-width: 245px;
 
 
 
-  }
+  }
 
 
 
-  .explore-results-count {
+  .explore-results-count {
 
 
 
-    padding: 7px;
+    padding: 7px;
 
 
 
-    font-size: 9px;
+    font-size: 9px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skills-grid {
+  .explore-skills-grid {
 
 
 
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-art {
+  .explore-skill-art {
 
 
 
-    min-height: 145px;
+    min-height: 145px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-body {
+  .explore-skill-body {
 
 
 
-    padding: 18px;
+    padding: 18px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-title-row h3 {
+  .explore-skill-title-row h3 {
 
 
 
-    font-size: 15px;
+    font-size: 15px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-description {
+  .explore-skill-description {
 
 
 
-    min-height: 0;
+    min-height: 0;
 
 
 
-    font-size: 11px;
+    font-size: 11px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-exchange strong {
+  .explore-skill-exchange strong {
 
 
 
-    font-size: 10px;
+    font-size: 10px;
 
 
 
-  }
+  }
 
 
 
-  .exchange-label {
+  .exchange-label {
 
 
 
-    font-size: 8px;
+    font-size: 8px;
 
 
 
-  }
+  }
 
 
 
-  .explore-footer {
+  .explore-footer {
 
 
 
-    align-items: flex-start;
+    align-items: flex-start;
 
 
 
-    flex-direction: column;
+    flex-direction: column;
 
 
 
-    gap: 9px;
+    gap: 9px;
 
 
 
-  }
+  }
 
 
 
@@ -4154,31 +4154,31 @@
 
 
 
-  .explore-page \*,
+  .explore-page *,
 
 
 
-  .explore-page \*::before,
+  .explore-page *::before,
 
 
 
-  .explore-page \*::after {
+  .explore-page *::after {
 
 
 
-    scroll-behavior: auto !important;
+    scroll-behavior: auto !important;
 
 
 
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
 
 
 
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
 
 
 
-  }
+  }
 
 
 
@@ -4186,7 +4186,7 @@
 
 
 
-/\* SkillSwap live marketplace \*/
+/* SkillSwap live marketplace */
 
 
 
@@ -4194,19 +4194,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 12px;
+  gap: 12px;
 
 
 
-  margin-top: 25px;
+  margin-top: 25px;
 
 
 
@@ -4222,39 +4222,39 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  padding: 13px 18px;
+  padding: 13px 18px;
 
 
 
-  border-radius: 10px;
+  border-radius: 10px;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  text-decoration: none;
+  text-decoration: none;
 
 
 
-  transition: 0.2s ease;
+  transition: 0.2s ease;
 
 
 
@@ -4266,11 +4266,11 @@
 
 
 
-  background: #5546e8;
+  background: #5546e8;
 
 
 
-  color: white;
+  color: white;
 
 
 
@@ -4282,7 +4282,7 @@
 
 
 
-  background: #4233ce;
+  background: #4233ce;
 
 
 
@@ -4294,15 +4294,15 @@
 
 
 
-  border: 1px solid #e4e0f4;
+  border: 1px solid #e4e0f4;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #5546e8;
+  color: #5546e8;
 
 
 
@@ -4314,19 +4314,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 9px;
+  gap: 9px;
 
 
 
-  margin: 22px 0 17px;
+  margin: 22px 0 17px;
 
 
 
@@ -4338,39 +4338,39 @@
 
 
 
-  padding: 11px 16px;
+  padding: 11px 16px;
 
 
 
-  border: 1px solid #e6e2f0;
+  border: 1px solid #e6e2f0;
 
 
 
-  border-radius: 30px;
+  border-radius: 30px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #68647b;
+  color: #68647b;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
-  transition: 0.2s ease;
+  transition: 0.2s ease;
 
 
 
@@ -4382,15 +4382,15 @@
 
 
 
-  border-color: #5546e8;
+  border-color: #5546e8;
 
 
 
-  background: #5546e8;
+  background: #5546e8;
 
 
 
-  color: white;
+  color: white;
 
 
 
@@ -4402,27 +4402,27 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 12px;
+  gap: 12px;
 
 
 
-  margin: 13px 0;
+  margin: 13px 0;
 
 
 
-  color: #89869b;
+  color: #89869b;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -4434,23 +4434,23 @@
 
 
 
-  padding: 5px 8px;
+  padding: 5px 8px;
 
 
 
-  border-radius: 6px;
+  border-radius: 6px;
 
 
 
-  font-size: 9px;
+  font-size: 9px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
 
 
 
@@ -4462,11 +4462,11 @@
 
 
 
-  background: #f0eaff;
+  background: #f0eaff;
 
 
 
-  color: #6949bb;
+  color: #6949bb;
 
 
 
@@ -4478,11 +4478,11 @@
 
 
 
-  background: #eaf3ff;
+  background: #eaf3ff;
 
 
 
-  color: #3972ba;
+  color: #3972ba;
 
 
 
@@ -4494,31 +4494,31 @@
 
 
 
-  flex-shrink: 0;
+  flex-shrink: 0;
 
 
 
-  padding: 5px 8px;
+  padding: 5px 8px;
 
 
 
-  border-radius: 20px;
+  border-radius: 20px;
 
 
 
-  background: #eaf8f0;
+  background: #eaf8f0;
 
 
 
-  color: #278456;
+  color: #278456;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
-  font-weight: 800;
+  font-weight: 800;
 
 
 
@@ -4530,27 +4530,27 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 13px;
+  gap: 13px;
 
 
 
-  margin: 14px 0;
+  margin: 14px 0;
 
 
 
-  color: #858298;
+  color: #858298;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -4562,19 +4562,19 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
 
 
-  gap: 6px;
+  gap: 6px;
 
 
 
-  margin: 12px 0;
+  margin: 12px 0;
 
 
 
@@ -4586,23 +4586,23 @@
 
 
 
-  padding: 5px 8px;
+  padding: 5px 8px;
 
 
 
-  border-radius: 6px;
+  border-radius: 6px;
 
 
 
-  background: #f3f1fa;
+  background: #f3f1fa;
 
 
 
-  color: #71638f;
+  color: #71638f;
 
 
 
-  font-size: 10px;
+  font-size: 10px;
 
 
 
@@ -4614,31 +4614,31 @@
 
 
 
-  margin: 18px 0;
+  margin: 18px 0;
 
 
 
-  padding: 15px;
+  padding: 15px;
 
 
 
-  border: 1px solid #f0caca;
+  border: 1px solid #f0caca;
 
 
 
-  border-radius: 12px;
+  border-radius: 12px;
 
 
 
-  background: #fff2f2;
+  background: #fff2f2;
 
 
 
-  color: #a52c2c;
+  color: #a52c2c;
 
 
 
-  font-size: 13px;
+  font-size: 13px;
 
 
 
@@ -4650,19 +4650,19 @@
 
 
 
-  padding: 60px 20px;
+  padding: 60px 20px;
 
 
 
-  color: #77738c;
+  color: #77738c;
 
 
 
-  text-align: center;
+  text-align: center;
 
 
 
-  font-size: 14px;
+  font-size: 14px;
 
 
 
@@ -4674,43 +4674,43 @@
 
 
 
-  display: block;
+  display: block;
 
 
 
-  margin: 24px auto 0;
+  margin: 24px auto 0;
 
 
 
-  padding: 11px 17px;
+  padding: 11px 17px;
 
 
 
-  border: 1px solid #e2def0;
+  border: 1px solid #e2def0;
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #5546e8;
+  color: #5546e8;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
@@ -4722,11 +4722,11 @@
 
 
 
-  opacity: 0.5;
+  opacity: 0.5;
 
 
 
-  cursor: not-allowed;
+  cursor: not-allowed;
 
 
 
@@ -4738,23 +4738,23 @@
 
 
 
-  display: flex;
+  display: flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  justify-content: center;
+  justify-content: center;
 
 
 
-  gap: 20px;
+  gap: 20px;
 
 
 
-  margin-top: 30px;
+  margin-top: 30px;
 
 
 
@@ -4766,35 +4766,35 @@
 
 
 
-  padding: 10px 15px;
+  padding: 10px 15px;
 
 
 
-  border: 1px solid #e5e1ef;
+  border: 1px solid #e5e1ef;
 
 
 
-  border-radius: 9px;
+  border-radius: 9px;
 
 
 
-  background: white;
+  background: white;
 
 
 
-  color: #5546e8;
+  color: #5546e8;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  font-weight: 700;
+  font-weight: 700;
 
 
 
-  cursor: pointer;
+  cursor: pointer;
 
 
 
@@ -4806,11 +4806,11 @@
 
 
 
-  opacity: 0.4;
+  opacity: 0.4;
 
 
 
-  cursor: not-allowed;
+  cursor: not-allowed;
 
 
 
@@ -4822,11 +4822,11 @@
 
 
 
-  color: #77738c;
+  color: #77738c;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
@@ -4838,79 +4838,79 @@
 
 
 
-  .marketplace-hero-actions {
+  .marketplace-hero-actions {
 
 
 
-    flex-direction: column;
+    flex-direction: column;
 
 
 
-  }
+  }
 
 
 
-  .marketplace-hero-actions a {
+  .marketplace-hero-actions a {
 
 
 
-    width: 100%;
+    width: 100%;
 
 
 
-  }
+  }
 
 
 
-  .marketplace-tabs {
+  .marketplace-tabs {
 
 
 
-    gap: 7px;
+    gap: 7px;
 
 
 
-  }
+  }
 
 
 
-  .marketplace-tabs button {
+  .marketplace-tabs button {
 
 
 
-    padding: 9px 12px;
+    padding: 9px 12px;
 
 
 
-    font-size: 11px;
+    font-size: 11px;
 
 
 
-  }
+  }
 
 
 
-  .marketplace-pagination {
+  .marketplace-pagination {
 
 
 
-    gap: 9px;
+    gap: 9px;
 
 
 
-  }
+  }
 
 
 
-  .marketplace-pagination button {
+  .marketplace-pagination button {
 
 
 
-    padding: 9px 10px;
+    padding: 9px 10px;
 
 
 
-  }
+  }
 
 
 
@@ -4918,19 +4918,19 @@
 
 
 
-/\* =========================================================
+/* =========================================================
 
 
 
-   SKILLSWAP — PREMIUM MARKETPLACE POLISH
+   SKILLSWAP — PREMIUM MARKETPLACE POLISH
 
 
 
-   Append-safe visual refinement. Keeps existing class names.
+   Append-safe visual refinement. Keeps existing class names.
 
 
 
-   ========================================================= \*/
+   ========================================================= */
 
 
 
@@ -4938,43 +4938,43 @@
 
 
 
-  --explore-primary: #6254e8;
+  --explore-primary: #6254e8;
 
 
 
-  --explore-primary-dark: #493bd0;
+  --explore-primary-dark: #493bd0;
 
 
 
-  --explore-ink: #191a31;
+  --explore-ink: #191a31;
 
 
 
-  --explore-muted: #77788e;
+  --explore-muted: #77788e;
 
 
 
-  --explore-border: #e9e8f3;
+  --explore-border: #e9e8f3;
 
 
 
-  --explore-soft: #f7f6fc;
+  --explore-soft: #f7f6fc;
 
 
 
-  background:
+  background:
 
 
 
-    radial-gradient(ellipse at 8% 0%, rgba(111, 91, 239, .055), transparent 32rem),
+    radial-gradient(ellipse at 8% 0%, rgba(111, 91, 239, .055), transparent 32rem),
 
 
 
-    #fcfbff;
+    #fcfbff;
 
 
 
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 
 
 
@@ -4986,7 +4986,7 @@
 
 
 
-  background: rgba(98, 84, 232, .18);
+  background: rgba(98, 84, 232, .18);
 
 
 
@@ -4998,15 +4998,15 @@
 
 
 
-  background: rgba(255, 255, 255, .88);
+  background: rgba(255, 255, 255, .88);
 
 
 
-  border-bottom-color: rgba(226, 223, 241, .85);
+  border-bottom-color: rgba(226, 223, 241, .85);
 
 
 
-  box-shadow: 0 5px 24px rgba(35, 28, 87, .035);
+  box-shadow: 0 5px 24px rgba(35, 28, 87, .035);
 
 
 
@@ -5018,15 +5018,15 @@
 
 
 
-  border-radius: 12px;
+  border-radius: 12px;
 
 
 
-  background: linear-gradient(145deg, #796cf4, #5142d8);
+  background: linear-gradient(145deg, #796cf4, #5142d8);
 
 
 
-  box-shadow: 0 7px 16px rgba(85, 70, 232, .22);
+  box-shadow: 0 7px 16px rgba(85, 70, 232, .22);
 
 
 
@@ -5038,11 +5038,11 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  transition: color .2s ease;
+  transition: color .2s ease;
 
 
 
@@ -5054,47 +5054,47 @@
 
 
 
-  position: absolute;
+  position: absolute;
 
 
 
-  right: 0;
+  right: 0;
 
 
 
-  bottom: -7px;
+  bottom: -7px;
 
 
 
-  left: 0;
+  left: 0;
 
 
 
-  height: 2px;
+  height: 2px;
 
 
 
-  border-radius: 2px;
+  border-radius: 2px;
 
 
 
-  background: var(--explore-primary);
+  background: var(--explore-primary);
 
 
 
-  content: "";
+  content: "";
 
 
 
-  transform: scaleX(0);
+  transform: scaleX(0);
 
 
 
-  transform-origin: left;
+  transform-origin: left;
 
 
 
-  transition: transform .2s ease;
+  transition: transform .2s ease;
 
 
 
@@ -5106,7 +5106,7 @@
 
 
 
-  transform: scaleX(1);
+  transform: scaleX(1);
 
 
 
@@ -5118,15 +5118,15 @@
 
 
 
-  border-color: #e8e5f3;
+  border-color: #e8e5f3;
 
 
 
-  border-radius: 13px;
+  border-radius: 13px;
 
 
 
-  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 
 
 
@@ -5138,15 +5138,15 @@
 
 
 
-  border-color: #d3cdfb;
+  border-color: #d3cdfb;
 
 
 
-  box-shadow: 0 7px 18px rgba(55, 43, 130, .07);
+  box-shadow: 0 7px 18px rgba(55, 43, 130, .07);
 
 
 
-  transform: translateY(-1px);
+  transform: translateY(-1px);
 
 
 
@@ -5158,31 +5158,31 @@
 
 
 
-  border: 1px solid rgba(222, 216, 255, .9);
+  border: 1px solid rgba(222, 216, 255, .9);
 
 
 
-  border-radius: 28px;
+  border-radius: 28px;
 
 
 
-  background:
+  background:
 
 
 
-    radial-gradient(circle at 78% 18%, rgba(181, 166, 255, .28), transparent 27%),
+    radial-gradient(circle at 78% 18%, rgba(181, 166, 255, .28), transparent 27%),
 
 
 
-    radial-gradient(circle at 100% 100%, rgba(219, 211, 255, .45), transparent 36%),
+    radial-gradient(circle at 100% 100%, rgba(219, 211, 255, .45), transparent 36%),
 
 
 
-    linear-gradient(118deg, #f4f1ff 0%, #fff 58%, #f9f7ff 100%);
+    linear-gradient(118deg, #f4f1ff 0%, #fff 58%, #f9f7ff 100%);
 
 
 
-  box-shadow: 0 18px 55px rgba(58, 44, 137, .065);
+  box-shadow: 0 18px 55px rgba(58, 44, 137, .065);
 
 
 
@@ -5194,7 +5194,7 @@
 
 
 
-  letter-spacing: -2.4px;
+  letter-spacing: -2.4px;
 
 
 
@@ -5206,31 +5206,31 @@
 
 
 
-  display: inline-flex;
+  display: inline-flex;
 
 
 
-  align-items: center;
+  align-items: center;
 
 
 
-  gap: 8px;
+  gap: 8px;
 
 
 
-  padding: 7px 11px;
+  padding: 7px 11px;
 
 
 
-  border: 1px solid #e4dfff;
+  border: 1px solid #e4dfff;
 
 
 
-  border-radius: 999px;
+  border-radius: 999px;
 
 
 
-  background: rgba(255, 255, 255, .72);
+  background: rgba(255, 255, 255, .72);
 
 
 
@@ -5242,11 +5242,11 @@
 
 
 
-  color: #6e6d83;
+  color: #6e6d83;
 
 
 
-  font-size: 14px;
+  font-size: 14px;
 
 
 
@@ -5258,7 +5258,7 @@
 
 
 
-  border-color: rgba(150, 135, 239, .3);
+  border-color: rgba(150, 135, 239, .3);
 
 
 
@@ -5270,15 +5270,15 @@
 
 
 
-  border-color: rgba(255, 255, 255, .95);
+  border-color: rgba(255, 255, 255, .95);
 
 
 
-  box-shadow: 0 22px 55px rgba(55, 42, 133, .13);
+  box-shadow: 0 22px 55px rgba(55, 42, 133, .13);
 
 
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 
 
 
@@ -5290,7 +5290,7 @@
 
 
 
-  padding-top: 60px;
+  padding-top: 60px;
 
 
 
@@ -5306,7 +5306,7 @@
 
 
 
-  letter-spacing: -1px;
+  letter-spacing: -1px;
 
 
 
@@ -5318,19 +5318,19 @@
 
 
 
-  min-height: 64px;
+  min-height: 64px;
 
 
 
-  border-color: #e6e3f1;
+  border-color: #e6e3f1;
 
 
 
-  border-radius: 16px;
+  border-radius: 16px;
 
 
 
-  box-shadow: 0 9px 28px rgba(44, 35, 105, .045);
+  box-shadow: 0 9px 28px rgba(44, 35, 105, .045);
 
 
 
@@ -5342,11 +5342,11 @@
 
 
 
-  border-color: #aaa0f8;
+  border-color: #aaa0f8;
 
 
 
-  box-shadow: 0 0 0 4px rgba(98, 84, 232, .09), 0 12px 30px rgba(44, 35, 105, .06);
+  box-shadow: 0 0 0 4px rgba(98, 84, 232, .09), 0 12px 30px rgba(44, 35, 105, .06);
 
 
 
@@ -5358,7 +5358,7 @@
 
 
 
-  font-size: 13px;
+  font-size: 13px;
 
 
 
@@ -5390,11 +5390,11 @@
 
 
 
-  transition: color .2s ease, *background* .2s ease, border-color .2s ease,
+  transition: color .2s ease, *background* .2s ease, border-color .2s ease,
 
 
 
-    box-shadow .2s ease, transform .2s ease;
+    box-shadow .2s ease, transform .2s ease;
 
 
 
@@ -5418,11 +5418,11 @@
 
 
 
-  transform: translateY(-1px);
+  transform: translateY(-1px);
 
 
 
-  box-shadow: 0 6px 16px rgba(65, 50, 150, .07);
+  box-shadow: 0 6px 16px rgba(65, 50, 150, .07);
 
 
 
@@ -5434,15 +5434,15 @@
 
 
 
-  border-color: #e9e6f3;
+  border-color: #e9e6f3;
 
 
 
-  border-radius: 16px;
+  border-radius: 16px;
 
 
 
-  box-shadow: 0 10px 30px rgba(44, 35, 105, .035);
+  box-shadow: 0 10px 30px rgba(44, 35, 105, .035);
 
 
 
@@ -5454,19 +5454,19 @@
 
 
 
-  min-height: 42px;
+  min-height: 42px;
 
 
 
-  border-color: #e7e4f0;
+  border-color: #e7e4f0;
 
 
 
-  border-radius: 10px;
+  border-radius: 10px;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
@@ -5478,11 +5478,11 @@
 
 
 
-  border-color: #aaa0f8;
+  border-color: #aaa0f8;
 
 
 
-  outline: 3px solid rgba(98, 84, 232, .1);
+  outline: 3px solid rgba(98, 84, 232, .1);
 
 
 
@@ -5494,11 +5494,11 @@
 
 
 
-  border-radius: 999px;
+  border-radius: 999px;
 
 
 
-  padding: 10px 16px;
+  padding: 10px 16px;
 
 
 
@@ -5514,11 +5514,11 @@
 
 
 
-  background: linear-gradient(135deg, #7062ef, #5142d8);
+  background: linear-gradient(135deg, #7062ef, #5142d8);
 
 
 
-  box-shadow: 0 7px 17px rgba(85, 70, 232, .2);
+  box-shadow: 0 7px 17px rgba(85, 70, 232, .2);
 
 
 
@@ -5530,7 +5530,7 @@
 
 
 
-  padding-top: 45px;
+  padding-top: 45px;
 
 
 
@@ -5542,23 +5542,23 @@
 
 
 
-  position: relative;
+  position: relative;
 
 
 
-  border-color: #eae8f2;
+  border-color: #eae8f2;
 
 
 
-  border-radius: 20px;
+  border-radius: 20px;
 
 
 
-  box-shadow: 0 5px 20px rgba(36, 30, 85, .035);
+  box-shadow: 0 5px 20px rgba(36, 30, 85, .035);
 
 
 
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 
 
 
@@ -5570,15 +5570,15 @@
 
 
 
-  border-color: #d8d1ff;
+  border-color: #d8d1ff;
 
 
 
-  box-shadow: 0 20px 45px rgba(48, 37, 123, .105);
+  box-shadow: 0 20px 45px rgba(48, 37, 123, .105);
 
 
 
-  transform: translateY(-6px);
+  transform: translateY(-6px);
 
 
 
@@ -5590,7 +5590,7 @@
 
 
 
-  min-height: 158px;
+  min-height: 158px;
 
 
 
@@ -5606,7 +5606,7 @@
 
 
 
-  pointer-events: none;
+  pointer-events: none;
 
 
 
@@ -5618,15 +5618,15 @@
 
 
 
-  border-radius: 25px;
+  border-radius: 25px;
 
 
 
-  box-shadow: 0 13px 30px rgba(49, 38, 119, .09);
+  box-shadow: 0 13px 30px rgba(49, 38, 119, .09);
 
 
 
-  transition: transform .25s ease;
+  transition: transform .25s ease;
 
 
 
@@ -5638,7 +5638,7 @@
 
 
 
-  transform: translateY(-3px) rotate(-3deg) scale(1.04);
+  transform: translateY(-3px) rotate(-3deg) scale(1.04);
 
 
 
@@ -5650,7 +5650,7 @@
 
 
 
-  padding: 21px;
+  padding: 21px;
 
 
 
@@ -5662,11 +5662,11 @@
 
 
 
-  color: #20203a;
+  color: #20203a;
 
 
 
-  font-size: 16px;
+  font-size: 16px;
 
 
 
@@ -5678,15 +5678,15 @@
 
 
 
-  color: #77768b;
+  color: #77768b;
 
 
 
-  font-size: 12px;
+  font-size: 12px;
 
 
 
-  line-height: 1.85;
+  line-height: 1.85;
 
 
 
@@ -5698,11 +5698,11 @@
 
 
 
-  border-top-color: #f0eef6;
+  border-top-color: #f0eef6;
 
 
 
-  border-bottom-color: #f0eef6;
+  border-bottom-color: #f0eef6;
 
 
 
@@ -5714,15 +5714,15 @@
 
 
 
-  border: 1px solid #e5e0ff;
+  border: 1px solid #e5e0ff;
 
 
 
-  border-radius: 12px;
+  border-radius: 12px;
 
 
 
-  background: linear-gradient(145deg, #f2efff, #e8e3ff);
+  background: linear-gradient(145deg, #f2efff, #e8e3ff);
 
 
 
@@ -5738,15 +5738,15 @@
 
 
 
-  border: 1px solid transparent;
+  border: 1px solid transparent;
 
 
 
-  border-radius: 999px;
+  border-radius: 999px;
 
 
 
-  padding: 6px 10px;
+  padding: 6px 10px;
 
 
 
@@ -5758,15 +5758,15 @@
 
 
 
-  border-color: #e8ddff;
+  border-color: #e8ddff;
 
 
 
-  background: #f4efff;
+  background: #f4efff;
 
 
 
-  color: #6847bc;
+  color: #6847bc;
 
 
 
@@ -5778,15 +5778,15 @@
 
 
 
-  border-color: #dceaff;
+  border-color: #dceaff;
 
 
 
-  background: #eff6ff;
+  background: #eff6ff;
 
 
 
-  color: #326db6;
+  color: #326db6;
 
 
 
@@ -5798,11 +5798,11 @@
 
 
 
-  border: 1px solid #d8f0e2;
+  border: 1px solid #d8f0e2;
 
 
 
-  background: #effaf3;
+  background: #effaf3;
 
 
 
@@ -5814,23 +5814,23 @@
 
 
 
-  border: 1px solid #ece9f5;
+  border: 1px solid #ece9f5;
 
 
 
-  border-radius: 999px;
+  border-radius: 999px;
 
 
 
-  background: #f8f7fc;
+  background: #f8f7fc;
 
 
 
-  color: #6f6887;
+  color: #6f6887;
 
 
 
-  padding: 6px 10px;
+  padding: 6px 10px;
 
 
 
@@ -5854,23 +5854,23 @@
 
 
 
-  border: 0;
+  border: 0;
 
 
 
-  border-radius: 11px;
+  border-radius: 11px;
 
 
 
-  background: linear-gradient(135deg, #7163ef, #5142d8);
+  background: linear-gradient(135deg, #7163ef, #5142d8);
 
 
 
-  box-shadow: 0 7px 17px rgba(85, 70, 232, .17);
+  box-shadow: 0 7px 17px rgba(85, 70, 232, .17);
 
 
 
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 
 
 
@@ -5894,15 +5894,15 @@
 
 
 
-  background: linear-gradient(135deg, #6254e8, #4536c9);
+  background: linear-gradient(135deg, #6254e8, #4536c9);
 
 
 
-  box-shadow: 0 10px 23px rgba(85, 70, 232, .24);
+  box-shadow: 0 10px 23px rgba(85, 70, 232, .24);
 
 
 
-  transform: translateY(-2px);
+  transform: translateY(-2px);
 
 
 
@@ -5914,15 +5914,15 @@
 
 
 
-  border-color: #e4e0f2;
+  border-color: #e4e0f2;
 
 
 
-  border-radius: 11px;
+  border-radius: 11px;
 
 
 
-  transition: border-color .2s ease, *background* .2s ease, transform .2s ease;
+  transition: border-color .2s ease, *background* .2s ease, transform .2s ease;
 
 
 
@@ -5934,15 +5934,15 @@
 
 
 
-  border-color: #d2cbff;
+  border-color: #d2cbff;
 
 
 
-  background: #f8f6ff;
+  background: #f8f6ff;
 
 
 
-  transform: translateY(-2px);
+  transform: translateY(-2px);
 
 
 
@@ -5954,7 +5954,7 @@
 
 
 
-  gap: 10px;
+  gap: 10px;
 
 
 
@@ -5966,11 +5966,11 @@
 
 
 
-  border-radius: 999px;
+  border-radius: 999px;
 
 
 
-  padding: 11px 18px;
+  padding: 11px 18px;
 
 
 
@@ -5982,15 +5982,15 @@
 
 
 
-  border-color: #d2cbff;
+  border-color: #d2cbff;
 
 
 
-  background: #f8f6ff;
+  background: #f8f6ff;
 
 
 
-  color: var(--explore-primary);
+  color: var(--explore-primary);
 
 
 
@@ -6002,15 +6002,15 @@
 
 
 
-  border: 1px solid #eeebf6;
+  border: 1px solid #eeebf6;
 
 
 
-  border-radius: 18px;
+  border-radius: 18px;
 
 
 
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .8);
 
 
 
@@ -6022,11 +6022,11 @@
 
 
 
-  border-radius: 13px;
+  border-radius: 13px;
 
 
 
-  line-height: 1.65;
+  line-height: 1.65;
 
 
 
@@ -6038,15 +6038,15 @@
 
 
 
-  border-color: #dcd6f5;
+  border-color: #dcd6f5;
 
 
 
-  border-radius: 20px;
+  border-radius: 20px;
 
 
 
-  box-shadow: 0 8px 25px rgba(44, 35, 105, .035);
+  box-shadow: 0 8px 25px rgba(44, 35, 105, .035);
 
 
 
@@ -6058,27 +6058,27 @@
 
 
 
-  border-color: #e5e0fb;
+  border-color: #e5e0fb;
 
 
 
-  border-radius: 20px;
+  border-radius: 20px;
 
 
 
-  background:
+  background:
 
 
 
-    radial-gradient(circle at 95% 10%, rgba(195, 184, 255, .2), transparent 28%),
+    radial-gradient(circle at 95% 10%, rgba(195, 184, 255, .2), transparent 28%),
 
 
 
-    linear-gradient(110deg, #f2efff, #fff 75%);
+    linear-gradient(110deg, #f2efff, #fff 75%);
 
 
 
-  box-shadow: 0 10px 30px rgba(44, 35, 105, .035);
+  box-shadow: 0 10px 30px rgba(44, 35, 105, .035);
 
 
 
@@ -6090,15 +6090,15 @@
 
 
 
-  border: 1px solid #eeeaff;
+  border: 1px solid #eeeaff;
 
 
 
-  border-radius: 15px;
+  border-radius: 15px;
 
 
 
-  box-shadow: 0 6px 16px rgba(44, 35, 105, .06);
+  box-shadow: 0 6px 16px rgba(44, 35, 105, .06);
 
 
 
@@ -6110,11 +6110,11 @@
 
 
 
-  padding-top: 26px;
+  padding-top: 26px;
 
 
 
-  padding-bottom: 28px;
+  padding-bottom: 28px;
 
 
 
@@ -6138,11 +6138,11 @@
 
 
 
-  outline: 3px solid rgba(98, 84, 232, .25);
+  outline: 3px solid rgba(98, 84, 232, .25);
 
 
 
-  outline-offset: 3px;
+  outline-offset: 3px;
 
 
 
@@ -6154,55 +6154,55 @@
 
 
 
-  .explore-hero {
+  .explore-hero {
 
 
 
-    border-radius: 22px;
+    border-radius: 22px;
 
 
 
-    box-shadow: 0 12px 35px rgba(58, 44, 137, .055);
+    box-shadow: 0 12px 35px rgba(58, 44, 137, .055);
 
 
 
-  }
+  }
 
 
 
-  .explore-search-section {
+  .explore-search-section {
 
 
 
-    padding-top: 42px;
+    padding-top: 42px;
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-card:hover {
+  .explore-skill-card:hover {
 
 
 
-    transform: translateY(-2px);
+    transform: translateY(-2px);
 
 
 
-  }
+  }
 
 
 
-  .explore-skill-body {
+  .explore-skill-body {
 
 
 
-    padding: 17px;
+    padding: 17px;
 
 
 
-  }
+  }
 
 
 
@@ -6214,27 +6214,27 @@
 
 
 
-  .explore-page \*,
+  .explore-page *,
 
 
 
-  .explore-page \*::before,
+  .explore-page *::before,
 
 
 
-  .explore-page \*::after {
+  .explore-page *::after {
 
 
 
-    transition-duration: .01ms !important;
+    transition-duration: .01ms !important;
 
 
 
-    animation-duration: .01ms !important;
+    animation-duration: .01ms !important;
 
 
 
-  }
+  }
 
 
 
@@ -6242,37 +6242,37 @@
 
 
 
-/\* =========================================================
+/* =========================================================
 
-   EXCHANGES — REQUEST MODAL AND FEEDBACK
+   EXCHANGES — REQUEST MODAL AND FEEDBACK
 
-   Added for the live exchange-request flow in ExploreSkills.jsx
+   Added for the live exchange-request flow in ExploreSkills.jsx
 
-\========================================================= \*/
+========================================================= */
 
 
 
 .exchange-modal-overlay {
 
-  position: fixed;
+  position: fixed;
 
-  inset: 0;
+  inset: 0;
 
-  z-index: 9999;
+  z-index: 9999;
 
-  display: flex;
+  display: flex;
 
-  align-items: center;
+  align-items: center;
 
-  justify-content: center;
+  justify-content: center;
 
-  padding: 20px;
+  padding: 20px;
 
-  background: rgba(20, 18, 40, 0.65);
+  background: rgba(20, 18, 40, 0.65);
 
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 
-  animation: exchangeFadeIn 0.2s ease;
+  animation: exchangeFadeIn 0.2s ease;
 
 }
 
@@ -6280,27 +6280,27 @@
 
 .exchange-modal {
 
-  position: relative;
+  position: relative;
 
-  width: 100%;
+  width: 100%;
 
-  max-width: 490px;
+  max-width: 490px;
 
-  max-height: 90vh;
+  max-height: 90vh;
 
-  overflow-y: auto;
+  overflow-y: auto;
 
-  padding: 32px;
+  padding: 32px;
 
-  border: 1px solid #eeeaff;
+  border: 1px solid #eeeaff;
 
-  border-radius: 22px;
+  border-radius: 22px;
 
-  background: #fff;
+  background: #fff;
 
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
 
-  animation: exchangeModalIn 0.25s ease;
+  animation: exchangeModalIn 0.25s ease;
 
 }
 
@@ -6308,31 +6308,31 @@
 
 .exchange-modal-close {
 
-  position: absolute;
+  position: absolute;
 
-  top: 17px;
+  top: 17px;
 
-  right: 19px;
+  right: 19px;
 
-  display: grid;
+  display: grid;
 
-  place-items: center;
+  place-items: center;
 
-  width: 34px;
+  width: 34px;
 
-  height: 34px;
+  height: 34px;
 
-  border: none;
+  border: none;
 
-  border-radius: 50%;
+  border-radius: 50%;
 
-  background: #f3f1fb;
+  background: #f3f1fb;
 
-  color: #55516c;
+  color: #55516c;
 
-  font-size: 23px;
+  font-size: 23px;
 
-  cursor: pointer;
+  cursor: pointer;
 
 }
 
@@ -6340,9 +6340,9 @@
 
 .exchange-modal-close:hover:not(:disabled) {
 
-  background: #e9e5ff;
+  background: #e9e5ff;
 
-  color: #6c5ce7;
+  color: #6c5ce7;
 
 }
 
@@ -6350,21 +6350,21 @@
 
 .exchange-modal-icon {
 
-  display: grid;
+  display: grid;
 
-  place-items: center;
+  place-items: center;
 
-  width: 55px;
+  width: 55px;
 
-  height: 55px;
+  height: 55px;
 
-  margin-bottom: 20px;
+  margin-bottom: 20px;
 
-  border-radius: 17px;
+  border-radius: 17px;
 
-  background: #f0edff;
+  background: #f0edff;
 
-  font-size: 27px;
+  font-size: 27px;
 
 }
 
@@ -6372,15 +6372,15 @@
 
 .exchange-modal h2 {
 
-  margin: 8px 0;
+  margin: 8px 0;
 
-  color: #202033;
+  color: #202033;
 
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", sans-serif;
 
-  font-size: 25px;
+  font-size: 25px;
 
-  letter-spacing: -0.7px;
+  letter-spacing: -0.7px;
 
 }
 
@@ -6388,13 +6388,13 @@
 
 .exchange-modal-description {
 
-  margin: 10px 0 20px;
+  margin: 10px 0 20px;
 
-  color: #77778b;
+  color: #77778b;
 
-  font-size: 14px;
+  font-size: 14px;
 
-  line-height: 1.7;
+  line-height: 1.7;
 
 }
 
@@ -6402,21 +6402,21 @@
 
 .exchange-modal-skill {
 
-  display: flex;
+  display: flex;
 
-  flex-direction: column;
+  flex-direction: column;
 
-  gap: 7px;
+  gap: 7px;
 
-  padding: 16px;
+  padding: 16px;
 
-  margin-bottom: 22px;
+  margin-bottom: 22px;
 
-  border: 1px solid #e9e5ff;
+  border: 1px solid #e9e5ff;
 
-  border-radius: 13px;
+  border-radius: 13px;
 
-  background: #f8f7ff;
+  background: #f8f7ff;
 
 }
 
@@ -6424,13 +6424,13 @@
 
 .exchange-modal-skill span {
 
-  color: #6c5ce7;
+  color: #6c5ce7;
 
-  font-size: 10px;
+  font-size: 10px;
 
-  font-weight: 800;
+  font-weight: 800;
 
-  letter-spacing: 1px;
+  letter-spacing: 1px;
 
 }
 
@@ -6438,9 +6438,9 @@
 
 .exchange-modal-skill strong {
 
-  color: #29263f;
+  color: #29263f;
 
-  font-size: 16px;
+  font-size: 16px;
 
 }
 
@@ -6448,9 +6448,9 @@
 
 .exchange-modal-skill small {
 
-  color: #77778b;
+  color: #77778b;
 
-  font-size: 12px;
+  font-size: 12px;
 
 }
 
@@ -6458,15 +6458,15 @@
 
 .exchange-modal form label {
 
-  display: block;
+  display: block;
 
-  margin-bottom: 9px;
+  margin-bottom: 9px;
 
-  color: #29263f;
+  color: #29263f;
 
-  font-size: 13px;
+  font-size: 13px;
 
-  font-weight: 750;
+  font-weight: 750;
 
 }
 
@@ -6474,33 +6474,33 @@
 
 .exchange-modal textarea {
 
-  display: block;
+  display: block;
 
-  width: 100%;
+  width: 100%;
 
-  min-height: 125px;
+  min-height: 125px;
 
-  padding: 13px;
+  padding: 13px;
 
-  resize: vertical;
+  resize: vertical;
 
-  border: 1px solid #e5e3ef;
+  border: 1px solid #e5e3ef;
 
-  border-radius: 11px;
+  border-radius: 11px;
 
-  outline: none;
+  outline: none;
 
-  background: #fff;
+  background: #fff;
 
-  color: #29263f;
+  color: #29263f;
 
-  font: inherit;
+  font: inherit;
 
-  font-size: 13px;
+  font-size: 13px;
 
-  line-height: 1.6;
+  line-height: 1.6;
 
-  box-sizing: border-box;
+  box-sizing: border-box;
 
 }
 
@@ -6508,9 +6508,9 @@
 
 .exchange-modal textarea:focus {
 
-  border-color: #6c5ce7;
+  border-color: #6c5ce7;
 
-  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
 
 }
 
@@ -6518,7 +6518,7 @@
 
 .exchange-modal textarea::placeholder {
 
-  color: #aaa8b9;
+  color: #aaa8b9;
 
 }
 
@@ -6526,13 +6526,13 @@
 
 .exchange-character-count {
 
-  margin-top: 7px;
+  margin-top: 7px;
 
-  color: #9997a8;
+  color: #9997a8;
 
-  font-size: 11px;
+  font-size: 11px;
 
-  text-align: right;
+  text-align: right;
 
 }
 
@@ -6540,25 +6540,25 @@
 
 .exchange-modal-error {
 
-  display: flex;
+  display: flex;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 8px;
+  gap: 8px;
 
-  padding: 12px;
+  padding: 12px;
 
-  margin-top: 14px;
+  margin-top: 14px;
 
-  border-radius: 9px;
+  border-radius: 9px;
 
-  background: #fff0f0;
+  background: #fff0f0;
 
-  color: #b42318;
+  color: #b42318;
 
-  font-size: 12px;
+  font-size: 12px;
 
-  line-height: 1.6;
+  line-height: 1.6;
 
 }
 
@@ -6566,9 +6566,9 @@
 
 .exchange-modal-error a {
 
-  color: #6c5ce7;
+  color: #6c5ce7;
 
-  font-weight: 700;
+  font-weight: 700;
 
 }
 
@@ -6576,13 +6576,13 @@
 
 .exchange-modal-actions {
 
-  display: flex;
+  display: flex;
 
-  justify-content: flex-end;
+  justify-content: flex-end;
 
-  gap: 10px;
+  gap: 10px;
 
-  margin-top: 23px;
+  margin-top: 23px;
 
 }
 
@@ -6592,21 +6592,21 @@
 
 .exchange-send-btn {
 
-  padding: 12px 17px;
+  padding: 12px 17px;
 
-  border: none;
+  border: none;
 
-  border-radius: 10px;
+  border-radius: 10px;
 
-  font: inherit;
+  font: inherit;
 
-  font-size: 13px;
+  font-size: 13px;
 
-  font-weight: 750;
+  font-weight: 750;
 
-  cursor: pointer;
+  cursor: pointer;
 
-  transition: *background* 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  transition: *background* 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 
 }
 
@@ -6614,9 +6614,9 @@
 
 .exchange-cancel-btn {
 
-  background: #f1f0f6;
+  background: #f1f0f6;
 
-  color: #55516c;
+  color: #55516c;
 
 }
 
@@ -6624,7 +6624,7 @@
 
 .exchange-cancel-btn:hover:not(:disabled) {
 
-  background: #e8e6f0;
+  background: #e8e6f0;
 
 }
 
@@ -6632,11 +6632,11 @@
 
 .exchange-send-btn {
 
-  background: linear-gradient(135deg, #7163ef, #5142d8);
+  background: linear-gradient(135deg, #7163ef, #5142d8);
 
-  color: white;
+  color: white;
 
-  box-shadow: 0 7px 17px rgba(85, 70, 232, 0.17);
+  box-shadow: 0 7px 17px rgba(85, 70, 232, 0.17);
 
 }
 
@@ -6644,9 +6644,9 @@
 
 .exchange-send-btn:hover:not(:disabled) {
 
-  background: linear-gradient(135deg, #6254e8, #4536c9);
+  background: linear-gradient(135deg, #6254e8, #4536c9);
 
-  transform: translateY(-1px);
+  transform: translateY(-1px);
 
 }
 
@@ -6658,35 +6658,35 @@
 
 .exchange-modal-close:disabled {
 
-  opacity: 0.6;
+  opacity: 0.6;
 
-  cursor: not-allowed;
+  cursor: not-allowed;
 
 }
 
 
 
-/\* Success feedback \*/
+/* Success feedback */
 
 
 
 .marketplace-feedback {
 
-  display: flex;
+  display: flex;
 
-  align-items: center;
+  align-items: center;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 12px;
+  gap: 12px;
 
-  padding: 15px 18px;
+  padding: 15px 18px;
 
-  margin: 20px 0;
+  margin: 20px 0;
 
-  border-radius: 12px;
+  border-radius: 12px;
 
-  font-size: 13px;
+  font-size: 13px;
 
 }
 
@@ -6694,11 +6694,11 @@
 
 .marketplace-feedback.success {
 
-  border: 1px solid #b9ebce;
+  border: 1px solid #b9ebce;
 
-  background: #effbf4;
+  background: #effbf4;
 
-  color: #18794e;
+  color: #18794e;
 
 }
 
@@ -6706,9 +6706,9 @@
 
 .marketplace-feedback > span {
 
-  font-size: 19px;
+  font-size: 19px;
 
-  font-weight: 800;
+  font-weight: 800;
 
 }
 
@@ -6716,11 +6716,11 @@
 
 .marketplace-feedback p {
 
-  flex: 1;
+  flex: 1;
 
-  margin: 0;
+  margin: 0;
 
-  line-height: 1.6;
+  line-height: 1.6;
 
 }
 
@@ -6728,15 +6728,15 @@
 
 .marketplace-feedback button {
 
-  border: none;
+  border: none;
 
-  background: transparent;
+  background: transparent;
 
-  color: inherit;
+  color: inherit;
 
-  font-size: 20px;
+  font-size: 20px;
 
-  cursor: pointer;
+  cursor: pointer;
 
 }
 
@@ -6744,11 +6744,11 @@
 
 .marketplace-feedback a {
 
-  color: #18794e;
+  color: #18794e;
 
-  font-weight: 800;
+  font-weight: 800;
 
-  text-decoration: none;
+  text-decoration: none;
 
 }
 
@@ -6756,29 +6756,29 @@
 
 .marketplace-feedback a:hover {
 
-  text-decoration: underline;
+  text-decoration: underline;
 
 }
 
 
 
-/\* Small layout additions used by the current JSX \*/
+/* Small layout additions used by the current JSX */
 
 
 
 .marketplace-listing-meta {
 
-  display: flex;
+  display: flex;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 13px;
+  gap: 13px;
 
-  margin: 14px 0;
+  margin: 14px 0;
 
-  color: #858298;
+  color: #858298;
 
-  font-size: 10px;
+  font-size: 10px;
 
 }
 
@@ -6786,13 +6786,13 @@
 
 .marketplace-hero-actions {
 
-  display: flex;
+  display: flex;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 12px;
+  gap: 12px;
 
-  margin-top: 25px;
+  margin-top: 25px;
 
 }
 
@@ -6800,17 +6800,17 @@
 
 .marketplace-pagination {
 
-  display: flex;
+  display: flex;
 
-  align-items: center;
+  align-items: center;
 
-  justify-content: center;
+  justify-content: center;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 20px;
+  gap: 20px;
 
-  margin-top: 30px;
+  margin-top: 30px;
 
 }
 
@@ -6818,21 +6818,21 @@
 
 .marketplace-pagination button {
 
-  padding: 10px 15px;
+  padding: 10px 15px;
 
-  border: 1px solid #e5e1ef;
+  border: 1px solid #e5e1ef;
 
-  border-radius: 9px;
+  border-radius: 9px;
 
-  background: white;
+  background: white;
 
-  color: #5546e8;
+  color: #5546e8;
 
-  font-size: 12px;
+  font-size: 12px;
 
-  font-weight: 700;
+  font-weight: 700;
 
-  cursor: pointer;
+  cursor: pointer;
 
 }
 
@@ -6840,9 +6840,9 @@
 
 .marketplace-pagination button:disabled {
 
-  opacity: 0.4;
+  opacity: 0.4;
 
-  cursor: not-allowed;
+  cursor: not-allowed;
 
 }
 
@@ -6850,9 +6850,9 @@
 
 .marketplace-pagination span {
 
-  color: #77738c;
+  color: #77738c;
 
-  font-size: 12px;
+  font-size: 12px;
 
 }
 
@@ -6860,9 +6860,9 @@
 
 @keyframes exchangeFadeIn {
 
-  from { opacity: 0; }
+  from { opacity: 0; }
 
-  to { opacity: 1; }
+  to { opacity: 1; }
 
 }
 
@@ -6870,21 +6870,21 @@
 
 @keyframes exchangeModalIn {
 
-  from {
+  from {
 
-    opacity: 0;
+    opacity: 0;
 
-    transform: translateY(15px) scale(0.98);
+    transform: translateY(15px) scale(0.98);
 
-  }
+  }
 
-  to {
+  to {
 
-    opacity: 1;
+    opacity: 1;
 
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1);
 
-  }
+  }
 
 }
 
@@ -6892,71 +6892,71 @@
 
 @media (max-width: 600px) {
 
-  .exchange-modal {
+  .exchange-modal {
 
-    padding: 24px 19px;
+    padding: 24px 19px;
 
-    border-radius: 18px;
+    border-radius: 18px;
 
-  }
-
-
-
-  .exchange-modal h2 {
-
-    font-size: 21px;
-
-  }
+  }
 
 
 
-  .exchange-modal-actions {
+  .exchange-modal h2 {
 
-    flex-direction: column-reverse;
+    font-size: 21px;
 
-  }
-
-
-
-  .exchange-cancel-btn,
-
-  .exchange-send-btn {
-
-    width: 100%;
-
-  }
+  }
 
 
 
-  .marketplace-hero-actions {
+  .exchange-modal-actions {
 
-    flex-direction: column;
+    flex-direction: column-reverse;
 
-  }
-
-
-
-  .marketplace-hero-actions a {
-
-    width: 100%;
-
-  }
+  }
 
 
 
-  .marketplace-pagination {
+  .exchange-cancel-btn,
 
-    gap: 9px;
+  .exchange-send-btn {
 
-  }
+    width: 100%;
+
+  }
 
 
 
-  .marketplace-pagination button {
+  .marketplace-hero-actions {
 
-    padding: 9px 10px;
+    flex-direction: column;
 
-  }
+  }
+
+
+
+  .marketplace-hero-actions a {
+
+    width: 100%;
+
+  }
+
+
+
+  .marketplace-pagination {
+
+    gap: 9px;
+
+  }
+
+
+
+  .marketplace-pagination button {
+
+    padding: 9px 10px;
+
+  }
 
 }
 
@@ -6964,17 +6964,17 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .exchange-modal-overlay,
+  .exchange-modal-overlay,
 
-  .exchange-modal,
+  .exchange-modal,
 
-  .exchange-modal \* {
+  .exchange-modal * {
 
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
 
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
 
-  }
+  }
 
 }
 
@@ -7003,4 +7003,37 @@
   box-shadow: none;
   transform: none;
   filter: none;
+}
+
+
+/* =========================================================
+   SKILLSWAP — PENDING REQUEST BUTTON (FINAL OVERRIDE)
+   ========================================================= */
+.explore-page .explore-connect-btn.request-already-sent,
+.explore-page .explore-connect-btn:disabled,
+.explore-page button.explore-connect-btn:disabled {
+  background: #e5e7eb !important;
+  background-color: #e5e7eb !important;
+  background-image: none !important;
+  color: #6b7280 !important;
+  border: 1px solid #d1d5db !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.explore-page .explore-connect-btn.request-already-sent:hover,
+.explore-page .explore-connect-btn:disabled:hover,
+.explore-page button.explore-connect-btn:disabled:hover {
+  background: #e5e7eb !important;
+  background-color: #e5e7eb !important;
+  background-image: none !important;
+  color: #6b7280 !important;
+  border-color: #d1d5db !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
 }
