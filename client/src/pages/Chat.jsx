@@ -909,7 +909,7 @@ export default function Chat() {
       </section>
 
       <footer className="chat-page-footer">
-        <span>SkillSwap © {new Date().getFullYear()}</span>
+        <span>Skill? © {new Date().getFullYear()}</span>
         <span>Learn something. Teach something. Grow together. 💜</span>
       </footer>
     </main>

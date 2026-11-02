@@ -67,7 +67,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} SkillSwap. All rights reserved.
+            © {new Date().getFullYear()} Skill?. All rights reserved.
           </span>
 
           <span className="footer-made">

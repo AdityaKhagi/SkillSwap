@@ -138,7 +138,7 @@ export default function AddSkill() {
 
           <p>
             Publish what you can teach or what you want to learn.
-            Find students and learning partners in the SkillSwap community.
+            Find students and learning partners in the Skill? community.
           </p>
         </div>
 
@@ -406,7 +406,7 @@ export default function AddSkill() {
               <div className="add-skill-mini-avatar">S</div>
               <div>
                 <strong>Your profile</strong>
-                <p>SkillSwap member</p>
+                <p>Skill? member</p>
               </div>
               <span>Preview</span>
             </div>
