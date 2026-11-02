@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ExploreSkills.css";
@@ -165,7 +165,7 @@ function SkillCard({
 
           <div>
             <strong>
-              {skill.user?.name || "SkillSwap member"}
+              {skill.user?.name || "Skill? member"}
             </strong>
 
             <span>
@@ -217,12 +217,103 @@ function SkillCard({
   );
 }
 
+
+/* =========================================
+   AUTO-MOVING SKILL ROW
+   Duplicated cards create a seamless marquee.
+========================================= */
+
+function SkillMarquee({ children, label = "Skill listings" }) {
+  const viewportRef = useRef(null);
+  const dragState = useRef({
+    active: false,
+    startX: 0,
+    scrollLeft: 0,
+    pointerId: null,
+  });
+
+  function handlePointerDown(event) {
+    // Keep normal touch scrolling and button/link interactions.
+    if (event.pointerType === "touch") return;
+    if (event.target.closest("button, a, input, select, textarea")) return;
+
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    dragState.current = {
+      active: true,
+      startX: event.clientX,
+      scrollLeft: viewport.scrollLeft,
+      pointerId: event.pointerId,
+    };
+
+    viewport.classList.add("is-dragging");
+    viewport.setPointerCapture?.(event.pointerId);
+  }
+
+  function handlePointerMove(event) {
+    const viewport = viewportRef.current;
+    if (!viewport || !dragState.current.active) return;
+
+    const distance = event.clientX - dragState.current.startX;
+    viewport.scrollLeft = dragState.current.scrollLeft - distance;
+  }
+
+  function stopDragging(event) {
+    const viewport = viewportRef.current;
+
+    if (
+      event?.pointerId != null &&
+      dragState.current.pointerId != null &&
+      event.pointerId !== dragState.current.pointerId
+    ) {
+      return;
+    }
+
+    dragState.current.active = false;
+    dragState.current.pointerId = null;
+    viewport?.classList.remove("is-dragging");
+  }
+
+  return (
+    <div
+      ref={viewportRef}
+      className="explore-marquee"
+      role="region"
+      aria-label={label}
+      tabIndex={0}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={stopDragging}
+      onPointerCancel={stopDragging}
+      onLostPointerCapture={stopDragging}
+    >
+      <div className="explore-marquee-track">
+        {/* First set of cards */}
+        <div className="explore-marquee-group">
+          {children}
+        </div>
+
+        {/* Identical second set: animation moves by exactly half the track */}
+        <div
+          className="explore-marquee-group"
+          aria-hidden="true"
+          inert
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* =========================================
    MAIN EXPLORE PAGE
 ========================================= */
 
 export default function ExploreSkills() {
   const [filters, setFilters] = useState(initialFilters);
+  const [isAutoPaused, setIsAutoPaused] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
 
   const [listings, setListings] = useState([]);
@@ -250,6 +341,37 @@ export default function ExploreSkills() {
   const [requestLoading, setRequestLoading] = useState(false);
   const [requestError, setRequestError] = useState("");
   const [requestSuccess, setRequestSuccess] = useState("");
+
+  // Pause the automatic skill movement while the visitor is interacting
+  // with or scrolling the page. Resume gently after a short idle period.
+  useEffect(() => {
+    let resumeTimer;
+
+    const pauseForInteraction = () => {
+      setIsAutoPaused(true);
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        setIsAutoPaused(false);
+      }, 1800);
+    };
+
+    window.addEventListener("scroll", pauseForInteraction, { passive: true });
+    window.addEventListener("wheel", pauseForInteraction, { passive: true });
+    window.addEventListener("touchstart", pauseForInteraction, { passive: true });
+    window.addEventListener("touchmove", pauseForInteraction, { passive: true });
+    window.addEventListener("keydown", pauseForInteraction);
+    window.addEventListener("pointerdown", pauseForInteraction, { passive: true });
+
+    return () => {
+      window.clearTimeout(resumeTimer);
+      window.removeEventListener("scroll", pauseForInteraction);
+      window.removeEventListener("wheel", pauseForInteraction);
+      window.removeEventListener("touchstart", pauseForInteraction);
+      window.removeEventListener("touchmove", pauseForInteraction);
+      window.removeEventListener("keydown", pauseForInteraction);
+      window.removeEventListener("pointerdown", pauseForInteraction);
+    };
+  }, []);
 
   /* =========================================
      LOAD MARKETPLACE LISTINGS
@@ -345,12 +467,12 @@ export default function ExploreSkills() {
 
   const loadOutgoingRequests = useCallback(async () => {
     try {
-      console.log("[SkillSwap] Loading outgoing exchange requests...");
+      console.log("[Skill?] Loading outgoing exchange requests...");
 
       const response = await API.get("/exchange/outgoing");
       const requests = getRequestArray(response);
 
-      console.log("[SkillSwap] Outgoing requests:", response.data);
+      console.log("[Skill?] Outgoing requests:", response.data);
 
       const pendingIds = requests
         .filter((request) =>
@@ -359,12 +481,12 @@ export default function ExploreSkills() {
         .map(getRequestListingId)
         .filter(Boolean);
 
-      console.log("[SkillSwap] Pending listing IDs:", pendingIds);
+      console.log("[Skill?] Pending listing IDs:", pendingIds);
 
       setPendingRequestIds([...new Set(pendingIds)]);
     } catch (err) {
       console.error(
-        "[SkillSwap] Unable to load outgoing exchange requests:",
+        "[Skill?] Unable to load outgoing exchange requests:",
         err.response?.data || err.message
       );
     } finally {
@@ -510,7 +632,7 @@ export default function ExploreSkills() {
   ========================================= */
 
   return (
-    <div className="explore-page">
+    <div className={`explore-page ${isAutoPaused ? "is-auto-paused" : ""}`}>
 
       {/* TOP NAVIGATION */}
 
@@ -519,7 +641,7 @@ export default function ExploreSkills() {
           <span className="explore-brand-mark">S</span>
 
           <span>
-            Skill<span>Swap</span>
+            Skill<span>?</span>
           </span>
         </Link>
 
@@ -535,7 +657,7 @@ export default function ExploreSkills() {
         </Link>
       </header>
 
-      <main className="explore-main">
+      <main className="explore-main explore-main-layout">
 
         {/* HERO SECTION */}
 
@@ -591,6 +713,30 @@ export default function ExploreSkills() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* QUICK COMMUNITY SNAPSHOT */}
+
+        <section className="explore-community-strip" aria-label="Skill? marketplace snapshot">
+          <div className="explore-community-intro">
+            <span className="explore-community-spark">✦</span>
+            <div>
+              <strong>Learning is better together</strong>
+              <span>Find a person. Share a skill. Make progress.</span>
+            </div>
+          </div>
+
+          <div className="explore-community-stat">
+            <strong>{pagination.total}</strong>
+            <span>skill listings</span>
+          </div>
+          <div className="explore-community-stat">
+            <strong>{matches.length}</strong>
+            <span>your matches</span>
+          </div>
+          <Link to="/add-skill" className="explore-community-link">
+            Add your skill <span>↗</span>
+          </Link>
         </section>
 
         {/* SEARCH AND FILTER SECTION */}
@@ -789,7 +935,7 @@ export default function ExploreSkills() {
                 Finding your skill matches...
               </div>
             ) : matches.length > 0 ? (
-              <div className="explore-skills-grid">
+              <SkillMarquee label="Recommended skill matches">
                 {matches.map((skill) => {
                   const skillId = getSkillId(skill);
 
@@ -806,7 +952,7 @@ export default function ExploreSkills() {
                     />
                   );
                 })}
-              </div>
+              </SkillMarquee>
             ) : (
               <div className="explore-empty-state">
                 <span>✦</span>
@@ -849,7 +995,7 @@ export default function ExploreSkills() {
                 </h2>
 
                 <p>
-                  Browse real listings published by SkillSwap members.
+                  Browse real listings published by Skill? members.
                 </p>
               </div>
 
@@ -870,7 +1016,7 @@ export default function ExploreSkills() {
               </div>
             ) : visibleListings.length > 0 ? (
               <>
-                <div className="explore-skills-grid">
+                <SkillMarquee label="Explore skill listings">
                   {visibleListings.map((skill) => {
                     const skillId = getSkillId(skill);
 
@@ -886,7 +1032,7 @@ export default function ExploreSkills() {
                       />
                     );
                   })}
-                </div>
+                </SkillMarquee>
 
                 {pagination.totalPages > 1 && (
                   <div className="marketplace-pagination">
@@ -1042,7 +1188,7 @@ export default function ExploreSkills() {
 
                 <small>
                   Listed by{" "}
-                  {selectedSkill.user?.name || "SkillSwap member"}
+                  {selectedSkill.user?.name || "Skill? member"}
                 </small>
               </div>
 
@@ -1105,12 +1251,12 @@ export default function ExploreSkills() {
 
         <footer className="explore-footer">
           <Link to="/" className="explore-footer-brand">
-            Skill<span>Swap</span>
+            Skill<span>?</span>
           </Link>
 
           <p>Learn. Teach. Grow together. 💜</p>
 
-          <span>© 2026 SkillSwap</span>
+          <span>© 2026 Skill?</span>
         </footer>
       </main>
     </div>
