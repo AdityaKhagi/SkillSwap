@@ -5370,11 +5370,8 @@
 }
 
 /* =========================================================
-   SKILLSWAP — AUTO-MOVING DISCOVERY ROWS
-   The cards glide while idle. User interaction pauses the
-   animation so native horizontal scrolling/dragging takes over.
+   SKILLSWAP — PREMIUM MARKETPLACE POLISH
    ========================================================= */
-
 .explore-marquee {
   width: 100%;
   overflow: hidden;
