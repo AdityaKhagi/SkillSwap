@@ -689,6 +689,47 @@ const logout = (req, res) => {
   });
 };
 
+
+// ============================================
+// CREATE SOCKET AUTHENTICATION TICKET
+// ============================================
+
+const createSocketTicket = async (req, res) => {
+  try {
+    if (!req.user?._id) {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication required.",
+      });
+    }
+
+    const ticket = jwt.sign(
+      {
+        userId: req.user._id.toString(),
+        purpose: "socket_auth",
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "60s",
+      }
+    );
+
+    return res.status(200).json({
+      success: true,
+      ticket,
+      expiresIn: 60,
+    });
+  } catch (error) {
+    console.error("Socket ticket error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to authenticate chat connection.",
+    });
+  }
+};
+
+
 // ============================================
 // EXPORT CONTROLLERS
 // ============================================
@@ -702,4 +743,5 @@ module.exports = {
   login,
   getMe,
   logout,
+  createSocketTicket,
 };

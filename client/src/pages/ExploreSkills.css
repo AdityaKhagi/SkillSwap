@@ -5507,3 +5507,316 @@
 }
 
 
+
+/* =========================================
+   SKILL EXCHANGE REQUEST MODAL
+========================================= */
+
+.exchange-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgba(24, 20, 48, 0.58);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: exchange-overlay-in 0.2s ease;
+}
+
+.exchange-modal {
+  position: relative;
+  width: min(100%, 510px);
+  max-height: min(88vh, 760px);
+  padding: 34px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 25px 90px rgba(20, 15, 55, 0.25);
+  animation: exchange-modal-in 0.25s ease;
+}
+
+.exchange-modal-close {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #eceaf4;
+  border-radius: 11px;
+  background: #f8f7fc;
+  color: #77738e;
+  font-size: 23px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.exchange-modal-close:hover {
+  transform: rotate(90deg);
+  background: #f0edff;
+  color: var(--explore-primary);
+}
+
+.exchange-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exchange-modal-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 23px;
+  border: 1px solid #e6e0ff;
+  border-radius: 19px;
+  background: linear-gradient(135deg, #f0edff, #e8e5ff);
+  font-size: 30px;
+}
+
+.exchange-modal > .explore-eyebrow {
+  margin-bottom: 9px;
+}
+
+.exchange-modal h2 {
+  margin: 0;
+  padding-right: 20px;
+  color: var(--explore-ink);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(22px, 4vw, 27px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.3;
+}
+
+.exchange-modal-description {
+  margin: 11px 0 23px;
+  color: var(--explore-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.exchange-modal-skill {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 17px 18px;
+  border: 1px solid #e7e2ff;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f7f5ff, #ffffff);
+}
+
+.exchange-modal-skill > span {
+  color: var(--explore-primary);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.exchange-modal-skill strong {
+  color: #302b4c;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.exchange-modal-skill small {
+  color: var(--explore-muted);
+  font-size: 10px;
+}
+
+.exchange-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exchange-modal form label {
+  color: #37334f;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.exchange-modal textarea {
+  display: block;
+  width: 100%;
+  min-height: 135px;
+  padding: 15px;
+  resize: vertical;
+  border: 1px solid #e5e2ef;
+  border-radius: 12px;
+  outline: none;
+  background: #fcfbff;
+  color: var(--explore-ink);
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.exchange-modal textarea::placeholder {
+  color: #aaa7b9;
+}
+
+.exchange-modal textarea:focus {
+  border-color: var(--explore-primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(85, 70, 232, 0.09);
+}
+
+.exchange-character-count {
+  align-self: flex-end;
+  margin-top: -3px;
+  color: #9995aa;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.exchange-modal-error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff4f4;
+  color: #b42318;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.exchange-modal-error a {
+  color: #5546e8;
+  font-weight: 800;
+}
+
+.exchange-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+  margin-top: 14px;
+  padding-top: 19px;
+  border-top: 1px solid #efedf5;
+}
+
+.exchange-cancel-btn,
+.exchange-send-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.exchange-cancel-btn {
+  border: 1px solid #e8e6ef;
+  background: white;
+  color: #77738e;
+}
+
+.exchange-cancel-btn:hover:not(:disabled) {
+  background: #f7f6fb;
+}
+
+.exchange-send-btn {
+  border: 1px solid var(--explore-primary);
+  background: var(--explore-primary);
+  color: white;
+  box-shadow: 0 6px 15px rgba(85, 70, 232, 0.2);
+}
+
+.exchange-send-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: var(--explore-primary-dark);
+}
+
+.exchange-cancel-btn:disabled,
+.exchange-send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes exchange-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes exchange-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+  .exchange-modal-overlay {
+    align-items: center;
+    padding: 14px;
+  }
+
+  .exchange-modal {
+    width: 100%;
+    max-height: 90vh;
+    padding: 25px 20px;
+    border-radius: 19px;
+  }
+
+  .exchange-modal-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 19px;
+    font-size: 26px;
+  }
+
+  .exchange-modal-description {
+    margin-bottom: 19px;
+  }
+
+  .exchange-modal-skill {
+    padding: 14px;
+    margin-bottom: 20px;
+  }
+
+  .exchange-modal textarea {
+    min-height: 125px;
+  }
+
+  .exchange-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .exchange-cancel-btn,
+  .exchange-send-btn {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exchange-modal-overlay,
+  .exchange-modal {
+    animation: none;
+  }
+}
+
+

@@ -1,3 +1,4 @@
+
 import {
   createContext,
   useContext,
@@ -11,21 +12,20 @@ import axios from "axios";
 // API CONFIGURATION
 // ============================================
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  "http://localhost:5000/api";
+// Local development: localhost backend
+// Production: frontend Vercel domain with /api proxy
+
+const API_URL = import.meta.env.DEV
+  ? "http://localhost:5000/api"
+  : "/api";
 
 const AuthContext = createContext(null);
 
+// Shared Axios instance
 const api = axios.create({
   baseURL: API_URL,
-
-  // Required for cross-origin authentication cookies.
   withCredentials: true,
-
-  // Allow time for Render cold starts.
   timeout: 60000,
-
   headers: {
     "Content-Type": "application/json",
   },
@@ -59,7 +59,7 @@ export function AuthProvider({ children }) {
         if (active) {
           setUser(null);
 
-          // A 401 is normal when a visitor is logged out.
+          // 401 is normal if the visitor is logged out.
           if (error.response?.status !== 401) {
             console.error(
               "Session check failed:",

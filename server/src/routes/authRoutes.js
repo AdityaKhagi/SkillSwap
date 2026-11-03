@@ -9,6 +9,7 @@ const {
   login,
   getMe,
   logout,
+  createSocketTicket,
 } = require("../controllers/authController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -28,5 +29,6 @@ router.post("/reset-password", resetPassword);
 router.post("/login", login);
 router.get("/me", protect, getMe);
 router.post("/logout", logout);
+router.post("/socket-ticket", protect, createSocketTicket);
 
 module.exports = router;

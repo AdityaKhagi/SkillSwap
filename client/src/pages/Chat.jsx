@@ -1,20 +1,26 @@
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
-import axios from "axios";
+import { api } from "../context/AuthContext";
+
 import "./Chat.css";
 
-const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+// Socket.IO still connects directly to the backend.
+// We'll update its authentication separately.
 const SOCKET_URL =
-  import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+  import.meta.env.VITE_SOCKET_URL ||
+  (import.meta.env.DEV
+    ? "http://localhost:5000"
+    : "https://skillswap-backend-ebon.vercel.app");
 
-const api = axios.create({
-  baseURL: API_URL,
-  withCredentials: true,
-});
-
+    
 const EMOJIS = [
   "😊", "😂", "❤️", "🔥", "👏", "🙌",
   "✨", "🎉", "🤝", "👍", "💯", "🚀",
